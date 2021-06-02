@@ -5,7 +5,7 @@ Evaluation Of Automated Code Documentation Approaches
 \
 \
 FRAMEWORK DESIGN:\
-dataset -> pipeline of preprocessing (approach-dependent) -> pipeline of training models -> testing -> evaluate results
+dataset -> pipeline of preprocessing (approach-dependent) -> pipeline of training models -> testing -> evaluate results against golden standard
 \
 \
 Hi Minxing! 
