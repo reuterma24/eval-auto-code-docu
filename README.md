@@ -13,9 +13,8 @@ dataset -> pipeline of preprocessing (approach-dependent) -> pipeline of trainin
 NOTES: \
 code2seq: 
 preprocessing.py:
-\
-- if Java version not compatible with precompiled JavaExtractor no log errors are shown - check stderr during debugging... \
--also a problem is that the TMP variable is made global, but during parallel execution globals are not shared...
+- if Java version not compatible with precompiled JavaExtractor no log errors are shown - check stderr during debugging...
+- also a problem is that the TMP variable is made global, but during parallel execution globals are not shared...
 \
 \
 Hi Minxing! 
