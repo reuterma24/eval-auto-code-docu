@@ -1,0 +1,21 @@
+D:\Anaconda\envs\tf1_12\python.exe: can't open file 'approaches/code2seq/JavaExtractor/extract.py': [Errno 2] No such file or directory
+D:\Anaconda\envs\tf1_12\python.exe: can't open file 'approaches/code2seq/JavaExtractor/extract.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "JavaExtractor/extract.py", line 93, in <module>
+    subdirs = get_immediate_subdirectories(args.dir)
+  File "JavaExtractor/extract.py", line 14, in get_immediate_subdirectories
+    return [(os.path.join(a_dir, name)) for name in os.listdir(a_dir)
+FileNotFoundError: [WinError 3] Das System kann den angegebenen Pfad nicht finden: 'preprocessing/code2seq/preprocessed_data/split/evaluating'
+D:\Anaconda\envs\tf1_12\python.exe: can't open file 'approaches/code2seq/JavaExtractor/extract.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "JavaExtractor/extract.py", line 93, in <module>
+    subdirs = get_immediate_subdirectories(args.dir)
+  File "JavaExtractor/extract.py", line 14, in get_immediate_subdirectories
+    return [(os.path.join(a_dir, name)) for name in os.listdir(a_dir)
+FileNotFoundError: [WinError 3] Das System kann den angegebenen Pfad nicht finden: 'preprocessing/code2seq/preprocessed_data/split/evaluating'
+Traceback (most recent call last):
+  File "JavaExtractor/extract.py", line 93, in <module>
+    subdirs = get_immediate_subdirectories(args.dir)
+  File "JavaExtractor/extract.py", line 14, in get_immediate_subdirectories
+    return [(os.path.join(a_dir, name)) for name in os.listdir(a_dir)
+FileNotFoundError: [WinError 3] Das System kann den angegebenen Pfad nicht finden: 'preprocessing/code2seq/preprocessed_data/split/testing'

@@ -18,9 +18,9 @@ def preprocess(n):
     os.makedirs(root + 'testing/', exist_ok=True)
     os.makedirs(root + 'evaluating/', exist_ok=True)
 
-    train = open(root + "training/funcom.train.raw.txt", "w")
-    test = open(root + "testing/funcom.test.raw.txt", "w")
-    validation = open(root + "evaluating/funcom.val.raw.txt", "w")
+    train = open(root + "training/train.java", "w")
+    test = open(root + "testing/test.java", "w")
+    validation = open(root + "evaluating/evaluate.java", "w")
 
     train_size = length * 0.8  # needs to be reworked -- calculation safe, makes sense????
     test_size = length * 0.1 + train_size  # needs to be reworked
@@ -37,4 +37,5 @@ def preprocess(n):
         index += 1
 
 
+#execute in git bash not cmd
 os.system("approaches\\code2seq\\preprocess.sh")
