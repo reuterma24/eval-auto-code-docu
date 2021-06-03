@@ -1,11 +1,8 @@
 import os
-import datasets.funcom_filtered.load as funcom
+import datasets.funcom_filtered_tiny.load as funcom_tiny
 
-data = funcom.load()
-# THIS RIGHT NOW IS SOMEHOW A REDUCTION + CODE2SEQ PREPROCESS PROCEDURE
-# RETHINK WHOLE STRUCTURE of preprocessing
-# Read data from dataset and make it accessible
-# change that to load from reduced created set
+data = funcom_tiny.load()
+
 source_code = data[0]
 comments = data[1]
 

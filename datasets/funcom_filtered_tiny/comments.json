@@ -198,5 +198,5 @@
     "996": "\t/**\n\t * Sets the enabled status of the redo buttons.\n\t * \n\t * @param enabledStatus <code>true</code> if the objects are enabled, and\n\t * \t\t\t\t\t   <code>false</code> if the objects are disabled\n\t */\n",
     "1000": "\t\t/**\n\t\t * Add the passed solution as solution to be highlighted.\n\t\t * \n\t\t * @param solution <code>Solution</code> to be highlighted\n\t\t */\n",
     "1002": "\t\t/**\n\t\t * Removes all solutions to be highlighted.\n\t\t */\n",
-    "1006": "\t\t/**\n\t\t * Returns the intensity the passed solution is to be highlighted.\n\t\t *\n\t\t * @param solution the <code>Solution</code> whose highlight intensity is returned\n\t\t * @return the highlight intensity or null if the passed solution isn't to be highlighted\n\t\t */\n",
+    "1006": "\t\t/**\n\t\t * Returns the intensity the passed solution is to be highlighted.\n\t\t *\n\t\t * @param solution the <code>Solution</code> whose highlight intensity is returned\n\t\t * @return the highlight intensity or null if the passed solution isn't to be highlighted\n\t\t */\n"
 }
