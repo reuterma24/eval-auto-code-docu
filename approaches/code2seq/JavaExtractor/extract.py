@@ -33,7 +33,7 @@ def ExtractFeaturesForDir(args, dir, prefix):
     outputFileName = TMP_DIR + prefix + dir.split('/')[-1]
     failed = False
     with open(outputFileName, 'a') as outputFile:
-        sleeper = subprocess.Popen(command, stdout=outputFile, stderr=subprocess.PIPE)
+        sleeper = subprocess.Popen(command, stdout=outputFile, stderr=subprocess.PIPE, shell=True)
         timer = Timer(60 * 60, kill, [sleeper])
 
         try:
@@ -63,10 +63,11 @@ def ExtractFeaturesForDirsList(args, dirs):
         shutil.rmtree(TMP_DIR, ignore_errors=True)
     os.makedirs(TMP_DIR)
     try:
-        p = multiprocessing.Pool(6)
-        p.starmap(ParallelExtractDir, zip(itertools.repeat(args), dirs))
-        # for dir in dirs:
-        #    ExtractFeaturesForDir(args, dir, '')
+        for dir in dirs:
+            ExtractFeaturesForDir(args, dir, '')
+        # p = multiprocessing.Pool(6) I THINK THIS IS BROKEN BC THE GLOBAL VAR TMP_DIR IS NOT SHARED ACROSS MULTIPROCESSING
+        # p.starmap(ParallelExtractDir, zip(itertools.repeat(args), dirs))
+
         output_files = os.listdir(TMP_DIR)
         for f in output_files:
             os.system("cat %s/%s" % (TMP_DIR, f))

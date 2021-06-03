@@ -1,6 +1,8 @@
 import os
 import datasets.funcom_filtered_reduced.load as funcom
-#import datasets.funcom_filtered.load as funcom
+
+
+# import datasets.funcom_filtered.load as funcom
 
 
 def preprocess(n):
@@ -20,8 +22,8 @@ def preprocess(n):
     test = open(root + "testing/funcom.test.raw.txt", "w")
     validation = open(root + "evaluating/funcom.val.raw.txt", "w")
 
-    train_size = length * 0.8 #needs to be reworked -- calculation safe, makes sense????
-    test_size = length * 0.1 + train_size #needs to be reworked
+    train_size = length * 0.8  # needs to be reworked -- calculation safe, makes sense????
+    test_size = length * 0.1 + train_size  # needs to be reworked
 
     index = 0
     for i in codes:
@@ -34,4 +36,5 @@ def preprocess(n):
 
         index += 1
 
-#  os.system("approaches\\code2seq\\preprocess.sh")
+
+os.system("approaches\\code2seq\\preprocess.sh")
