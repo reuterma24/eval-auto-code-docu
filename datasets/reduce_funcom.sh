@@ -5,7 +5,7 @@ N=200
 source_path=funcom_filtered
 dest_path=funcom_filtered_tiny
 
-#this keeps the , for the last stored entry
+#this keeps the , for the last stored entry -- could be a problem??
 ( head -n $((N+1)) ${source_path}/fid_pid.json ; echo '}' ) > ${dest_path}/fid_pid.json
 echo "Extracted first ${N} lines from fid_pid.json."
 
