@@ -21,6 +21,12 @@
 #   recommended to use a multi-core machine for the preprocessing 
 #   step and set this value to the number of cores.
 # PYTHON - python3 interpreter alias.
+
+#TRAIN_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/training
+#VAL_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/validation
+#TEST_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/testing
+#DATASET_NAME=funcom_MARTIN
+
 TRAIN_DIR=my_training_dir
 VAL_DIR=my_val_dir
 TEST_DIR=my_test_dir
@@ -30,7 +36,7 @@ MAX_CONTEXTS=200
 SUBTOKEN_VOCAB_SIZE=186277
 TARGET_VOCAB_SIZE=26347
 NUM_THREADS=64
-PYTHON=python3
+PYTHON=python
 ###########################################################
 
 TRAIN_DATA_FILE=${DATASET_NAME}.train.raw.txt

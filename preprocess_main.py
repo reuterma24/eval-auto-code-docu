@@ -6,6 +6,7 @@ import datasets.funcom_filtered.load as funcom
 # RETHINK WHOLE STRUCTURE of preprocessing
 
 # Read data from dataset and make it accessible
+# change that to load from reduced created set
 data = funcom.load()
 
 source_code = data[0]

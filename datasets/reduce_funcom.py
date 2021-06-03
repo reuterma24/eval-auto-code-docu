@@ -1,1 +1,0 @@
-# write script to produce a tiny funcom version
