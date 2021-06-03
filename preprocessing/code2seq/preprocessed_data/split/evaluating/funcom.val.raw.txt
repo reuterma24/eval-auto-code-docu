@@ -1,0 +1,19 @@
+	/**
+	 * Gives the name of this solver as used to tag new solutions.
+	 * @return the name of this solver
+	 */
+
+	protected String creatorName() {
+		return Texts.getText("solver");
+	}
+
+	/**
+	 * Return the player position of this board position.
+	 * 
+	 * @return the player position
+	 */
+
+	final public int getPlayerPosition() {
+		return playerPosition;
+	}
+

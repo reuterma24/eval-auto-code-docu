@@ -25,12 +25,11 @@
 #TRAIN_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/training
 #VAL_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/validation
 #TEST_DIR=D:/AutomatedCodeDocumentation/approaches/code2seq/testdata/testing
-#DATASET_NAME=funcom_MARTIN
 
 TRAIN_DIR=my_training_dir
 VAL_DIR=my_val_dir
 TEST_DIR=my_test_dir
-DATASET_NAME=my_dataset
+DATASET_NAME=funcom_reduced
 MAX_DATA_CONTEXTS=1000
 MAX_CONTEXTS=200
 SUBTOKEN_VOCAB_SIZE=186277

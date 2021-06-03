@@ -1,0 +1,201 @@
+	/**
+	 * Returns the pushes lowerbound of this board position.
+	 * 
+	 * @return the pushes lowerbound
+	 */
+
+	public int getPushesLowerbound() {
+		return pushesLowerbound;
+	}
+
+	/**
+	 * Sets the pushes lowerbound of this board position.
+	 * 
+	 * @param pushesLowerbound
+	 */
+
+	public void setPushesLowerbound(int pushesLowerbound) {
+		this.pushesLowerbound = pushesLowerbound;
+	}
+
+		/**
+		 * Play a sound.
+		 */
+
+		public void play() {
+			
+			// If no sound file is there nothing can be played.
+			if(currentSoundFilename.equals(""))
+				return;
+			
+			// Check if the this sound must be read from another file (the user has
+			// chosen another sound to be played).
+			String settingsFileName = Settings.get(soundSettingsKey);
+			if(!currentSoundFilename.equals(settingsFileName)) {
+				loadClip(settingsFileName);			
+			}
+			
+			// Stop the currently playing sound to play the new sound if necessary.
+			if (clip.isRunning()) {
+				clip.stop();
+			}
+			
+			// Rewind to the beginning.
+			clip.setFramePosition(0); 
+			
+			// Start playing.
+			clip.start();    
+		}
+
+	/**
+	 * Returns the influence value between the positions of the passed boxes.
+	 * <p>
+	 * The LOWER the influence value the more influence has the box on the other box.
+	 * 
+	 * @param boxNo1  the position of the first  box whose position is considered
+	 * @param boxNo2  the position of the second box whose position is considered
+	 * @return the influence value 
+	 */
+
+	public int getInfluenceValue(int boxNo1, int boxNo2) {
+		return influence.getInfluenceDistance( board.boxData.getBoxPosition(boxNo1),
+				                               board.boxData.getBoxPosition(boxNo2) );
+	}
+
+	/**
+	 * Sets the box positions and the player position.
+	 *     
+	 * @param positions positions of the boxes and the player
+	 */
+
+	public void setPositions(int[] positions){
+		this.positions = positions;
+	}
+
+	/**
+	 * Returns the player position of this board position.
+	 * 
+	 * @return the player position
+	 */
+
+	public int getPlayerPosition() {
+		return positions[positions.length-1];
+	}
+
+	/**
+	 * Returns the number of the moved box.
+	 * 
+	 * @return the number of the moved box
+	 */
+
+	public int getPulledBoxNumber() {
+		return pulledBoxNo;
+	}
+
+	/**
+	 * Returns the start position of the pulled box.
+	 * 
+	 * @return the position of the box before it was pulled.
+	 */
+
+	public int getStartBoxPosition() {
+		return startPosition;
+	}
+
+	/**
+	 * Returns the target position of the pulled box.
+	 * 
+	 * @return the position of the box after it was pulled.
+	 */
+
+	public int getTargetBoxPosition() {
+		return targetPosition;
+	}
+
+    /**
+     * Returns the preceding board position of this board position.
+     *
+     * @return the preceding board position of this board position
+     */
+
+    public BoardPositionPackingSequence getPrecedingBoardPosition() {
+    	return precedingBoardPosition;
+    }
+
+	/**
+	 * Compares both board positions. Note: lower values means high priority
+	 * in the <code>PriorityQueue</code>.
+	 */
+
+	public int compareTo(BoardPositionPackingSequence boardPosition) {
+		return boardPosition.getRelevance() - getRelevance();
+	}
+
+	/**
+	 * Returns whether the push is a forced push, that means a box 
+	 * must be pushed from the start position to the target position.
+	 */
+
+	public boolean isForcedPush() {
+		return isPushForced;
+	}
+
+	/**
+	 * Sets the status bar text.
+	 * 
+	 * @param text
+	 *            the text to be shown in the status bar
+	 */
+
+	final public void setInfoText(String text) {
+		infoText.setText(text);
+	}
+
+	/**
+	 * Returns whether the solver has been stopped due to insufficient memory.
+	 * 
+	 * @return <code>true</code> if the solver stopped due to insufficient memory, and
+	 *        <code>false</code> otherwise
+	 */
+
+	public boolean isSolverStoppedDueToOutOfMemory() {
+		return isSolverStoppedDueToOutOfMemory;
+	}
+
+	/**
+	 * Returns the board position with the shortest determined solution path length.
+	 *
+     * @return board position with the shortest determined solution path length.
+     */
+
+    final protected IBoardPositionMoves getBestBoardPosition(){
+
+		// Nimmt die Liste aller Stellungen mit einer bestimmten Lösungspfadlänge auf
+		LinkedList<IBoardPositionMoves> boardPositionList;
+		
+		for(int solutionLength = shortestSolutionPathLength; solutionLength <= longestSolutionPathLength; solutionLength++) {
+		
+			// Liste der Stellungen mit der aktuellen Pfadlänge holen. 
+			boardPositionList = boardPositionQueue.get(solutionLength);
+			
+			if(boardPositionList.size() > 0){	 
+			    shortestSolutionPathLength = solutionLength;
+			    
+				// Die zuletzt eingefügte Stellung zurückgeben
+	    		return boardPositionList.removeLast();
+			}
+		}
+		
+		return null;
+	}
+
+	/**
+	 * Returns the preceding board position of this board position.
+	 * 
+	 * @return preceding board position
+	 */
+
+	final public IBoardPosition getPrecedingBoardPosition() {
+		return precedingBoardPosition;
+	}
+

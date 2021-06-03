@@ -1,0 +1,20 @@
+	/**
+	 * Returns the direction the box has been pushed.
+	 * 
+	 * @return Direction of the push
+	 */
+
+	final public int getDirection() {
+		return positionData >>> 13;
+	}
+
+	/**
+	 * Returns the number of the pushed box.
+	 * 
+	 * @return Number of the pushed box
+	 */
+
+	public int getBoxNo() {
+		return positionData & ((1 << 10) - 1);
+	}
+
