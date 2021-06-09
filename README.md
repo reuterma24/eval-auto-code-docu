@@ -2,6 +2,7 @@
 Repository for the bachelor's thesis:\
 Evaluation Of Automated Code Documentation Approaches
 \
+\
 create a new branch before you implement new approaches...
 \
 \
