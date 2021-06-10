@@ -26,11 +26,11 @@ def preprocess(n):
     index = 0
     for i in codes:
         if index < train_size:
-            train.writelines(comments[i] + '\n' + codes[i] + '\n')
+            train.writelines(comments[i] + codes[i] + '\n')
         elif index < test_size:
-            test.writelines(comments[i] + '\n' + codes[i] + '\n')
+            test.writelines(comments[i] + codes[i] + '\n')
         else:
-            validation.writelines(comments[i] + '\n' + codes[i] + '\n')
+            validation.writelines(comments[i] + codes[i] + '\n')
 
         index += 1
 
