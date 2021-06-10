@@ -1,14 +1,14 @@
 import _pickle as pickle
 import os
+import shutil
 import time
 
 import numpy as np
-import shutil
 import tensorflow as tf
+from rouge import FilesRouge
 
 import reader
 from common import Common
-from rouge import FilesRouge
 
 
 class Model:
@@ -95,7 +95,7 @@ class Model:
                     batch_num += 1
                     _, batch_loss = self.sess.run([optimizer, train_loss])
                     sum_loss += batch_loss
-                    # print('SINGLE BATCH LOSS', batch_loss)
+                    print('SINGLE BATCH LOSS', batch_loss)
                     if batch_num % self.num_batches_to_log == 0:
                         self.trace(sum_loss, batch_num, multi_batch_start_time)
                         sum_loss = 0
@@ -165,10 +165,12 @@ class Model:
                 shutil.copyfile(src=self.config.LOAD_PATH + '.dict', dst=release_name + '.dict')
                 return None
         model_dirname = os.path.dirname(self.config.SAVE_PATH if self.config.SAVE_PATH else self.config.LOAD_PATH)
+        model_dirname += '/epoch%s' % str(self.epochs_trained) #i added that
         ref_file_name = model_dirname + '/ref.txt'
         predicted_file_name = model_dirname + '/pred.txt'
         if not os.path.exists(model_dirname):
             os.makedirs(model_dirname)
+
 
         with open(model_dirname + '/log.txt', 'w') as output_file, open(ref_file_name, 'w') as ref_file, open(
                 predicted_file_name,
