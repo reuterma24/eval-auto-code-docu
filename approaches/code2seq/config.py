@@ -20,8 +20,8 @@ class Config:
         config.MAX_PATH_LENGTH = 8 + 1
         config.MAX_NAME_PARTS = 5
         config.MAX_TARGET_PARTS = 6
-        config.EMBEDDINGS_DROPOUT_KEEP_PROB = 0.01 #0.75
-        config.RNN_DROPOUT_KEEP_PROB = 0.01 #0.5
+        config.EMBEDDINGS_DROPOUT_KEEP_PROB = 0.75
+        config.RNN_DROPOUT_KEEP_PROB = 0.5
         config.BIRNN = True
         config.RANDOM_CONTEXTS = True
         config.BEAM_WIDTH = 0

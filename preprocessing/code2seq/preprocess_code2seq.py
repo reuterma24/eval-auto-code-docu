@@ -1,14 +1,16 @@
 import os
+import shutil
+import sklearn.model_selection as ms
+
 import datasets.funcom_filtered_reduced.load as funcom
 # import datasets.funcom_filtered.load as funcom
 
 
-def preprocess(n):
-    length = n
 
+def preprocess(n):
     data = funcom.load()
-    codes = data[0]
-    comments = data[1]
+    codes_raw = data[0]
+    comments_raw = data[1]
 
     root = 'preprocessing/code2seq/preprocessed_data/split/'
     os.makedirs(root, exist_ok=True)
@@ -16,24 +18,29 @@ def preprocess(n):
     os.makedirs(root + 'testing/', exist_ok=True)
     os.makedirs(root + 'evaluating/', exist_ok=True)
 
-    train = open(root + "training/train.java", "w")
-    test = open(root + "testing/test.java", "w")
-    validation = open(root + "evaluating/evaluate.java", "w")
+    with open(root + "training/train.java", "w", encoding="utf-8") as train:
+        with open(root + "testing/test.java", "w", encoding="utf-8") as test:
+            with open(root + "evaluating/evaluate.java", "w", encoding="utf-8") as validation:
 
-    train_size = length * 0.8  # needs to be reworked -- calculation safe, makes sense????
-    test_size = length * 0.1 + train_size  # needs to be reworked
+                pairs = list()
+                for i in codes_raw:
+                    pairs.append(comments_raw[i] + codes_raw[i])
 
-    index = 0
-    for i in codes:
-        if index < train_size:
-            train.writelines(comments[i] + codes[i] + '\n')
-        elif index < test_size:
-            test.writelines(comments[i] + codes[i] + '\n')
-        else:
-            validation.writelines(comments[i] + codes[i] + '\n')
+                train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
 
-        index += 1
+                print("train len:" + str(len(train_data)))
 
+                test_data, val_data = ms.train_test_split(test_val_data, test_size=0.5, train_size=0.5, shuffle=False)
 
-#execute in git bash not cmd
-os.system("approaches\\code2seq\\preprocess.sh")
+                print("test len:" + str(len(test_data)))
+                print("val len:" + str(len(val_data)))
+                for i in train_data:
+                    train.writelines(str(i))
+
+                for i in test_data:
+                    test.writelines(str(i))
+
+                for i in val_data:
+                    validation.writelines(str(i))
+
+    os.system("approaches\\code2seq\\preprocess.sh")
