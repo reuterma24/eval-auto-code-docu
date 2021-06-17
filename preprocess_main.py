@@ -1,7 +1,7 @@
 import preprocessing.code2seq.preprocess_code2seq as code2seq
 from subprocess import Popen
 
-N = 2000  # number of code comment pairs
+N = 5000  # number of code comment pairs
 
 train_size = N * 0.8
 test_size = N * 0.1

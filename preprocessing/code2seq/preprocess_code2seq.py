@@ -18,22 +18,20 @@ def preprocess(n):
     os.makedirs(root + 'testing/', exist_ok=True)
     os.makedirs(root + 'evaluating/', exist_ok=True)
 
+    pairs = list()
+    for i in codes_raw:
+        pairs.append(comments_raw[i] + '\n' + codes_raw[i] + '\n')
+
+    train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
+    test_data, val_data = ms.train_test_split(test_val_data, test_size=0.5, train_size=0.5, shuffle=False)
+    print("train len:" + str(len(train_data)))
+    print("test len:" + str(len(test_data)))
+    print("val len:" + str(len(val_data)))
+
     with open(root + "training/train.java", "w", encoding="utf-8") as train:
         with open(root + "testing/test.java", "w", encoding="utf-8") as test:
             with open(root + "evaluating/evaluate.java", "w", encoding="utf-8") as validation:
 
-                pairs = list()
-                for i in codes_raw:
-                    pairs.append(comments_raw[i] + codes_raw[i])
-
-                train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
-
-                print("train len:" + str(len(train_data)))
-
-                test_data, val_data = ms.train_test_split(test_val_data, test_size=0.5, train_size=0.5, shuffle=False)
-
-                print("test len:" + str(len(test_data)))
-                print("val len:" + str(len(val_data)))
                 for i in train_data:
                     train.writelines(str(i))
 
