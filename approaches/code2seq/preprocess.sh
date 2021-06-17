@@ -38,7 +38,7 @@ PYTHON=python
 TRAIN_DATA_FILE=${DATASET_NAME}.train.raw.txt
 VAL_DATA_FILE=${DATASET_NAME}.val.raw.txt
 TEST_DATA_FILE=${DATASET_NAME}.test.raw.txt
-EXTRACTOR_JAR=D:/AutomatedCodeDocumentation/eval-auto-code-docu/approaches/code2seq/JavaExtractor/JPredict/target/JavaExtractor-0.0.1-SNAPSHOT.jar
+EXTRACTOR_JAR=approaches/code2seq/JavaExtractor/JPredict/target/JavaExtractor-0.0.1-SNAPSHOT.jar
 
 mkdir -p approaches/code2seq/data
 mkdir -p approaches/code2seq/data/${DATASET_NAME}

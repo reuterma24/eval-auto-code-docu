@@ -1,4 +1,4 @@
-import os
+import os.path
 import shutil
 import sklearn.model_selection as ms
 
@@ -12,7 +12,7 @@ def preprocess(n):
     codes_raw = data[0]
     comments_raw = data[1]
 
-    root = 'preprocessing/code2seq/preprocessed_data/split/'
+    root = os.path.dirname(__file__) + '/preprocessed_data'
     os.makedirs(root, exist_ok=True)
     os.makedirs(root + 'training/', exist_ok=True)
     os.makedirs(root + 'testing/', exist_ok=True)
