@@ -4,7 +4,7 @@ from subprocess import Popen
 
 root = os.path.dirname(__file__)
 
-N = 200  # number of code comment pairs
+N = 10  # number of code comment pairs
 
 train_size = N * 0.8
 test_size = N * 0.1
@@ -20,4 +20,5 @@ reduce_script = root + ("/datasets/reduce_funcom.sh %s" % (str(N)))
 process = Popen(reduce_script, shell=True)
 process.wait()
 
+#RUN CODE2SEQ PREPROCESSING
 code2seq.preprocess(N)
