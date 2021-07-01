@@ -9,7 +9,7 @@ type=funcom_reduced-model
 dataset_name=funcom_reduced
 data_dir=data/funcom_reduced
 data=${data_dir}/${dataset_name}
-test_data=${data_dir}/${dataset_name}.val.c2s
+test_data=${data_dir}/${dataset_name}.val.c2s #change this in order to select the dataset for the training validation after each epoch
 model_dir=models/${type}
 
 BASEDIR=$(dirname "$0")
