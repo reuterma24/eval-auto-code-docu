@@ -4,7 +4,7 @@ from subprocess import Popen
 
 root = os.path.dirname(__file__)
 
-N = 10  # number of code comment pairs
+N = 300  # number of code comment pairs
 
 train_size = N * 0.8
 test_size = N * 0.1

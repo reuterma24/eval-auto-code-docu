@@ -94,8 +94,7 @@ class FeatureExtractor {
 
     private ProgramFeatures generatePathFeaturesForFunction(MethodContent methodContent) {
         ArrayList<Node> functionLeaves = methodContent.getLeaves();
-        ProgramFeatures programFeatures = new ProgramFeatures(
-                methodContent.getName(), this.filePath, methodContent.getContent());
+        ProgramFeatures programFeatures = new ProgramFeatures( methodContent.getName(), this.filePath, methodContent.getContent());
 
         for (int i = 0; i < functionLeaves.size(); i++) {
             for (int j = i + 1; j < functionLeaves.size(); j++) {

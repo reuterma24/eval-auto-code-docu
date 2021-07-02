@@ -9,6 +9,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("StringEquality")
 public class FunctionVisitor extends VoidVisitorAdapter<Object> {
@@ -31,21 +32,55 @@ public class FunctionVisitor extends VoidVisitorAdapter<Object> {
         leavesCollectorVisitor.visitDepthFirst(node);
         ArrayList<Node> leaves = leavesCollectorVisitor.getLeaves();
 
+/*
         String normalizedMethodName = Common.normalizeName(node.getName(), Common.BlankWord);
+
         ArrayList<String> splitNameParts = Common.splitToSubtokens(node.getName());
         String splitName = normalizedMethodName;
         if (splitNameParts.size() > 0) {
             splitName = String.join(Common.internalSeparator, splitNameParts);
+       }
+*/
+        String splitComment = "SOMEHTING-WENT-WRONG";
+        boolean hasComment = false;
+        if(node.getComment() != null)
+        {
+            hasComment = true; //this helps to ignore nested method declarations
+            String comment = node.getComment().getContent();
+            comment = comment.toLowerCase();
+            comment = comment.replaceAll("\\*", "");
+            comment = comment.replaceAll("\\\\n", "");
+            String[] parts = comment.split("\\.");
+
+            ArrayList<String> splitCommentParts = Common.splitToSubtokens(parts[0]);
+            if (splitCommentParts.size() > 0)
+            {
+                splitComment = String.join(Common.internalSeparator, splitCommentParts);
+            }
         }
 
-        node.setName(Common.methodName);
+        //node.setName(Common.methodName);
+        node.setName(splitComment);
+
 
         if (node.getBody() != null) {
             long methodLength = getMethodLength(node.getBody().toString());
-            if (commandLineValues.MaxCodeLength <= 0 ||
-                    (methodLength >= commandLineValues.MinCodeLength && methodLength <= commandLineValues.MaxCodeLength)) {
+
+            if (commandLineValues.MaxCodeLength <= 0 || (methodLength >= commandLineValues.MinCodeLength && methodLength <= commandLineValues.MaxCodeLength))
+            {
+                if(hasComment == true)
+                {
+                    methods.add(new MethodContent(leaves, splitComment, node.toString()));
+                }
+            }
+
+
+           /*
+            if (commandLineValues.MaxCodeLength <= 0 || (methodLength >= commandLineValues.MinCodeLength && methodLength <= commandLineValues.MaxCodeLength))
+            {
                 methods.add(new MethodContent(leaves, splitName, node.toString()));
             }
+            */
         }
     }
 

@@ -20,7 +20,7 @@ def preprocess(n):
 
     pairs = list()
     for i in codes_raw:
-        pairs.append(comments_raw[i] + '\n' + codes_raw[i] + '\n')
+        pairs.append(comments_raw[i] + codes_raw[i] + '\n')
 
     train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
     test_data, val_data = ms.train_test_split(test_val_data, test_size=0.5, train_size=0.5, shuffle=False)
