@@ -215,7 +215,7 @@ class batch_gen(keras.utils.Sequence):
         for fid in batchfids:
 
             wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['d%s' % (tt)][fid]
+            #wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlseq = seqdata['s%s' % (tt)][fid]
 
@@ -223,25 +223,27 @@ class batch_gen(keras.utils.Sequence):
 
             # the dataset contains 20+ functions per file, but we may elect
             # to reduce that amount for a given model based on the config
-            newlen = self.config['sdatlen']-len(wsdatseq)
-            if newlen < 0:
-                newlen = 0
-            wsdatseq = wsdatseq.tolist()
-            for k in range(newlen):
-                wsdatseq.append(np.zeros(self.config['stdatlen']))
-            for i in range(0, len(wsdatseq)):
-                wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
-            wsdatseq = np.asarray(wsdatseq)
-            wsdatseq = wsdatseq[:self.config['sdatlen'],:]
+
+            #newlen = self.config['sdatlen']-len(wsdatseq)
+            #if newlen < 0:
+            #    newlen = 0
+            #wsdatseq = wsdatseq.tolist()
+            #for k in range(newlen):
+            #    wsdatseq.append(np.zeros(self.config['stdatlen']))
+            #for i in range(0, len(wsdatseq)):
+            #    wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
+            #wsdatseq = np.asarray(wsdatseq)
+            #wsdatseq = wsdatseq[:self.config['sdatlen'],:]
 
             wsmlseq = wsmlseq[:self.config['smllen']]
 
             if not self.training:
-                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlseq]
+                #fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlseq]
+                fiddat[fid] = [wtdatseq, wcomseq, wsmlseq]
             else:
                 for i in range(0, len(wcomseq)):
                     tdatseqs.append(wtdatseq)
-                    sdatseqs.append(wsdatseq)
+                    #sdatseqs.append(wsdatseq)
                     smlseqs.append(wsmlseq)
                     # slice up whole comseq into seen sequence and current sequence
                     # [a b c d] => [] [a], [a] [b], [a b] [c], [a b c] [d], ...
@@ -287,30 +289,32 @@ class batch_gen(keras.utils.Sequence):
         for fid in batchfids:
 
             wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['ds%s' % (tt)][fid]
+            #wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
 
             wtdatseq = wtdatseq[:self.config['tdatlen']]
 
             # the dataset contains 20+ functions per file, but we may elect
             # to reduce that amount for a given model based on the config
-            newlen = self.config['sdatlen']-len(wsdatseq)
-            if newlen < 0:
-                newlen = 0
-            wsdatseq = wsdatseq.tolist()
-            for k in range(newlen):
-                wsdatseq.append(np.zeros(self.config['stdatlen']))
-            for i in range(0, len(wsdatseq)):
-                wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
-            wsdatseq = np.asarray(wsdatseq)
-            wsdatseq = wsdatseq[:self.config['sdatlen'],:]
+
+            #newlen = self.config['sdatlen']-len(wsdatseq)
+            #if newlen < 0:
+            #    newlen = 0
+            #wsdatseq = wsdatseq.tolist()
+            #for k in range(newlen):
+            #    wsdatseq.append(np.zeros(self.config['stdatlen']))
+            #for i in range(0, len(wsdatseq)):
+            #    wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
+            #wsdatseq = np.asarray(wsdatseq)
+            #wsdatseq = wsdatseq[:self.config['sdatlen'],:]
 
             if not self.training:
-                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq]
+                #fiddat[fid] = [wtdatseq, wsdatseq, wcomseq]
+                fiddat[fid] = [wtdatseq, wcomseq]
             else:
                 for i in range(0, len(wcomseq)):
                     tdatseqs.append(wtdatseq)
-                    sdatseqs.append(wsdatseq)
+                    #sdatseqs.append(wsdatseq)
                     # slice up whole comseq into seen sequence and current sequence
                     # [a b c d] => [] [a], [a] [b], [a b] [c], [a b c] [d], ...
                     comseq = wcomseq[0:i]
@@ -441,7 +445,7 @@ class batch_gen(keras.utils.Sequence):
         for fid in batchfids:
 
             wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['ds%s' % (tt)][fid]
+            #wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlnodes = seqdata['s%s_nodes' % (tt)][fid]
             wsmledges = seqdata['s%s_edges' % (tt)][fid]
@@ -467,24 +471,25 @@ class batch_gen(keras.utils.Sequence):
 
             # the dataset contains 20+ functions per file, but we may elect
             # to reduce that amount for a given model based on the config
-            newlen = self.config['sdatlen']-len(wsdatseq)
-            if newlen < 0:
-                newlen = 0
-            wsdatseq = wsdatseq.tolist()
-            for k in range(newlen):
-                wsdatseq.append(np.zeros(self.config['stdatlen']))
-            for i in range(0, len(wsdatseq)):
-                wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
-            wsdatseq = np.asarray(wsdatseq)
-            wsdatseq = wsdatseq[:self.config['sdatlen'],:]
+            #newlen = self.config['sdatlen']-len(wsdatseq)
+            #if newlen < 0:
+            #    newlen = 0
+            #wsdatseq = wsdatseq.tolist()
+            #for k in range(newlen):
+            #    wsdatseq.append(np.zeros(self.config['stdatlen']))
+            #for i in range(0, len(wsdatseq)):
+            #    wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
+            #wsdatseq = np.asarray(wsdatseq)
+            #wsdatseq = wsdatseq[:self.config['sdatlen'],:]
 
             if not self.training:
-                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlnodes, wsmledges]
+                #fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlnodes, wsmledges]
+                fiddat[fid] = [wtdatseq, wcomseq, wsmlnodes, wsmledges]
             else:
                 for i in range(0, len(wcomseq)):
                     if(self.config['use_tdats']):
                         tdatseqs.append(wtdatseq)
-                    sdatseqs.append(wsdatseq)
+                    #sdatseqs.append(wsdatseq)
                     smlnodes.append(wsmlnodes)
                     smledges.append(wsmledges)
                     # slice up whole comseq into seen sequence and current sequence
@@ -546,7 +551,7 @@ class batch_gen(keras.utils.Sequence):
         for fid in batchfids:
 
             wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['ds%s' % (tt)][fid]
+            #wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlnodes = seqdata['s%s_nodes' % (tt)][fid]
             wsmledges = seqdata['s%s_edges' % (tt)][fid]
@@ -598,24 +603,25 @@ class batch_gen(keras.utils.Sequence):
 
             # the dataset contains 20+ functions per file, but we may elect
             # to reduce that amount for a given model based on the config
-            newlen = self.config['sdatlen']-len(wsdatseq)
-            if newlen < 0:
-                newlen = 0
-            wsdatseq = wsdatseq.tolist()
-            for k in range(newlen):
-                wsdatseq.append(np.zeros(self.config['stdatlen']))
-            for i in range(0, len(wsdatseq)):
-                wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
-            wsdatseq = np.asarray(wsdatseq)
-            wsdatseq = wsdatseq[:self.config['sdatlen'],:]
+            #newlen = self.config['sdatlen']-len(wsdatseq)
+            #if newlen < 0:
+            #    newlen = 0
+            #wsdatseq = wsdatseq.tolist()
+            #for k in range(newlen):
+            #    wsdatseq.append(np.zeros(self.config['stdatlen']))
+            #for i in range(0, len(wsdatseq)):
+            #    wsdatseq[i] = np.array(wsdatseq[i])[:self.config['stdatlen']]
+            #wsdatseq = np.asarray(wsdatseq)
+            #wsdatseq = wsdatseq[:self.config['sdatlen'],:]
 
             if not self.training:
-                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlpaths]
+                #fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlpaths]
+                fiddat[fid] = [wtdatseq, wcomseq, wsmlpaths]
             else:
                 for i in range(0, len(wcomseq)):
                     if(self.config['use_tdats']):
                         tdatseqs.append(wtdatseq)
-                    sdatseqs.append(wsdatseq)
+                    #sdatseqs.append(wsdatseq)
                     smlpaths.append(wsmlpaths)
                     # slice up whole comseq into seen sequence and current sequence
                     # [a b c d] => [] [a], [a] [b], [a b] [c], [a b c] [d], ...
