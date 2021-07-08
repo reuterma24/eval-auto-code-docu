@@ -215,7 +215,7 @@ class batch_gen(keras.utils.Sequence):
         for fid in batchfids:
 
             wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['ds%s' % (tt)][fid]
+            wsdatseq = seqdata['d%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlseq = seqdata['s%s' % (tt)][fid]
 
