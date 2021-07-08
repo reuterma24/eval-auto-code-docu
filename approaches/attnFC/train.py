@@ -18,7 +18,7 @@ random.seed(seed)
 np.random.seed(seed)
 tf.set_random_seed(seed)
 
-root = os.path.dirname(__file__)
+root = os.path.dirname(os.path.abspath(__file__))
 
 import keras
 import keras.utils
@@ -73,7 +73,7 @@ class HistoryCallback(Callback):
 
 if __name__ == '__main__':
 
-    root = os.path.dirname(__file__)
+    root = os.path.dirname(os.path.abspath(__file__))
 
     timestart = int(round(time.time()))
 
@@ -117,6 +117,7 @@ if __name__ == '__main__':
     init_tf(gpu)
 
     prep('loading tokenizers... ')
+    print("ROOT: " + root)
     tdatstok = pickle.load(open('%s/tdats.tok' % (dataprep), 'rb'), encoding='UTF-8')
     comstok = pickle.load(open('%s/coms.tok' % (dataprep), 'rb'), encoding='UTF-8')
     #sdatstok = pickle.load(open('%s/sdats.tok' % (dataprep), 'rb'), encoding='UTF-8') this is not needed i think?
