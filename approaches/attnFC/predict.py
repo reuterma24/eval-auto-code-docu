@@ -9,6 +9,7 @@ import random
 import tensorflow as tf
 import numpy as np
 
+root = os.path.dirname(__file__)
 seed = 1337
 random.seed(seed)
 np.random.seed(seed)
@@ -549,8 +550,8 @@ if __name__ == '__main__':
     parser.add_argument('modelfile', type=str, default=None)
     parser.add_argument('--num-procs', dest='numprocs', type=int, default='4')
     parser.add_argument('--gpu', dest='gpu', type=str, default='')
-    parser.add_argument('--data', dest='dataprep', type=str, default='/nfs/projects/attn-to-fc/data/standard')
-    parser.add_argument('--outdir', dest='outdir', type=str, default='/nfs/projects/attn-to-fc/data/outdir')
+    parser.add_argument('--data', dest='dataprep', type=str, default=root + '/data/standard')
+    parser.add_argument('--outdir', dest='outdir', type=str, default=root + '/data/outdir')
     parser.add_argument('--batch-size', dest='batchsize', type=int, default=200)
     parser.add_argument('--strat', dest='strat', type=str, default='greedy')
     parser.add_argument('--beam-width', dest='beamwidth', type=int, default=1)

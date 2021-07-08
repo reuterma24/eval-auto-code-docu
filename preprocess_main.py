@@ -1,24 +1,24 @@
 import os.path
 import preprocessing.code2seq.preprocess_code2seq as code2seq
+import datasets.funcom_tokenized.shuffle as shuffle
 from subprocess import Popen
 
 root = os.path.dirname(__file__)
 
 N = 300  # number of code comment pairs
-
-train_size = N * 0.8
-test_size = N * 0.1
-validation_size = N * 0.1
-# pass theses as parameters
+train_size = 0.8
+test_size = 0.1
+validation_size = 0.1
 
 msg = "%s Code Comment Pairs used in general. %s for training, %s for testing and %s for validating." \
-      % (str(N), str(train_size), str(test_size), str(validation_size))
+     % (str(N), str(train_size * N), str(test_size * N), str(validation_size * N))
 print(msg)
 
+# reduce_script = root + ("/datasets/reduce_funcom_filtered.sh %s" % (str(N)))
+# process = Popen(reduce_script, shell=True)
+# process.wait()
 
-reduce_script = root + ("/datasets/reduce_funcom.sh %s" % (str(N)))
-process = Popen(reduce_script, shell=True)
-process.wait()
+shuffle.main(validation_size, test_size)
 
-#RUN CODE2SEQ PREPROCESSING
-code2seq.preprocess(N)
+# RUN CODE2SEQ PREPROCESSING
+# code2seq.preprocess(N)

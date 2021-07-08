@@ -2,10 +2,13 @@ import sys
 import pickle
 import argparse
 import re
+import os
 
 from nltk.translate.bleu_score import corpus_bleu, sentence_bleu
 
 from myutils import prep, drop, statusout, batch_gen, seq2sent, index2word
+
+root = os.path.dirname(__file__)
 
 def fil(com):
     ret = list()
@@ -52,8 +55,8 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('input', type=str, default=None)
-    parser.add_argument('--data', dest='dataprep', type=str, default='/nfs/projects/attn-to-fc/data/standard/output')  
-    parser.add_argument('--outdir', dest='outdir', type=str, default='/nfs/projects/attn-to-fc/data/outdir')
+    parser.add_argument('--data', dest='dataprep', type=str, default=root + '/data/standard/output')
+    parser.add_argument('--outdir', dest='outdir', type=str, default=root + '/data/outdir')
     parser.add_argument('--challenge', action='store_true', default=False)
     parser.add_argument('--obfuscate', action='store_true', default=False)
     parser.add_argument('--sbt', action='store_true', default=False)

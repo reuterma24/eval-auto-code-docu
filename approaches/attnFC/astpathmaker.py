@@ -16,8 +16,10 @@ import networkx as nx
 
 from myutils import prep, drop
 
+root = os.path.dirname(__file__)
+
 prep('loading sequences... ')
-seqdata = pickle.load(open('/nfs/projects/attn-to-fc/data/standard_3dfiles_graphast/dataset.pkl', 'rb'))
+seqdata = pickle.load(open(root + '/data/standard_3dfiles_graphast/dataset.pkl', 'rb'))
 drop()
 
 #fid=122380

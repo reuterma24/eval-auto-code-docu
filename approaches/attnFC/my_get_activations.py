@@ -16,6 +16,8 @@ import keras
 
 from custom.graphlayers import OurCustomGraphLayer
 
+root = os.path.dirname(__file__)
+
 # get_activations and display activations based on functions from
 # https://github.com/philipperemy/keras-visualize-activations
 
@@ -34,7 +36,7 @@ def gendescr_2inp(model, data, comstok, comlen, batchsize, config, strat, beamwi
             coms[c][i] = np.argmax(s)
 
     act1 = get_activations(model, [tdats, coms], layer_name='activation_1')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     for j in act1:
         display_activations(j, 'tdats_activation', fid, act1_prob_file, outfile, stopword)
@@ -62,8 +64,8 @@ def gendescr_3inp(model, data, comstok, comlen, batchsize, config, strat, beamwi
 
     act1 = get_activations(model, [tdats, coms, smls], layer_name='activation_1')
     act2 = get_activations(model, [tdats, coms, smls], layer_name='activation_2')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     act2_prob_file = open(act2_softmax_val_path, 'w')
     for j in act1:
@@ -98,9 +100,9 @@ def gendescr_4inp(model, data, comstok, comlen, batchsize, config, strat, beamwi
     act1 = get_activations(model, [tdats, sdats, coms, smls], layer_name='activation_1')
     act2 = get_activations(model, [tdats, sdats, coms, smls], layer_name='activation_2')
     act3 = get_activations(model, [tdats, sdats, coms, smls], layer_name='activation_3')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act3_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act3_softmax_val_path = root + '/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     act2_prob_file = open(act2_softmax_val_path, 'w')
     act3_prob_file = open(act3_softmax_val_path, 'w')
@@ -141,9 +143,9 @@ def gendescr_5inp(model, data, comstok, comlen, batchsize, config, strat, beamwi
     act1 = get_activations(model, [tdats, sdats, coms, wsmlnodes, wsmledges], layer_name='activation_1')
     act2 = get_activations(model, [tdats, sdats, coms, wsmlnodes, wsmledges], layer_name='activation_2')
     act3 = get_activations(model, [tdats, sdats, coms, wsmlnodes, wsmledges], layer_name='activation_3')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act3_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act3_softmax_val_path = root + '/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     act2_prob_file = open(act2_softmax_val_path, 'w')
     act3_prob_file = open(act3_softmax_val_path, 'w')
@@ -181,8 +183,8 @@ def gendescr_graphast(model, data, comstok, comlen, batchsize, config, strat, be
 
     act1 = get_activations(model, [tdats, coms, smls], layer_name='activation_1')
     act2 = get_activations(model, [tdats, coms, smls], layer_name='activation_2')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path =root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     act2_prob_file = open(act2_softmax_val_path, 'w')
     for j in act1:
@@ -224,9 +226,9 @@ def gendescr_pathast(model, data, comstok, comlen, batchsize, config, strat, bea
         act1 = get_activations(model, [tdats, sdats, coms, wsmlpaths], layer_name='activation_1')
         act2 = get_activations(model, [tdats, sdats, coms, wsmlpaths], layer_name='activation_2')
         act3 = get_activations(model, [tdats, sdats, coms, wsmlpaths], layer_name='activation_3')
-        act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-        act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-        act3_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+        act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+        act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+        act3_softmax_val_path = root + '/data/outdir/viz/{}-{}-act3-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
         act1_prob_file = open(act1_softmax_val_path, 'w')
         act2_prob_file = open(act2_softmax_val_path, 'w')
         act3_prob_file = open(act3_softmax_val_path, 'w')
@@ -242,8 +244,8 @@ def gendescr_pathast(model, data, comstok, comlen, batchsize, config, strat, bea
     else:
         act1 = get_activations(model, [tdats, coms, wsmlpaths], layer_name='activation_1')
         act2 = get_activations(model, [tdats, coms, wsmlpaths], layer_name='activation_2')
-        act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-        act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+        act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+        act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
         act1_prob_file = open(act1_softmax_val_path, 'w')
         act2_prob_file = open(act2_softmax_val_path, 'w')
         for j in act1:
@@ -277,8 +279,8 @@ def gendescr_threed(model, data, comstok, comlen, batchsize, config, strat, beam
         
     act1 = get_activations(model, [tdats, sdats, coms], layer_name='activation_1')
     act2 = get_activations(model, [tdats, sdats, coms], layer_name='activation_2')
-    act1_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
-    act2_softmax_val_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act1_softmax_val_path = root + '/data/outdir/viz/{}-{}-act1-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
+    act2_softmax_val_path = root + '/data/outdir/viz/{}-{}-act2-stopword-{}.txt'.format(fid[0], outfile.split('.')[0], stopword)
     act1_prob_file = open(act1_softmax_val_path, 'w')
     act2_prob_file = open(act2_softmax_val_path, 'w')
     for j in act1:
@@ -335,7 +337,7 @@ def display_activations(activation_maps, title, fid_list, act_prob_file, outfile
 
     for i, activation_map in enumerate(activation_maps):
         fid = fid_list[i]
-        img_path = '/nfs/projects/attn-to-fc/data/outdir/viz/{}-{}-{}-stopword-{}.pdf'.format(fid, outfile.split('.')[0], title, stopword)
+        img_path = root + '/data/outdir/viz/{}-{}-{}-stopword-{}.pdf'.format(fid, outfile.split('.')[0], title, stopword)
         act_prob_file.write(str(fid)+'\t'+str(activation_map)+'\n')
         
         activation_map = np.expand_dims(activation_map, axis=0)
@@ -360,9 +362,9 @@ if __name__ == '__main__':
     parser.add_argument('--stopword', type=int, default=None)
     parser.add_argument('--num-procs', dest='numprocs', type=int, default='4')
     parser.add_argument('--gpu', dest='gpu', type=str, default='')
-    parser.add_argument('--data1', dest='dataprep', type=str, default='/nfs/projects/attn-to-fc/data/standard')
-    parser.add_argument('--data2', dest='dataprep2', type=str, default='/nfs/projects/attn-to-fc/data/standard')
-    parser.add_argument('--outdir', dest='outdir', type=str, default='/nfs/projects/attn-to-fc/data/outdir')
+    parser.add_argument('--data1', dest='dataprep', type=str, default=root + '/data/standard')
+    parser.add_argument('--data2', dest='dataprep2', type=str, default=root + '/data/standard')
+    parser.add_argument('--outdir', dest='outdir', type=str, default=root + '/data/outdir')
     parser.add_argument('--batch-size', dest='batchsize', type=int, default=200)
     parser.add_argument('--num-inputs', dest='numinputs', type=int, default=3)
     parser.add_argument('--model-type', dest='modeltype', type=str, default=None)
@@ -437,13 +439,13 @@ if __name__ == '__main__':
     (modeltypewsdats, mwsdatsid, timestartwsdats) = modelfilewsdats.split('_')
     (timestartwsdats, extwsdats) = timestartwsdats.split('.')
     modeltypewsdats = modeltypewsdats.split('/')[-1]
-    configwsdats = pickle.load(open('/nfs/projects/attn-to-fc/data/outdir/histories/'+modeltypewsdats+'_conf_'+timestartwsdats+'.pkl', 'rb'))
+    configwsdats = pickle.load(open(root + '/data/outdir/histories/'+modeltypewsdats+'_conf_'+timestartwsdats+'.pkl', 'rb'))
     num_inputswsdats = configwsdats['num_input']
 
     (modeltypewosdats, mwosdatsid, timestartwosdats) = modelfilewosdats.split('_')
     (timestartwosdats, extwosdats) = timestartwosdats.split('.')
     modeltypewosdats = modeltypewosdats.split('/')[-1]
-    configwosdats = pickle.load(open('/nfs/projects/attn-to-fc/data/outdir/histories/'+modeltypewosdats+'_conf_'+timestartwosdats+'.pkl', 'rb'))
+    configwosdats = pickle.load(open(root + '/data/outdir/histories/'+modeltypewosdats+'_conf_'+timestartwosdats+'.pkl', 'rb'))
     num_inputswosdats = configwosdats['num_input']
     drop()
 
