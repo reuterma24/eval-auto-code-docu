@@ -68,7 +68,7 @@ class batch_gen(keras.utils.Sequence):
         self.tt = tt
         self.batch_size = config['batch_size']
         self.seqdata = seqdata
-        self.allfids = list(seqdata['d%s' % (tt)].keys())
+        self.allfids = list(seqdata['dt%s' % (tt)].keys())
         self.num_inputs = config['num_input']
         self.config = config
         self.training = training
@@ -101,7 +101,7 @@ class batch_gen(keras.utils.Sequence):
 
     def __len__(self):
         #if self.num_inputs == 4:
-        return int(np.ceil(len(list(self.seqdata['d%s' % (self.tt)]))/self.batch_size))
+        return int(np.ceil(len(list(self.seqdata['dt%s' % (self.tt)]))/self.batch_size))
         #else:
         #    return int(np.ceil(len(list(self.seqdata['d%s' % (self.tt)]))/self.batch_size))
 
@@ -118,7 +118,7 @@ class batch_gen(keras.utils.Sequence):
         fiddat = dict()
 
         for fid in batchfids:
-            wdatseq = seqdata['d%s' % (tt)][fid]
+            wdatseq = seqdata['dt%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             
             wdatseq = wdatseq[:self.config['tdatlen']]
@@ -162,7 +162,7 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wdatseq = seqdata['d%s' % (tt)][fid]
+            wdatseq = seqdata['dt%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlseq = seqdata['s%s' % (tt)][fid]
 
@@ -214,8 +214,8 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['d%s' % (tt)][fid]
+            wtdatseq = seqdata['dt%s' % (tt)][fid]
+            wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlseq = seqdata['s%s' % (tt)][fid]
 
@@ -286,8 +286,8 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['s%s' % (tt)][fid]
+            wtdatseq = seqdata['dt%s' % (tt)][fid]
+            wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
 
             wtdatseq = wtdatseq[:self.config['tdatlen']]
@@ -355,7 +355,7 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wtdatseq = seqdata['d%s' % (tt)][fid]
+            wtdatseq = seqdata['dt%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlnodes = seqdata['s%s_nodes' % (tt)][fid]
             wsmledges = seqdata['s%s_edges' % (tt)][fid]
@@ -440,8 +440,8 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['s%s' % (tt)][fid]
+            wtdatseq = seqdata['dt%s' % (tt)][fid]
+            wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlnodes = seqdata['s%s_nodes' % (tt)][fid]
             wsmledges = seqdata['s%s_edges' % (tt)][fid]
@@ -545,8 +545,8 @@ class batch_gen(keras.utils.Sequence):
 
         for fid in batchfids:
 
-            wtdatseq = seqdata['d%s' % (tt)][fid]
-            wsdatseq = seqdata['s%s' % (tt)][fid]
+            wtdatseq = seqdata['dt%s' % (tt)][fid]
+            wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             wsmlnodes = seqdata['s%s_nodes' % (tt)][fid]
             wsmledges = seqdata['s%s_edges' % (tt)][fid]
