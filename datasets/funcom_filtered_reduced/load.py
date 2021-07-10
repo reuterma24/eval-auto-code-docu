@@ -1,11 +1,12 @@
 import json
+import os
 
 def load():
 	"""
 	Loads json data from files and returns a dictionary for each data type
 	where the key is function_id and the value is the source code or comment
 	"""
-	root = 'D:/AutomatedCodeDocumentation/eval-auto-code-docu/datasets/funcom_filtered_reduced/'
+	root = os.path.dirname(__file__)
 
 	src_path = 'functions.json'
 	com_path = 'comments.json'
