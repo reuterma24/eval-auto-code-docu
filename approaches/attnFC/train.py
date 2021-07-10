@@ -132,14 +132,14 @@ if __name__ == '__main__':
 
     if zerodats:
         v = np.zeros(100)
-        for key, val in seqdata['dtrain'].items():
-            seqdata['dtrain'][key] = v
+        for key, val in seqdata['dttrain'].items():
+            seqdata['dttrain'][key] = v
 
         for key, val in seqdata['dtval'].items():
             seqdata['dtval'][key] = v
 
-        for key, val in seqdata['dtest'].items():
-            seqdata['dtest'][key] = v
+        for key, val in seqdata['dttest'].items():
+            seqdata['dttest'][key] = v
 
     steps = int(len(seqdata['ctrain']) / batch_size) + 1
     # steps = 1
@@ -167,7 +167,7 @@ if __name__ == '__main__':
 
     try:
         config['comlen'] = len(list(seqdata['ctrain'].values())[0])
-        config['tdatlen'] = len(list(seqdata['dtrain'].values())[0])
+        config['tdatlen'] = len(list(seqdata['dttrain'].values())[0])
         config['sdatlen'] = seqdata['config']['sdatlen']
         config['smllen'] = len(list(seqdata['strain'].values())[0])
     except KeyError:
