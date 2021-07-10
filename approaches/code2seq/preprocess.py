@@ -1,6 +1,6 @@
 import pickle
 from argparse import ArgumentParser
-
+import os
 import numpy as np
 
 import common
@@ -93,9 +93,10 @@ if __name__ == '__main__':
                         help="output name - the base name for the created dataset", required=True, default='data')
     args = parser.parse_args()
 
-    train_data_path = args.train_data_path
-    test_data_path = args.test_data_path
-    val_data_path = args.val_data_path
+
+    train_data_path =args.train_data_path
+    test_data_path =args.test_data_path
+    val_data_path =args.val_data_path
     subtoken_histogram_path = args.subtoken_histogram
     node_histogram_path = args.node_histogram
 
