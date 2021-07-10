@@ -41,4 +41,4 @@ def preprocess(n):
                 for i in val_data:
                     validation.writelines(str(i))
 
-    os.system("sh approaches\\code2seq\\preprocess.sh")
+    os.system("sh approaches/code2seq/preprocess.sh")
