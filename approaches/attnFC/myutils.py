@@ -217,7 +217,7 @@ class batch_gen(keras.utils.Sequence):
             wtdatseq = seqdata['dt%s' % (tt)][fid]
             wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
-            wsmlseq = seqdata['s%s' % (tt)][fid]
+            #wsmlseq = seqdata['s%s' % (tt)][fid]
 
             wtdatseq = wtdatseq[:self.config['tdatlen']]
 
@@ -234,15 +234,16 @@ class batch_gen(keras.utils.Sequence):
             wsdatseq = np.asarray(wsdatseq)
             wsdatseq = wsdatseq[:self.config['sdatlen'],:]
 
-            wsmlseq = wsmlseq[:self.config['smllen']]
+            #wsmlseq = wsmlseq[:self.config['smllen']]
 
             if not self.training:
-                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlseq]
+                #fiddat[fid] = [wtdatseq, wsdatseq, wcomseq, wsmlseq]
+                fiddat[fid] = [wtdatseq, wsdatseq, wcomseq]
             else:
                 for i in range(0, len(wcomseq)):
                     tdatseqs.append(wtdatseq)
                     sdatseqs.append(wsdatseq)
-                    smlseqs.append(wsmlseq)
+                    #smlseqs.append(wsmlseq)
                     # slice up whole comseq into seen sequence and current sequence
                     # [a b c d] => [] [a], [a] [b], [a b] [c], [a b c] [d], ...
                     comseq = wcomseq[0:i]
