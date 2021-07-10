@@ -3,7 +3,7 @@ import preprocessing.code2seq.preprocess_code2seq as code2seq
 import datasets.funcom_tokenized.shuffle as shuffle
 from subprocess import Popen
 
-root = os.path.dirname(__file__)
+root = os.path.dirname(os.path.abspath(__file__))
 
 N = 5000  # number of code comment pairs
 train_size = 0.8

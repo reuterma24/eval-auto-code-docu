@@ -6,7 +6,7 @@ def load():
 	Loads json data from files and returns a dictionary for each data type
 	where the key is function_id and the value is the source code or comment
 	"""
-	root = os.path.dirname(__file__) + '/'
+	root = os.path.dirname(os.path.abspath(__file__)) + '/'
 
 	src_path = 'functions.json'
 	com_path = 'comments.json'

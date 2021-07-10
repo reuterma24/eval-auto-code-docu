@@ -12,7 +12,7 @@ def preprocess(n):
     codes_raw = data[0]
     comments_raw = data[1]
 
-    root = os.path.dirname(__file__) + '/preprocessed_data/split/'
+    root = os.path.dirname(os.path.abspath(__file__)) + '/preprocessed_data/split/'
     os.makedirs(root, exist_ok=True)
     os.makedirs(root + 'training/', exist_ok=True)
     os.makedirs(root + 'testing/', exist_ok=True)
