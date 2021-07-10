@@ -127,6 +127,7 @@ if __name__ == '__main__':
     prep('loading sequences... ')
     # seqdata = pickle.load(open('%s/dataset.pkl' % (dataprep), 'rb'))
     seqdata = pickle.load(open('%s/%s' % (dataprep, datfile), 'rb'))
+    print(seqdata.keys())
     drop()
 
     if zerodats:
