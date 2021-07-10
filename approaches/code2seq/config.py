@@ -18,7 +18,7 @@ class Config:
         config.DECODER_SIZE = 512 #320
         config.NUM_DECODER_LAYERS = 2 #1
         config.MAX_PATH_LENGTH = 8 + 1
-        config.MAX_NAME_PARTS = 37
+        config.MAX_NAME_PARTS = 20
         config.MAX_TARGET_PARTS = 37 #6
         config.EMBEDDINGS_DROPOUT_KEEP_PROB = 0.75
         config.RNN_DROPOUT_KEEP_PROB = 0.5
