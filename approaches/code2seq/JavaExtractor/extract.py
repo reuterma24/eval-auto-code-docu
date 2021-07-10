@@ -46,6 +46,7 @@ def ExtractFeaturesForDir(args, dir, prefix):
             if len(stderr) > 0:
                 print(stderr, file=sys.stderr)
         else:
+            print(sys.stderr, file=open('file.txt', 'w'))
             print('dir: ' + str(dir) + ' was not completed in time', file=sys.stderr)
             failed = True
             subdirs = get_immediate_subdirectories(dir)
@@ -91,8 +92,6 @@ if __name__ == '__main__':
         os.system(command)
     elif args.dir is not None:
         subdirs = get_immediate_subdirectories(args.dir)
-        print("SUBDIRS: ")
-        print(subdirs)
         if len(subdirs) == 0:
             subdirs = [args.dir]
         ExtractFeaturesForDirsList(args, subdirs)
