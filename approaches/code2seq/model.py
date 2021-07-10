@@ -386,7 +386,7 @@ class Model:
             loss = tf.reduce_sum(crossent * target_words_nonzero) / tf.to_float(batch_size)
 
             if self.config.USE_MOMENTUM:
-                learning_rate = tf.train.exponential_decay(0.03, step * self.config.BATCH_SIZE,
+                learning_rate = tf.train.exponential_decay(0.02, step * self.config.BATCH_SIZE,
                                                            self.num_training_examples,
                                                            0.95, staircase=True)
                 optimizer = tf.train.MomentumOptimizer(learning_rate, 0.95, use_nesterov=True)
