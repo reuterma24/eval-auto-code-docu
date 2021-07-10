@@ -2,9 +2,9 @@
 
 N=$1
 
-root=D:/AutomatedCodeDocumentation/eval-auto-code-docu/datasets/
-source_path=${root}funcom_filtered
-dest_path=${root}funcom_filtered_reduced
+root=$(dirname $0)
+source_path=${root}/funcom_filtered
+dest_path=${root}/funcom_filtered_reduced
 
 #reads first N entries (+ opening brace at start) and removes last comma with closing brace at the end
 head -n $((N+1)) ${source_path}/fid_pid.json | sed '$s/,$/\n}/' > ${dest_path}/fid_pid.json
