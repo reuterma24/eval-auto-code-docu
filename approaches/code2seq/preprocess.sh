@@ -69,6 +69,6 @@ ${PYTHON} approaches/code2seq/preprocess.py --train_data ${TRAIN_DATA_FILE} --te
     
 # If all went well, the raw data files can be deleted, because preprocess.py creates new files 
 # with truncated and padded number of paths for each example.
-#rm ${TRAIN_DATA_FILE} ${VAL_DATA_FILE} ${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
- # ${NODE_HISTOGRAM_FILE}
+rm ${TRAIN_DATA_FILE} ${VAL_DATA_FILE} ${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
+  ${NODE_HISTOGRAM_FILE}
 
