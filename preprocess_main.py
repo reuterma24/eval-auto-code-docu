@@ -19,7 +19,9 @@ process = Popen(reduce_script, shell=True)
 process.wait()
 
 # REMOVE INVALID SYNTAX AND ONLY TAKE FIRST SENTENCE OF COMMENT
+print("Startin to preprocess funcom")
 preproc_funcom.main()
+print("done...")
 
 # RUN CODE2SEQ PREPROCESSING
 code2seq.preprocess(N)
