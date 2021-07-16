@@ -13,7 +13,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>10</release>
                     <excludes>
                         <exclude>Test.java</exclude>
                     </excludes>
@@ -74,7 +74,6 @@
         </dependency>
     </dependencies>
     <properties>
-        <maven.compiler.target>1.4</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
