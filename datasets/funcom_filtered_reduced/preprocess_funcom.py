@@ -8,8 +8,7 @@ import javalang
 # only take first sentence from comment
 # remove pairs with invalid syntax
 
-root = os.path.dirname(os.path.abspath(__file__)) + '/dummy/'
-os.makedirs(root)
+root = os.path.dirname(os.path.abspath(__file__)) + '/'
 data = funcom.load()
 codes_raw = data[0]
 comments_raw = data[1]
@@ -23,6 +22,7 @@ def __file_line(idx, body):
 
 
 def __refactor_codes():
+    os.remove(root + "functions.json")
     with open(root + "functions.json", "w", encoding="utf-8") as funcs:
         funcs.write("{\n")
 
@@ -48,6 +48,7 @@ def __refactor_codes():
 
 
 def __refactor_comments():
+    os.remove(root + "comments.json")
     with open(root + "comments.json", "w", encoding="utf-8") as coms:
         coms.write("{\n")
 
