@@ -27,7 +27,7 @@ def ExtractFeaturesForDir(args, dir, prefix):
                '--max_path_length', str(args.max_path_length), '--max_path_width', str(args.max_path_width),
                '--dir', dir, '--num_threads', str(args.num_threads)]
 
-    # print(command)
+    print(command)
     # os.system(command)
     kill = lambda process: process.kill()
     outputFileName = TMP_DIR + prefix + dir.split('/')[-1]
