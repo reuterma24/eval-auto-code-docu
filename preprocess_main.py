@@ -5,7 +5,7 @@ from subprocess import Popen
 
 root = os.path.dirname(os.path.abspath(__file__))
 
-N = 50000  # number of code comment pairs
+N = 100000  # number of code comment pairs
 train_size = 0.8
 test_size = 0.1
 validation_size = 0.1
@@ -19,7 +19,7 @@ process = Popen(reduce_script, shell=True)
 process.wait()
 
 # REMOVE INVALID SYNTAX AND ONLY TAKE FIRST SENTENCE OF COMMENT
-#preproc_funcom.main()
+preproc_funcom.main()
 
 # RUN CODE2SEQ PREPROCESSING
 code2seq.preprocess(N)
