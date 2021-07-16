@@ -16,4 +16,4 @@ echo "Extracted first ${N} lines from comments.json."
 head -n $((N+1)) ${source_path}/functions.json | sed '$s/,$/\n}/' > ${dest_path}/functions.json
 echo "Extracted first ${N} lines from functions.json."
 
-echo "Successfully reduced funcom's size - results are stored at datasets/${dest_path}."
+echo "Successfully reduced funcom's size - results are stored at ${dest_path}."

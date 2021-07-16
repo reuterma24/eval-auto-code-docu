@@ -60,7 +60,7 @@ def __refactor_comments():
                 split = comment.split(sep='.')
                 comment = split[0] + "*/\n"
 
-            comment = comment.encode('unicode_escape').decode('utf-8').replace('\"', '\\"')
+            comment = comment.replace("\n", "\\n").replace("\t", "\\t").replace('\"', '\\"')
             coms.writelines(__file_line(k, comment))
             if i != (len(comments_raw) - 1):
                 coms.write(",\n")
