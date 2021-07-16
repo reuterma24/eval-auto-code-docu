@@ -33,8 +33,8 @@ def ExtractFeaturesForDir(args, dir, prefix):
     outputFileName = TMP_DIR + prefix + dir.split('/')[-1]
     failed = False
     with open(outputFileName, 'a') as outputFile:
-        sleeper = subprocess.Popen(command, stdout=outputFile, stderr=subprocess.PIPE, shell=True)
-        timer = Timer(60 * 60 * 60, kill, [sleeper])
+        sleeper = subprocess.Popen(command, stdout=outputFile, stderr=subprocess.PIPE, shell=False)
+        timer = Timer(60 * 60, kill, [sleeper])
 
         try:
             timer.start()
