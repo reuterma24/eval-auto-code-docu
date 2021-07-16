@@ -8,7 +8,7 @@ import javalang
 # only take first sentence from comment
 # remove pairs with invalid syntax
 
-root = os.path.dirname(os.path.abspath(__file__)) + '/'
+root = os.path.dirname(os.path.abspath(__file__)) + '/dummy/'
 
 data = funcom.load()
 codes_raw = data[0]
