@@ -8,13 +8,14 @@ import javalang
 # only take first sentence from comment
 # remove pairs with invalid syntax
 
+root = os.path.dirname(os.path.abspath(__file__)) + '/'
+
 data = funcom.load()
 codes_raw = data[0]
 comments_raw = data[1]
 
 invalid_idx = []  # contains all indecies with invalid syntax
 
-os.makedirs("./test", exist_ok=True)
 
 
 def __file_line(idx, body):
@@ -22,7 +23,7 @@ def __file_line(idx, body):
 
 
 def __refactor_codes():
-    with open("test/functions.json", "w", encoding="utf-8") as funcs:
+    with open(root + "functions.json", "w", encoding="utf-8") as funcs:
         funcs.write("{\n")
 
         for i, (k, v) in enumerate(codes_raw.items()):
@@ -47,7 +48,7 @@ def __refactor_codes():
 
 
 def __refactor_comments():
-    with open("test/comments.json", "w", encoding="utf-8") as coms:
+    with open(root + "comments.json", "w", encoding="utf-8") as coms:
         coms.write("{\n")
 
         for i, (k, v) in enumerate(comments_raw.items()):
@@ -68,7 +69,7 @@ def __refactor_comments():
 
 
 def __print_invalid_ids():
-    with open("invalid_ids.txt", "w", encoding="utf-8") as errs:
+    with open(root + "invalid_ids.txt", "w", encoding="utf-8") as errs:
         errs.write("INVALID ID'S:\n")
         for i in invalid_idx:
             errs.write(i + ",\n")
