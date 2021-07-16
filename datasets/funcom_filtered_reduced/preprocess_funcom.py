@@ -9,7 +9,7 @@ import javalang
 # remove pairs with invalid syntax
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/dummy/'
-
+os.makedirs(root)
 data = funcom.load()
 codes_raw = data[0]
 comments_raw = data[1]
