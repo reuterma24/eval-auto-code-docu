@@ -32,7 +32,7 @@ def __refactor_comments():
     for i, (k, v) in enumerate(comments_raw.items()):
         comment = str(v)
 
-        if "/**" or "*/" not in comment:
+        if "/**" not in comment or "*/" not in comment:
             if str(k) not in invalid_idx:
                 invalid_idx.append(str(k))
 
@@ -51,10 +51,11 @@ def main():
     global codes_raw
     codes_raw = data[0]
     global comments_raw
-    comments_raw = data[0]
+    comments_raw = data[1]
 
-    __refactor_codes()
     __refactor_comments()
+    __refactor_codes()
+
     __print_invalid_ids()
     return invalid_idx
 
