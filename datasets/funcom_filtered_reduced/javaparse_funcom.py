@@ -27,6 +27,7 @@ def __refactor_codes():
             invalid_idx.append(str(k))
             continue
 
+
 def __refactor_comments():
     for i, (k, v) in enumerate(comments_raw.items()):
         comment = str(v)
@@ -35,6 +36,14 @@ def __refactor_comments():
             if str(k) not in invalid_idx:
                 invalid_idx.append(str(k))
 
+
+def __print_invalid_ids():
+    with open(root + "invalid_ids.txt", "w", encoding="utf-8") as errs:
+        errs.write("INVALID ID'S:\n")
+        for i in invalid_idx:
+            errs.write(i + ",\n")
+
+        errs.close()
 
 
 def main():
@@ -46,7 +55,7 @@ def main():
 
     __refactor_codes()
     __refactor_comments()
-
+    __print_invalid_ids()
     return invalid_idx
 
 
