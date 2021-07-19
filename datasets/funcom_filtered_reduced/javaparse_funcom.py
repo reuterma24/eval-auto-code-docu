@@ -32,7 +32,8 @@ def __refactor_comments():
         comment = str(v)
 
         if "/**" or "*/" not in comment:
-            invalid_idx.append(str(k))
+            if str(k) not in invalid_idx:
+                invalid_idx.append(str(k))
 
 
 
