@@ -9,12 +9,28 @@ import javalang
 # remove pairs with invalid syntax
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
-data = funcom.load()
-codes_raw = data[0]
-comments_raw = data[1]
+
+global codes_raw
+global comments_raw
 
 invalid_idx = []  # contains all indecies with invalid syntax
 
+umlaute_dict = {
+    b'\xc3\xa4': b'ae',  # U+00E4	   \xc3\xa4
+    b'\xc3\xb6': b'oe',  # U+00F6	   \xc3\xb6
+    b'\xc3\xbc': b'ue',  # U+00FC	   \xc3\xbc
+    b'\xc3\x84': b'Ae',  # U+00C4	   \xc3\x84
+    b'\xc3\x96': b'Oe',  # U+00D6	   \xc3\x96
+    b'\xc3\x9c': b'Ue',  # U+00DC	   \xc3\x9c
+    b'\xc3\x9f': b'ss',  # U+00DF	   \xc3\x9f
+}
+
+
+def __replace_umlauts(text: str):
+    result = text.encode("utf-8")
+    for k in umlaute_dict.keys():
+        result = result.replace(k, umlaute_dict[k])
+    return result.decode()
 
 
 def __file_line(idx, body):
@@ -22,16 +38,21 @@ def __file_line(idx, body):
 
 
 def __refactor_codes():
-    os.remove(root + "functions.json")
     with open(root + "functions.json", "w", encoding="utf-8") as funcs:
         funcs.write("{\n")
 
         for i, (k, v) in enumerate(codes_raw.items()):
             code = str(v)
             codeParse = code.replace('\n', "").replace("\t", "")
-            #codeWrite = code.replace('\n', "\\n").replace("\t", "\\t").replace('\"', '\\"')
-            codeWrite = code.encode('unicode_escape').decode('utf-8').replace('\"', '\\"')
             toParse = "class Parse {" + codeParse + '}'
+
+            codeWrite = __replace_umlauts(code)
+
+            if not codeWrite.isalnum():
+                invalid_idx.append(str(k))
+                del comments_raw[k]
+
+            codeWrite = codeWrite.encode("unicode_escape").decode("utf-8").replace('\"', '\\"')
 
             try:
                 javalang.parse.parse(toParse)
@@ -48,7 +69,6 @@ def __refactor_codes():
 
 
 def __refactor_comments():
-    os.remove(root + "comments.json")
     with open(root + "comments.json", "w", encoding="utf-8") as coms:
         coms.write("{\n")
 
@@ -79,6 +99,11 @@ def __print_invalid_ids():
 
 
 def main():
+    data = funcom.load()
+    global codes_raw
+    codes_raw = data[0]
+    global comments_raw
+    comments_raw = data[1]
     __refactor_codes()
     __refactor_comments()
     __print_invalid_ids()

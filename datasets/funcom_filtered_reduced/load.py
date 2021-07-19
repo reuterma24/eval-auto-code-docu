@@ -11,7 +11,7 @@ def load():
 	src_path = 'functions.json'
 	com_path = 'comments.json'
 
-	with open(root + src_path, 'r') as fp:
+	with open(root + src_path, 'r', encoding="utf-8") as fp:
 		src = json.load(fp, parse_int=True)
 
 	# newsrc = {}
@@ -20,7 +20,7 @@ def load():
 
 	# del src
 
-	with open(root + com_path, 'r') as fp:
+	with open(root + com_path, 'r', encoding="utf-8") as fp:
 		com = json.load(fp)
 
 
@@ -39,7 +39,7 @@ def load_comment():
 	"""
 	com_path = 'comments.json'
 
-	with open(com_path, 'r') as fp:
+	with open(com_path, 'r', encoding="utf-8") as fp:
 		com = json.load(fp)
 
 	return com
@@ -51,7 +51,7 @@ def load_function():
 	"""
 	src_path = 'functions.json'
 
-	with open(src_path, 'r') as fp:
+	with open(src_path, 'r', encoding="utf-8") as fp:
 		src = json.load(fp)
 
 	return src
