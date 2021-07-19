@@ -1,5 +1,5 @@
 import os
-import re
+import unidecode
 
 import datasets.funcom_filtered_reduced.load as funcom
 import javalang
@@ -47,10 +47,7 @@ def __refactor_codes():
             toParse = "class Parse {" + codeParse + '}'
 
             codeWrite = __replace_umlauts(code)
-
-            if not codeWrite.isalnum():
-                invalid_idx.append(str(k))
-                del comments_raw[k]
+            codeWrite = unidecode.unidecode(codeWrite)
 
             codeWrite = codeWrite.encode("unicode_escape").decode("utf-8").replace('\"', '\\"')
 
@@ -80,7 +77,9 @@ def __refactor_comments():
                 split = comment.split(sep='.')
                 comment = split[0] + "*/\n"
 
-            comment = comment.replace("\n", "\\n").replace("\t", "\\t").replace('\"', '\\"')
+            comment = __replace_umlauts(comment)
+            comment = unidecode.unidecode(comment)
+            comment = comment.encode("unicode_escape").decode("utf-8").replace('\"', '\\"')
             coms.writelines(__file_line(k, comment))
             if i != (len(comments_raw) - 1):
                 coms.write(",\n")

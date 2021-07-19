@@ -3,6 +3,8 @@ import preprocessing.code2seq.preprocess_code2seq as code2seq
 import datasets.funcom_filtered_reduced.preprocess_funcom as preproc_funcom
 from subprocess import Popen
 
+from datasets.funcom_filtered_reduced import javaparse_funcom
+
 root = os.path.dirname(os.path.abspath(__file__))
 
 N = 100000  # number of code comment pairs
@@ -19,9 +21,12 @@ process = Popen(reduce_script, shell=True)
 process.wait()
 
 # REMOVE INVALID SYNTAX AND ONLY TAKE FIRST SENTENCE OF COMMENT
-print("Startin to preprocess funcom")
-preproc_funcom.main()
-print("done...")
+#print("Startin to preprocess funcom")
+#preproc_funcom.main()
+#print("done...")
+print("parsing for invalid java methods")
+invalid_ids = javaparse_funcom.main()
+print("done ... ")
 
 # RUN CODE2SEQ PREPROCESSING
-code2seq.preprocess(N)
+code2seq.preprocess(N, invalid_ids)

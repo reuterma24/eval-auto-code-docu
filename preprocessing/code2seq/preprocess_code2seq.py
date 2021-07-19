@@ -7,10 +7,14 @@ import datasets.funcom_filtered_reduced.load as funcom
 
 
 
-def preprocess(n):
+def preprocess(n, invalid_ids: list):
     data = funcom.load()
     codes_raw = data[0]
     comments_raw = data[1]
+
+    for k in invalid_ids:
+        del codes_raw[k]
+        del comments_raw[k]
 
     root = os.path.dirname(os.path.abspath(__file__)) + '/preprocessed_data/split/'
     os.makedirs(root, exist_ok=True)
