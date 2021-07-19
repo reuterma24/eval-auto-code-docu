@@ -7,7 +7,7 @@ from datasets.funcom_filtered_reduced import javaparse_funcom
 
 root = os.path.dirname(os.path.abspath(__file__))
 
-N = 100000  # number of code comment pairs
+N = 100  # number of code comment pairs
 train_size = 0.8
 test_size = 0.1
 validation_size = 0.1
@@ -24,9 +24,9 @@ process.wait()
 #print("Startin to preprocess funcom")
 #preproc_funcom.main()
 #print("done...")
-print("parsing for invalid java methods")
-invalid_ids = javaparse_funcom.main()
-print("done ... ")
+#print("parsing for invalid java methods")
+#invalid_ids = javaparse_funcom.main()
+#print("done ... ")
 
 # RUN CODE2SEQ PREPROCESSING
-code2seq.preprocess(N, invalid_ids)
+code2seq.preprocess(N, list())
