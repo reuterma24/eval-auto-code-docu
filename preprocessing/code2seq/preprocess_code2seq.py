@@ -10,8 +10,25 @@ import datasets.funcom_filtered_reduced.load as funcom
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 
+umlaute_dict = {
+    b'\xc3\xa4': b'ae',  # U+00E4	   \xc3\xa4
+    b'\xc3\xb6': b'oe',  # U+00F6	   \xc3\xb6
+    b'\xc3\xbc': b'ue',  # U+00FC	   \xc3\xbc
+    b'\xc3\x84': b'Ae',  # U+00C4	   \xc3\x84
+    b'\xc3\x96': b'Oe',  # U+00D6	   \xc3\x96
+    b'\xc3\x9c': b'Ue',  # U+00DC	   \xc3\x9c
+    b'\xc3\x9f': b'ss',  # U+00DF	   \xc3\x9f
+}
 
-def preprocess(n, ):
+
+def __replace_umlauts(text: str):
+    result = text.encode("utf-8")
+    for k in umlaute_dict.keys():
+        result = result.replace(k, umlaute_dict[k])
+    return result.decode()
+
+
+def preprocess(n):
     data = funcom.load()
     codes_raw = data[0]
     comments_raw = data[1]
@@ -29,12 +46,15 @@ def preprocess(n, ):
     for k in codes_raw.keys():
         if str(k) in invalid_ids:
             continue
-        comment = comments_raw[k]
 
+        comment = comments_raw[k]
         if '.' in comment:
-            comment = comment.split('.')[0] + " */\n"
+            comment = comment.split('.')[0] + "\n\t*/\n"
+
+        comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
 
         code = (comment + codes_raw[k] + '\n')
+        code = __replace_umlauts(code)
         pairs.append(code)
 
     train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
