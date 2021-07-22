@@ -29,7 +29,12 @@ def preprocess(n, ):
     for k in codes_raw.keys():
         if str(k) in invalid_ids:
             continue
-        code = (comments_raw[k] + codes_raw[k] + '\n')
+        comment = comments_raw[k]
+
+        if '.' in comment:
+            comment = comment.split('.')[0] + " */\n"
+
+        code = (comment + codes_raw[k] + '\n')
         pairs.append(code)
 
     train_data, test_val_data = ms.train_test_split(pairs, test_size=0.2, train_size=0.8, shuffle=False)
