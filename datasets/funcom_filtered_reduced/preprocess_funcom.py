@@ -13,7 +13,7 @@ root = os.path.dirname(os.path.abspath(__file__)) + '/'
 global codes_raw
 global comments_raw
 
-invalid_idx = []  # contains all indecies with invalid syntax
+global invalid_idx  # contains all indecies with invalid syntax
 
 umlaute_dict = {
     b'\xc3\xa4': b'ae',  # U+00E4	   \xc3\xa4
@@ -42,7 +42,6 @@ def __print_invalid_ids():
 
 
 def __filter_invalid_syntax():
-    invalid_ids = []
     for k in codes_raw.keys():
         code = (comments_raw[k] + codes_raw[k] + '\n')
         code = __replace_umlauts(code)
@@ -51,7 +50,7 @@ def __filter_invalid_syntax():
         try:
             javalang.parse.parse(toParse)
         except Exception:
-            invalid_ids.append(str(k))
+            invalid_idx.append(str(k))
             continue
 
     __print_invalid_ids()
@@ -63,6 +62,8 @@ def main():
     codes_raw = data[0]
     global comments_raw
     comments_raw = data[1]
+    global invalid_idx
+    invalid_idx = []
     __filter_invalid_syntax()
 
 
