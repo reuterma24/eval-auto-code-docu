@@ -33,68 +33,28 @@ def __replace_umlauts(text: str):
     return result.decode()
 
 
-def __file_line(idx, body):
-    return "\t\"%s\": \"%s\"" % (idx, body)
-
-
-def __refactor_codes():
-    with open(root + "functions.json", "w", encoding="utf-8") as funcs:
-        funcs.write("{\n")
-
-        for i, (k, v) in enumerate(codes_raw.items()):
-            code = str(v)
-            codeParse = code.replace('\n', "").replace("\t", "")
-            toParse = "class Parse {" + codeParse + '}'
-
-            codeWrite = __replace_umlauts(code)
-            codeWrite = unidecode.unidecode(codeWrite)
-
-            codeWrite = codeWrite.encode("unicode_escape").decode("utf-8").replace('\"', '\\"')
-
-            try:
-                javalang.parse.parse(toParse)
-                funcs.write(__file_line(k, codeWrite))
-                if i != (len(codes_raw) - 1):
-                    funcs.write(",\n")
-            except Exception:
-                invalid_idx.append(str(k))
-                del comments_raw[k]
-                continue
-
-        funcs.write("\n}")
-        funcs.close()
-
-
-def __refactor_comments():
-    with open(root + "comments.json", "w", encoding="utf-8") as coms:
-        coms.write("{\n")
-
-        for i, (k, v) in enumerate(comments_raw.items()):
-            comment = str(v)
-
-            # if no '.' I assume its a single sentence
-            if '.' in comment:
-                split = comment.split(sep='.')
-                comment = split[0] + "*/\n"
-
-            comment = __replace_umlauts(comment)
-            comment = unidecode.unidecode(comment)
-            comment = comment.encode("unicode_escape").decode("utf-8").replace('\"', '\\"')
-            coms.writelines(__file_line(k, comment))
-            if i != (len(comments_raw) - 1):
-                coms.write(",\n")
-
-        coms.write("\n}")
-        coms.close()
-
-
 def __print_invalid_ids():
     with open(root + "invalid_ids.txt", "w", encoding="utf-8") as errs:
-        errs.write("INVALID ID'S:\n")
         for i in invalid_idx:
-            errs.write(i + ",\n")
+            errs.write(i + ",")
 
         errs.close()
+
+
+def __filter_invalid_syntax():
+    invalid_ids = []
+    for k in codes_raw.keys():
+        code = (comments_raw[k] + codes_raw[k] + '\n')
+        code = __replace_umlauts(code)
+        toParse = "class Parse {" + code + '}'
+
+        try:
+            javalang.parse.parse(toParse)
+        except Exception:
+            invalid_ids.append(str(k))
+            continue
+
+    __print_invalid_ids()
 
 
 def main():
@@ -103,9 +63,7 @@ def main():
     codes_raw = data[0]
     global comments_raw
     comments_raw = data[1]
-    __refactor_codes()
-    __refactor_comments()
-    __print_invalid_ids()
+    __filter_invalid_syntax()
 
 
 if __name__ == '__main__':
