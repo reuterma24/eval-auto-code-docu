@@ -123,7 +123,7 @@ def main(args=None):
     args = parser.parse_args(args)
 
     # read config file and default config
-    with open('../config/default.yaml') as f:
+    with open('../default.yaml') as f:
         default_config = utils.AttrDict(yaml.safe_load(f))
 
     with open(args.config) as f:
@@ -176,7 +176,7 @@ def main(args=None):
     # also copy default config
     config_path = os.path.join(config.model_dir, 'default.yaml')
     if args.train and not os.path.exists(config_path):
-        shutil.copy('../config/default.yaml', config_path)
+        shutil.copy('../default.yaml', config_path)
 
     logging_level = logging.DEBUG if args.verbose else logging.INFO
     # always log to stdout in decoding and eval modes (to avoid overwriting precious train logs)
