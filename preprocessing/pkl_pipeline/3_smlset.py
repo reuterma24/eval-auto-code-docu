@@ -1,12 +1,13 @@
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 from html.parser import HTMLParser
-from myutils import prep, drop, print_ast
+from myutils import prep, drop #print_ast
 import multiprocessing
 import pickle
 import networkx as nx
 import re
 import statistics
 import numpy as np
+
 
 def load_good_fid():
     filename = './output/dataset.coms'
@@ -18,12 +19,14 @@ def load_good_fid():
 
     return good_fid
 
+
 prep('loading srcmlunits... ')
 srcmlunits = pickle.load(open('srcml-standard.pkl', 'rb'))
 sml2 = pickle.load(open('fundatsparsed-srcml-final-allcoms.pkl', 'rb'))
 
 for key, val in sml2.items():
     srcmlunits[key] = val
+
 
 drop()
 
@@ -38,7 +41,9 @@ def re_0002(i):
     else:
         return ' '.format(tmp)
 
+
 re_0001_ = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
+
 
 class MyHTMLParser(HTMLParser):
     def __init__(self):
@@ -48,7 +53,7 @@ class MyHTMLParser(HTMLParser):
         self.tagidx = -1
         self.graph = nx.Graph()
         self.seq = list()
-        
+
     def handle_starttag(self, tag, attrs):
         self.parentstack.append(self.curtag)
         self.tagidx += 1
@@ -57,18 +62,18 @@ class MyHTMLParser(HTMLParser):
         if self.parentstack[-1] >= 0:
             self.graph.add_edge(self.parentstack[-1], self.tagidx)
         self.curtag = self.tagidx
-        
+
     def handle_endtag(self, tag):
         self.curtag = self.parentstack.pop()
-        
+
     def handle_data(self, data):
-        
+
         # first, do dats text preprocessing
         data = re_0001_.sub(re_0002, data).lower().rstrip()
-        
+
         # second, create a node if there is text
-        if(data != ''):
-            for d in data.split(' '): # each word gets its own node
+        if (data != ''):
+            for d in data.split(' '):  # each word gets its own node
                 if d != '':
                     self.parentstack.append(self.curtag)
                     self.tagidx += 1
@@ -77,19 +82,22 @@ class MyHTMLParser(HTMLParser):
                     self.graph.add_edge(self.parentstack[-1], self.tagidx)
                     self.curtag = self.tagidx
                     self.curtag = self.parentstack.pop()
-        
+
     def get_graph(self):
-        return(self.graph)
+        return (self.graph)
 
     def get_seq(self):
-        return(self.seq)
+        return (self.seq)
+
 
 c = 0
+
 
 def xmldecode(unit):
     parser = MyHTMLParser()
     parser.feed(unit)
-    return(parser.get_graph(), parser.get_seq())
+    return (parser.get_graph(), parser.get_seq())
+
 
 prep('loading tokenizer... ')
 smlstok = pickle.load(open('smls.tok', 'rb'), encoding='UTF-8')
@@ -104,12 +112,14 @@ fopn = open('./output/dataset.srcml_nodes.pkl', 'wb')
 fope = open('./output/dataset.srcml_edges.pkl', 'wb')
 blanks = 0
 
+
 def w2i(word):
     try:
         i = smlstok.w2i[word]
     except KeyError:
         i = smlstok.oov_index
     return i
+
 
 prep('parsing xml... ')
 for fid in good_fid:
@@ -121,9 +131,9 @@ for fid in good_fid:
     (graph, seq) = xmldecode(unit)
     seq = ' '.join(seq)
     c += 1
-    
+
     lens.append(len(graph.nodes.data()))
-    
+
     nodes = list(graph.nodes.data())
     try:
         nodes = np.asarray([w2i(x[1]['text']) for x in list(graph.nodes.data())])
@@ -134,11 +144,11 @@ for fid in good_fid:
         nodes = np.asarray([0])
         edges = nx.adjacency_matrix(eg)
         blanks += 1
-    
+
     srcml_nodes[int(fid)] = nodes
     srcml_edges[int(fid)] = edges
 
-    if(c % 10000 == 0):
+    if (c % 10000 == 0):
         print(c)
 drop()
 

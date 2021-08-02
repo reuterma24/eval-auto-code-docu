@@ -1,5 +1,7 @@
 import os
-import unidecode
+import pickle
+
+import regex
 
 import datasets.funcom_filtered_reduced.load as funcom
 import javalang
@@ -41,11 +43,27 @@ def __print_invalid_ids():
         errs.close()
 
 
-def __filter_invalid_syntax():
+def __print_valid_pairs():
+    pickle.dump(codes_raw, open("codes.pkl", 'wb'))
+
+    with open(root + "comments.txt", "w", encoding="utf-8") as coms:
+        for k in codes_raw.keys():
+            if str(k) in invalid_idx:
+                continue
+            coms.write(str(k) + ', ' + comments_raw[k] + "\n")
+
+
+def __preprocess():
+    valid_pairs = []
+
     for k in codes_raw.keys():
-        code = (comments_raw[k] + codes_raw[k] + '\n')
-        code = __replace_umlauts(code)
-        toParse = "class Parse {" + code + '}'
+        code = __replace_umlauts(codes_raw[k])
+        comment = __replace_umlauts(comments_raw[k])
+        if '.' in comment:
+            comment = comment.split('.')[0] + "\n\t*/\n"
+        comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
+
+        toParse = "class Parse {" + comment + code + '}'
 
         try:
             javalang.parse.parse(toParse)
@@ -53,7 +71,14 @@ def __filter_invalid_syntax():
             invalid_idx.append(str(k))
             continue
 
-    __print_invalid_ids()
+        lineCommentPattern = "//(.*?)\r?\n"
+        code = regex.sub(lineCommentPattern, "\n", code)
+        code = str(code).strip().replace("\n", "")
+        code = regex.sub(' +', ' ', code)
+
+        codes_raw[k] = code
+        comments_raw[k] = regex.sub(' +', ' ',
+                                    comment.translate({ord(c): "" for c in "/*"}).replace('\n', "").replace('\t', ""))
 
 
 def main():
@@ -64,7 +89,9 @@ def main():
     comments_raw = data[1]
     global invalid_idx
     invalid_idx = []
-    __filter_invalid_syntax()
+    __preprocess()
+    __print_invalid_ids()
+    __print_valid_pairs()
 
 
 if __name__ == '__main__':

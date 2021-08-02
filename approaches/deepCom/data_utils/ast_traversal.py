@@ -29,4 +29,4 @@ def get_sbt_structure(ast_file, out_file):
                 out.write(' '.join(ast_sbt) + '\n')
 
 
-get_sbt_structure("test/test_ast.json", "test.token.ast")
+get_sbt_structure("vocab.ast", "vocab.sbt")
