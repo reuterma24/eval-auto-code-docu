@@ -44,14 +44,43 @@ mkdir -p approaches/code2seq/data
 mkdir -p approaches/code2seq/data/${DATASET_NAME}
 
 echo "Extracting paths from validation set..."
-${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${VAL_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} > ${VAL_DATA_FILE} 2>> error_log.txt
+COUNTER=0
+for entry in ${VAL_DIR}/*.java
+do
+  ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${VAL_DATA_FILE} 2>> error_log.txt
+  ((COUNTER = COUNTER+1))
+done
 echo "Finished extracting paths from validation set"
+#${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${VAL_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} > ${VAL_DATA_FILE} 2>> error_log.txt
+
+
 echo "Extracting paths from test set..."
-${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${TEST_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} > ${TEST_DATA_FILE} 2>> error_log.txt
+COUNTER=0
+for entry in ${TEST_DIR}/*.java
+do
+  ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${TEST_DATA_FILE} 2>> error_log.txt
+  ((COUNTER = COUNTER+1))
+done
 echo "Finished extracting paths from test set"
+#${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${TEST_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} > ${TEST_DATA_FILE} 2>> error_log.txt
+
+
 echo "Extracting paths from training set..."
-${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${TRAIN_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${TRAIN_DATA_FILE} 2>> error_log.txt
+COUNTER=0
+for entry in ${TRAIN_DIR}/*.java
+do
+  ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${TRAIN_DATA_FILE} 2>> error_log.txt
+  ((COUNTER = COUNTER+1))
+done
 echo "Finished extracting paths from training set"
+#${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${TRAIN_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${TRAIN_DATA_FILE} 2>> error_log.txt
+
+
+#concatenating all files back together
+cat ./*${DATASET_NAME}.train.raw.txt >> ${TRAIN_DATA_FILE}
+cat ./*${DATASET_NAME}.test.raw.txt >> ${TEST_DATA_FILE}
+cat ./*${DATASET_NAME}.val.raw.txt >> ${VAL_DATA_FILE}
+
 
 TARGET_HISTOGRAM_FILE=approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}.histo.tgt.c2s
 SOURCE_SUBTOKEN_HISTOGRAM=approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}.histo.ori.c2s
@@ -69,6 +98,6 @@ ${PYTHON} approaches/code2seq/preprocess.py --train_data ${TRAIN_DATA_FILE} --te
     
 # If all went well, the raw data files can be deleted, because preprocess.py creates new files 
 # with truncated and padded number of paths for each example.
-rm ${TRAIN_DATA_FILE} ${VAL_DATA_FILE} ${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
+rm ./*${TRAIN_DATA_FILE} ./*${VAL_DATA_FILE} ./*${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
   ${NODE_HISTOGRAM_FILE}
 

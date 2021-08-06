@@ -7,7 +7,7 @@ from datasets.funcom_filtered_reduced import javaparse_funcom
 
 root = os.path.dirname(os.path.abspath(__file__))
 
-N = 100000  # number of code comment pairs
+N = 800  # number of code comment pairs
 train_size = 0.8
 test_size = 0.1
 validation_size = 0.1

@@ -78,7 +78,7 @@ def __preprocess():
 
         codes_raw[k] = code
         comments_raw[k] = regex.sub(' +', ' ',
-                                    comment.translate({ord(c): "" for c in "/*"}).replace('\n', "").replace('\t', ""))
+        comment.translate({ord(c): "" for c in "/*"}).replace('\n', "").replace('\t', ""))
 
 
 def main():
