@@ -1,1 +1,0 @@
-The folder `preprocessed` will be used to store preprocessed files.
