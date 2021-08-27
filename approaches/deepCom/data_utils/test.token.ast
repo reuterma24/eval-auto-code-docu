@@ -1,0 +1,1 @@
+( MethodDeclaration ( BasicType ) BasicType ( ReturnStatement ( BinaryOperation ( BinaryOperation ( MethodInvocation ) MethodInvocation ( Literal ) Literal ) BinaryOperation ( MethodInvocation ( MethodInvocation ) MethodInvocation ( MethodInvocation ) MethodInvocation ) MethodInvocation ) BinaryOperation ) ReturnStatement ) MethodDeclaration

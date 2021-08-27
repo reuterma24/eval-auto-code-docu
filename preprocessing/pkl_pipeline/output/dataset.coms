@@ -1,0 +1,85 @@
+321,    <s> Returns the pushes lowerbound of this board position </s>
+323,    <s> Sets the pushes lowerbound of this board position </s>
+324,    <s> Play a sound </s>
+343,    <s> Returns the influence value between the positions of the passed boxes </s>
+351,    <s> Sets the box positions and the player position </s>
+352,    <s> Returns the player position of this board position </s>
+355,    <s> Returns the number of the moved box </s>
+357,    <s> Returns the start position of the pulled box </s>
+359,    <s> Returns the target position of the pulled box </s>
+361,    <s> Returns the preceding board position of this board position </s>
+364,    <s> Compares both board positions </s>
+376,    <s> Sets the status bar text </s>
+412,    <s> Returns whether the solver has been stopped due to insufficient memory </s>
+428,    <s> Returns the board position with the shortest determined solution path length </s>
+437,    <s> Returns the preceding board position of this board position </s>
+440,    <s> Returns the direction the box has been pushed </s>
+442,    <s> Returns the number of the pushed box </s>
+445,    <s> Gives the name of this solver as used to tag new solutions </s>
+446,    <s> Return the player position of this board position </s>
+448,    <s> Sets the box and the player positions </s>
+450,    <s> An absolute board position usually hasn't a preceding board position </s>
+454,    <s> Sets the searchdirection of the solutionsearch this class is created in </s>
+458,    <s> For avoiding some casts this method is implemented here </s>
+459,    <s> Returns the number of pushes of this board position </s>
+461,    <s> Absolute board positions are only created when no box has been pushed </s>
+463,    <s> Sets the maximum solution length </s>
+464,    <s> Return the player position of this board position </s>
+466,    <s> Returns the maximum solution length iteration depth </s>
+467,    <s> Returns the number of pushes that were made to reach this board position </s>
+476,    <s> Sets the number of moves </s>
+487,    <s> Returns the index in the packing sequence that has already been reached </s>
+489,    <s> Sets the index in the packing sequence that has been reached </s>
+496,    <s> Returns whether the pushed box has been inactive </s>
+497,    <s> Mark this board position to be a deadlock </s>
+498,    <s> Mark this board position not to be a deadlock </s>
+501,    <s> Sets the number of the corral this board position belongs to </s>
+503,    <s> Sets the status bar text </s>
+504,    <s> Returns the number of the corral this board position belongs to </s>
+506,    <s> Returns whether this board position has been proven to be a corral deadlock </s>
+507,    <s> Returns whether this board position is classified not to be a corral deadlock </s>
+508,    <s> Returns whether this board position has been classified deadlock or no deadlock </s>
+510,    <s> Returns whether is currently beeing analyzed to be a corral deadlock or not </s>
+513,    <s> Returns a deep clone of the current board </s>
+517,    <s> Returns whether the two box configurations are equal </s>
+523,    <s> Returns the maximal capacity of this storage </s>
+524,    <s> Adds data to the queue </s>
+535,    <s> Retrieves and removes the last board position of this queue </s>
+538,    <s> Jumps backwards in the queue by the passed number of board positions </s>
+542,    <s> Returns whether the queue is empty </s>
+547,    <s> Returns whether all box configurations could be generated </s>
+551,    <s> Every object of this class gets passed a pushes depth </s>
+568,    <s> Adds the specified board position into this priority queue </s>
+570,    <s> Returns the number of stored code OptimizerBoardPositions code </s>
+572,    <s> Removes and returns the board position having the lowest metrics moves pushes </s>
+577,    <s> Inserts the passed board position at the passed position </s>
+580,    <s> Returns the number of board positions stored in this hash table </s>
+601,    <s> Removes all markings of squares </s>
+608,    <s> Debug method without link Settings isDebugModeActivated nothing visible happens </s>
+610,    <s> Returns the box configuration index of the passed board position </s>
+617,    <s> Returns the player position of the passed board position </s>
+619,    <s> Doubles the tree size </s>
+626,    <s> Fills the sorted list with the box configurations from the tree </s>
+637,    <s> Returns the number of the currently selected object </s>
+638,    <s> Transforms the tree to a binary heap </s>
+641,    <s> Using the mouse wheel is interpreted as a move through the selectable objects </s>
+643,    <s> Sets the is already processed status of the passed board position </s>
+648,    <s> This method is called when the user selects another view </s>
+651,    <s> Sets all variables to null for the garbage collection </s>
+653,    <s> This method is called when the user selects another view </s>
+656,    <s> Creates all things this panel needs </s>
+666,    <s> Returns the value of the input field as double </s>
+669,    <s> Returns the value of the input field as integer </s>
+672,    <s> Adds a level to be displayed param level level to be displayed </s>
+675,    <s> Returns whether the field is set active </s>
+677,    <s> Sets a new value for the display field </s>
+685,    <s> Informs all listeners using objects generated by the passed generator </s>
+687,    <s> Sets up the button for the start version </s>
+688,    <s> Sets up the button for the stop version </s>
+690,    <s> Sets up the button for the indicated version </s>
+693,    <s> Partial setup regarding the border </s>
+694,    <s> Partial setup regarding the background color </s>
+696,    <s> Create the border for the indicated version </s>
+697,    <s> Creates and returns a border for the start version </s>
+699,    <s> Creates and returns a border for the stop version </s>
+703,    <s> Does not have effect before the next link setToStart or link setToStop </s>

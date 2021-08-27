@@ -1,0 +1,85 @@
+321, public int get pushes lowerbound return pushes lowerbound
+323, public void set pushes lowerbound int pushes lowerbound this pushes lowerbound pushes lowerbound
+324, public void play if current sound filename equals return string settings file name settings get sound settings key if current sound filename equals settings file name load clip settings file name if clip is running clip stop clip set frame position 0 clip start
+343, public int get influence value int box no1 int box no2 return influence get influence distance board box data get box position box no1 board box data get box position box no2
+351, public void set positions int positions this positions positions
+352, public int get player position return positions positions length 1
+355, public int get pulled box number return pulled box no
+357, public int get start box position return start position
+359, public int get target box position return target position
+361, public board position packing sequence get preceding board position return preceding board position
+364, public int compare to board position packing sequence board position return board position get relevance get relevance
+376, final public void set info text string text info text set text text
+412, public boolean is solver stopped due to out of memory return is solver stopped due to out of memory
+428, final protected iboard position moves get best board position linked list iboard position moves board position list for int solution length shortest solution path length solution length longest solution path length solution length board position list board position queue get solution length if board position list size 0 shortest solution path length solution length return board position list remove last return null
+437, final public iboard position get preceding board position return preceding board position
+440, final public int get direction return position data 13
+442, public int get box no return position data 1 10 1
+445, protected string creator name return texts get text solver
+446, final public int get player position return player position
+448, final public void set positions int positions this positions positions
+450, final public iboard position get preceding board position return null
+454, final public void set search direction search direction search direction if search direction search direction forward forwards search true else backwards search true
+458, final public int get direction return 0
+459, public int get pushes count int pushes count 0 for board position current board position this current board position get preceding board position null current board position board position current board position get preceding board position if current board position get box no no box pushed pushes count return pushes count
+461, final public int get box no return no box pushed
+463, public void set maximum solution length short maximum solution length maximum pushes current iteration maximum solution length
+464, final public int get player position return positions box count
+466, public short get maximum solution length return maximum pushes current iteration
+467, final public int get pushes count return 0
+476, final public void set moves count int moves count this moves count short moves count
+487, public int get index packing sequence return index packing sequence
+489, public void set index packing sequence int index packing sequence this index packing sequence index packing sequence
+496, final public boolean is box inactive return position data inactive box 0
+497, public void set corral deadlock is deadlock true
+498, public void set not corral deadlock is not deadlock true
+501, public void set corral no int corral no this corral no corral no
+503, public void set info text string text info text set text text
+504, public int get corral no return corral no
+506, public boolean is corral deadlock return is deadlock
+507, public boolean is not corral deadlock return is not deadlock
+508, public boolean is classified return is deadlock is not deadlock
+510, public boolean is beeing analyzed return is deadlock is not deadlock
+513, public cboard get clone return new cboard board elements clone width height player position x player position y
+517, private boolean is equal int box configuration number byte box configuration int index of box configuration box configuration number packed board byte size for int byte no 0 byte no box configuration length byte no if box configurations index of box configuration box configuration byte no return false return true
+523, public int get max capacity return max capacity
+524, public void add int board position index int board position predecessor add board position index add board position predecessor
+535, public int remove last board position if next index to write 0 memory block to write memory block to write previous memory block next index to write memory block size return memory block to write memory next index to write
+538, public void jump xboard positions backwards int jump count while jump count next index to write memory block to write memory block to write previous memory block jump count next index to write next index to write memory block size next index to write jump count
+542, public boolean is empty return memory block to read memory block to write next index to read next index to write
+547, public boolean is generation stopped due to full storage return generation stopped due to full storage
+551, public int get box configuration number return unique box configuration number
+568, public void add optimizer board position board position if board position null throw new null pointer exception if count queue length queue arrays copy of queue queue length 2 sift up count board position count
+570, public int size return count
+572, public optimizer board position remove first if count 0 return null optimizer board position result queue 0 count optimizer board position x queue count queue count null if count 0 sift down 0 x return result
+577, private void sift down int position optimizer board position board position int half count 1 while position half int child index position 1 1 optimizer board position child queue child index int right child index child index 1 if right child index count child compare to queue right child index 0 child queue child index right child index if board position compare to child 0 break queue position child position child index queue position board position
+580, public int get number of stored board positions return count get
+601, public void remove all markings marked squares null
+608, public void show deadlock query stats dlq tot stats sum from dlq cur stats if dlq tot stats equals dlq cur stats show1 dlqstats total dlq tot stats 0 show1 dlqstats this time dlq cur stats dlq tot stats dlq asked dlq cur stats clear
+610, private int get box configuration index int board position index return table get board position index box configuration offset locked
+617, private int get player position int board position index return table get board position index player position offset player position and mask
+619, final private void double tree size int new array pointers new int 2 2 tree size max system arraycopy array pointers 0 new array pointers 0 2 tree size max array pointers new array pointers byte new array data new byte packed board byte size 2 tree size max system arraycopy tree data 0 new array data 0 packed board byte size tree size max tree data new array data tree size max 1
+626, final private int tree to sorted list recursively int index in tree int last if index in tree 1 return last int d tree to sorted list recursively array pointers 2 index in tree last sorted list d index in tree return tree to sorted list recursively array pointers 2 index in tree 1 d
+637, final public int get number of selected object return currently marked object
+638, final private void binary tree to binary heap byte tree data temp new byte packed board byte size tree size for int i 0 index in vector 0 i tree size i system arraycopy tree data array pointers i packed board byte size tree data temp index in vector packed board byte size index in vector packed board byte size tree data tree data temp array pointers null
+641, final public void mouse wheel moved mouse wheel event evt int scroll direction evt get wheel rotation if scroll direction 0 currently marked object 0 currently marked object if scroll direction 0 currently marked object 4 currently marked object application redraw false
+643, public void set processed status int board position index boolean processed status int current value table get board position index player position offset if processed status true table set board position index player position offset current value processed flag bit mask else table set board position index player position offset current value processed flag bit mask
+648, public void state changed final change event e jtabbed pane tabbed pane jtabbed pane e get source view on the levels if tabbed pane get selected component language settings
+651, protected void finalize array pointers null sorted list null tree data null
+653, public void state changed final change event e jtabbed pane tabbed pane jtabbed pane e get source language settings if tabbed pane get selected component language settings
+656, private void create panel set layout new border layout jpanel gui panel new jpanel new grid layout 0 1 0 10 gui panel set border border factory create compound border border factory create raised bevel border border factory create empty border 10 10 10 10 nim rodfont dialog d new nim rodfont dialog null component c d get content pane get components gui panel add c 0 add gui panel border layout north
+666, public double get value as double return checkbox gui is selected textfield gui get value as double null
+669, public integer get value as integer return checkbox gui is selected textfield gui get value as integer null
+672, public void add level level level displayed levels add level if displayed levels size levels per page last level index displayed levels size 1 else last level index levels per page 1
+675, public boolean is field active return textfield gui is enabled
+677, public double set value double value double rc value if value maximum value rc maximum value else if value minimum value rc minimum value else rc value textfield gui set value rc return rc
+685, public void inform all unsync generator e eventgen we must not directly use weakhashmap key set since it still is coupled to the weakhashmap itself which needs synchronization hence we first must obtain a copy for l listener get listeners copy final e evt eventgen null eventgen generate null caller call listener evt
+687, public void set to start set to true
+688, public void set to stop set to false
+690, private void set to boolean for start string textkey for start startkey stopkey string action for start start action command stop action command set text texts get text textkey set action command action setup border for start setup bg color for start
+693, private void setup border boolean for start set border use border make border for start null
+694, private void setup bg color boolean for start if use bg color int rgb for start bg color start bg color stop set background new color rgb set opaque false else
+696, public border make border boolean for start int rgb for start border color start border color stop return make rgb border rgb use rounded corners
+697, public border make start border return make border true
+699, public border make stop border return make border false
+703, public void set use border boolean use border this use border use border
