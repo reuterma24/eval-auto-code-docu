@@ -12,7 +12,7 @@ def load():
 
     src_path = 'functions.json'
     com_path = 'comments.json'
-    invalid_path = 'invalid_ids.txt'
+    invalid_path = 'invalid_fids.txt'
 
     with open(root + src_path, 'r') as fp:
         src = json.load(fp, parse_int=True)
@@ -57,7 +57,7 @@ def load_function():
 
 
 def load_invalid_ids():
-    src_path = 'invalid_ids.txt'
+    src_path = 'invalid_fids.txt'
 
     with open(src_path, 'r') as inval:
         src = inval.read()

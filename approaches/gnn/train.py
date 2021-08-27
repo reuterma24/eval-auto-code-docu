@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser.add_argument('--outdir', dest='outdir', type=str, default='./modelout')
     parser.add_argument('--asthops', dest='hops', type=int, default=2)
     args = parser.parse_args()
-    
+
     outdir = args.outdir
     dataprep = args.dataprep
     gpu = args.gpu
@@ -55,20 +55,73 @@ if __name__ == '__main__':
     config['tdatlen'] = 50
     config['maxastnodes'] = 100
     config['comlen'] = 13
-        
+
     config['batch_size'] = batch_size
     config['epochs'] = epochs
 
     # Load data
     seqdata = pickle.load(open('{}/dataset.pkl'.format(dataprep), 'rb'))
+
+
+    #removing filtered FIDS
+    cval = seqdata['cval']
+    dsval = seqdata['dsval']
+    dtval = seqdata['dtval']
+
+    ctest = seqdata['ctest']
+    dstest = seqdata['dstest']
+    dttest = seqdata['dttest']
+
+    ctrain = seqdata['ctrain']
+    dstrain = seqdata['dstrain']
+    dttrain = seqdata['dttrain']
+
+    with open("invalid_fids.txt", "r") as f:
+        invalid_fids = f.read().split(",")
+        for i in invalid_fids:
+            if int(i) in cval.keys():
+                del cval[i]
+            if int(i) in dsval.keys():
+                del dsval[i]
+            if int(i) in dtval.keys():
+                del dtval[i]
+
+            if int(i) in ctest.keys():
+                del ctest[i]
+            if int(i) in dstest.keys():
+                del dstest[i]
+            if int(i) in dttest.keys():
+                del dttest[i]
+
+            if int(i) in ctrain.keys():
+                del ctrain[i]
+            if int(i) in dstrain.keys():
+                del dstrain[i]
+            if int(i) in dttrain.keys():
+                del dttrain[i]
+
+        f.close()
+
+
+    seqdata['cval'] = cval
+    seqdata['ctest'] = ctest
+    seqdata['ctrain'] = ctrain
+
+    seqdata['dsval'] = dsval
+    seqdata['dstest'] = dstest
+    seqdata['dstrain'] = dstrain
+
+    seqdata['dtval'] = dtval
+    seqdata['dttest'] = dttest
+    seqdata['dttrain'] = dttrain
+
     node_data = seqdata['strain_nodes']
     edges = seqdata['strain_edges']
     config['edge_type'] = 'sml'
 
     # model parameters
-    steps = int(len(seqdata['ctrain'])/batch_size)+1
-    valsteps = int(len(seqdata['cval'])/batch_size)+1
-
+    steps = int(len(seqdata['ctrain']) / batch_size) + 1
+    valsteps = int(len(seqdata['cval']) / batch_size) + 1
 
     # Print information
     print('tdatvocabsize {}'.format(tdatvocabsize))
@@ -76,22 +129,20 @@ if __name__ == '__main__':
     print('smlvocabsize {}'.format(astvocabsize))
     print('batch size {}'.format(batch_size))
     print('steps {}'.format(steps))
-    print('training data size {}'.format(steps*batch_size))
-    print('vaidation data size {}'.format(valsteps*batch_size))
+    print('training data size {}'.format(steps * batch_size))
+    print('vaidation data size {}'.format(valsteps * batch_size))
     print('------------------------------------------')
 
     # create model
     config, model = create_model(modeltype, config)
 
     print(model.summary())
-
-    # set up data generators
     gen = batch_gen(seqdata, 'train', config, nodedata=node_data, edgedata=edges)
 
-    checkpoint = ModelCheckpoint(outdir+"/models/"+modeltype+"_E{epoch:02d}.h5")
-    
+    checkpoint = ModelCheckpoint(outdir + "/models/" + modeltype + "_E{epoch:02d}.h5")
+
     valgen = batch_gen(seqdata, 'val', config, nodedata=seqdata['sval_nodes'], edgedata=seqdata['sval_edges'])
-    callbacks = [ checkpoint ]
+    callbacks = [checkpoint]
 
     model.fit_generator(gen, steps_per_epoch=steps, epochs=epochs, verbose=1, max_queue_size=4,
                         callbacks=callbacks, validation_data=valgen, validation_steps=valsteps)

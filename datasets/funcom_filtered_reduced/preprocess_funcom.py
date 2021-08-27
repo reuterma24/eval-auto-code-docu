@@ -36,7 +36,7 @@ def __replace_umlauts(text: str):
 
 
 def __print_invalid_ids():
-    with open(root + "invalid_ids.txt", "w", encoding="utf-8") as errs:
+    with open(root + "invalid_fids.txt", "w", encoding="utf-8") as errs:
         for i in invalid_idx:
             errs.write(i + ",")
 
@@ -63,6 +63,17 @@ def __preprocess():
             comment = comment.split('.')[0] + "\n\t*/\n"
         comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
 
+        commentCount = comment.split()
+        if len(commentCount) > 13 or len(commentCount) < 3:
+            invalid_idx.append(str(k))
+            continue
+
+        codeCount = code.split()
+        if len(codeCount) > 100:
+            invalid_idx.append(str(k))
+            continue
+
+
         toParse = "class Parse {" + comment + code + '}'
 
         try:
@@ -72,9 +83,9 @@ def __preprocess():
             continue
 
         lineCommentPattern = "//(.*?)\r?\n"
-        code = regex.sub(lineCommentPattern, "\n", code)
+        code = regex.sub(lineCommentPattern, "\n", code) #remove inline comments
         code = str(code).strip().replace("\n", "")
-        code = regex.sub(' +', ' ', code)
+        code = regex.sub(' +', ' ', code) #multiple whitespaces with one
 
         codes_raw[k] = code
         comments_raw[k] = regex.sub(' +', ' ',
