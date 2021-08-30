@@ -17,4 +17,5 @@ root = os.path.dirname(os.path.abspath(__file__))
 #print("done...")
 
 # RUN CODE2SEQ PREPROCESSING
+print("Preprocessing data for code2seq")
 code2seq.preprocess()
