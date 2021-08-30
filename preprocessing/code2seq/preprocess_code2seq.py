@@ -69,6 +69,14 @@ def preprocess():
         if '.' in comment:
             comment = comment.split('.')[0] + "\n\t*/\n"
         comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
+        comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
+
+        lineCommentPattern = "//(.*?)\r?\n"
+        code = regex.sub(lineCommentPattern, "\n", code)  # remove inline comments
+        docCommentPattern = "/\*\**((?:[^*]+|\*[^/])*)\*/"
+        code = regex.sub(docCommentPattern, "", code)
+        code = str(code).strip().replace("\n", "").replace('\t', " ")
+        code = regex.sub(' +', ' ', code)  # multiple whitespaces with one
 
         commentCount = comment.split()
         if len(commentCount) > 13 or len(commentCount) < 3:
@@ -94,16 +102,8 @@ def preprocess():
             del code_dict[k]
             continue
 
-        lineCommentPattern = "//(.*?)\r?\n"
-        code = regex.sub(lineCommentPattern, "\n", code)  # remove inline comments
-        docCommentPattern = "/\*\**((?:[^*]+|\*[^/])*)\*/"
-        code = regex.sub(docCommentPattern, "", code)
-        code = str(code).strip().replace("\n", "")
-        code = regex.sub(' +', ' ', code)  # multiple whitespaces with one
-        code = code.replace('\n', "").replace('\t', "")
-
         code_dict[k] = code
-        comment_dict[k] = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
+        comment_dict[k] = comment
 
     __print_invalid_ids()
 
