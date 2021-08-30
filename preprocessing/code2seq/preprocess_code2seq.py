@@ -92,7 +92,7 @@ def preprocess():
             del code_dict[k]
             continue
 
-        toParse = "class Parse {" + comment + code + '}'
+        toParse = "class Parse {" + comment + '\n' + code + '}'
 
         try:
             javalang.parse.parse(toParse)
