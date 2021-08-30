@@ -26,7 +26,7 @@ TRAIN_DIR=preprocessing/code2seq/preprocessed_data/split/training
 VAL_DIR=preprocessing/code2seq/preprocessed_data/split/evaluating
 TEST_DIR=preprocessing/code2seq/preprocessed_data/split/testing
 
-DATASET_NAME=funcom_reduced
+DATASET_NAME=funcom
 MAX_DATA_CONTEXTS=1000
 MAX_CONTEXTS=200
 SUBTOKEN_VOCAB_SIZE=186277
