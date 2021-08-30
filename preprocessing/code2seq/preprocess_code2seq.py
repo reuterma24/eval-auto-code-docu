@@ -70,6 +70,7 @@ def preprocess():
             comment = comment.split('.')[0] + "\n\t*/\n"
         comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
+        comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
 
         lineCommentPattern = "//(.*?)\r?\n"
         code = regex.sub(lineCommentPattern, "\n", code)  # remove inline comments
