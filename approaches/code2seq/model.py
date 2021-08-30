@@ -165,7 +165,7 @@ class Model:
                 shutil.copyfile(src=self.config.LOAD_PATH + '.dict', dst=release_name + '.dict')
                 return None
         model_dirname = os.path.dirname(self.config.SAVE_PATH if self.config.SAVE_PATH else self.config.LOAD_PATH)
-        model_dirname += '/epoch%s' % str(self.epochs_trained) #i added that
+        #model_dirname += '/epoch%s' % str(self.epochs_trained) #i added that
         ref_file_name = model_dirname + '/ref.txt'
         predicted_file_name = model_dirname + '/pred.txt'
         if not os.path.exists(model_dirname):
