@@ -10,6 +10,8 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import java.nio.charset.StandardCharsets;
+import java.io.*;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -63,18 +65,21 @@ class FeatureExtractor {
         final String methodSuffix = "return noSuchReturnValue; }";
 
         String content = code;
+        InputStream stream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));
         CompilationUnit parsed;
         try {
-            parsed = JavaParser.parse(content);
+            parsed = JavaParser.parse(stream);
         } catch (ParseProblemException e1) {
             // Wrap with a class and method
             try {
                 content = classPrefix + methodPrefix + code + methodSuffix + classSuffix;
-                parsed = JavaParser.parse(content);
+                stream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));
+                parsed = JavaParser.parse(stream);
             } catch (ParseProblemException e2) {
                 // Wrap with a class only
                 content = classPrefix + code + classSuffix;
-                parsed = JavaParser.parse(content);
+                stream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));
+                parsed = JavaParser.parse(stream);
             }
         }
 
