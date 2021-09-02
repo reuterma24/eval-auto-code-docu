@@ -67,7 +67,7 @@ def preprocess():
         code = __replace_umlauts(code_dict[k])
         comment = __replace_umlauts(comment_dict[k])
         if '.' in comment:
-            comment = comment.split('.')[0] + "\n\t*/\n"
+            comment = comment.split('.')[0] + " */\n"
         comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
         comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
@@ -93,9 +93,11 @@ def preprocess():
             del code_dict[k]
             continue
 
-        toParse = "class Parse {" + comment + '\n' + code + '}'
+        pair = comment + '\n' + code
+        toParse = "class Parse {" + pair + '}'
 
         try:
+            pair.encode('UTF-8', 'strict')
             javalang.parse.parse(toParse)
         except Exception:
             invalid_fids.append(str(k))

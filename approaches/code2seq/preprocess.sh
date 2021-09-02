@@ -47,6 +47,7 @@ echo "Extracting paths from validation set..."
 COUNTER=0
 for entry in ${VAL_DIR}/*.java
 do
+  echo "val file ${COUNTER}"
   ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${VAL_DATA_FILE} 2>> error_log.txt
   ((COUNTER = COUNTER+1))
 done
@@ -58,6 +59,7 @@ echo "Extracting paths from test set..."
 COUNTER=0
 for entry in ${TEST_DIR}/*.java
 do
+  echo "test file ${COUNTER}"
   ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${TEST_DATA_FILE} 2>> error_log.txt
   ((COUNTER = COUNTER+1))
 done
@@ -69,6 +71,7 @@ echo "Extracting paths from training set..."
 COUNTER=0
 for entry in ${TRAIN_DIR}/*.java
 do
+  echo "train file ${COUNTER}"
   ${PYTHON} approaches/code2seq/JavaExtractor/extract.py --file "$entry" --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${COUNTER}${TRAIN_DATA_FILE} 2>> error_log.txt
   ((COUNTER = COUNTER+1))
 done
