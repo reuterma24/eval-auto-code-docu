@@ -1,4 +1,5 @@
 import os.path
+import re
 import shutil
 
 import javalang
@@ -62,6 +63,8 @@ def preprocess():
     os.makedirs(root + 'testing/', exist_ok=True)
     os.makedirs(root + 'evaluating/', exist_ok=True)
 
+    pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
+
     #process pairs
     for k in list(code_dict.keys()):
         code = __replace_umlauts(code_dict[k])
@@ -71,9 +74,10 @@ def preprocess():
         elif '\n' in comment:
             comment = comment.split('\n')[0]
         comment = comment + " */\n"
-        comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
+        comment = pattern.sub(' ', comment)
+        #comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
-        comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
+        #comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
         comment = comment.lower()
 
 
