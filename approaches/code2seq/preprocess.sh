@@ -77,30 +77,30 @@ do
 done
 echo "Finished extracting paths from training set"
 #${PYTHON} approaches/code2seq/JavaExtractor/extract.py --dir ${TRAIN_DIR} --max_path_length 8 --max_path_width 2 --num_threads ${NUM_THREADS} --jar ${EXTRACTOR_JAR} | shuf > ${TRAIN_DATA_FILE} 2>> error_log.txt
-
+echo "Done with extracting"
 
 #concatenating all files back together
-cat ./*${DATASET_NAME}.train.raw.txt >> ${TRAIN_DATA_FILE}
-cat ./*${DATASET_NAME}.test.raw.txt >> ${TEST_DATA_FILE}
-cat ./*${DATASET_NAME}.val.raw.txt >> ${VAL_DATA_FILE}
+#cat ./*${DATASET_NAME}.train.raw.txt >> ${TRAIN_DATA_FILE}
+#cat ./*${DATASET_NAME}.test.raw.txt >> ${TEST_DATA_FILE}
+#cat ./*${DATASET_NAME}.val.raw.txt >> ${VAL_DATA_FILE}
 
 
 TARGET_HISTOGRAM_FILE=approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}.histo.tgt.c2s
 SOURCE_SUBTOKEN_HISTOGRAM=approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}.histo.ori.c2s
 NODE_HISTOGRAM_FILE=approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}.histo.node.c2s
 
-echo "Creating histograms from the training data"
-cat ${TRAIN_DATA_FILE} | cut -d' ' -f1 | tr '|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${TARGET_HISTOGRAM_FILE}
-cat ${TRAIN_DATA_FILE} | cut -d' ' -f2- | tr ' ' '\n' | cut -d',' -f1,3 | tr ',|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${SOURCE_SUBTOKEN_HISTOGRAM}
-cat ${TRAIN_DATA_FILE} | cut -d' ' -f2- | tr ' ' '\n' | cut -d',' -f2 | tr '|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${NODE_HISTOGRAM_FILE}
+#echo "Creating histograms from the training data"
+#cat ${TRAIN_DATA_FILE} | cut -d' ' -f1 | tr '|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${TARGET_HISTOGRAM_FILE}
+#cat ${TRAIN_DATA_FILE} | cut -d' ' -f2- | tr ' ' '\n' | cut -d',' -f1,3 | tr ',|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${SOURCE_SUBTOKEN_HISTOGRAM}
+#cat ${TRAIN_DATA_FILE} | cut -d' ' -f2- | tr ' ' '\n' | cut -d',' -f2 | tr '|' '\n' | awk '{n[$0]++} END {for (i in n) print i,n[i]}' > ${NODE_HISTOGRAM_FILE}
 
-${PYTHON} approaches/code2seq/preprocess.py --train_data ${TRAIN_DATA_FILE} --test_data ${TEST_DATA_FILE} --val_data ${VAL_DATA_FILE} \
-  --max_contexts ${MAX_CONTEXTS} --max_data_contexts ${MAX_DATA_CONTEXTS} --subtoken_vocab_size ${SUBTOKEN_VOCAB_SIZE} \
-  --target_vocab_size ${TARGET_VOCAB_SIZE} --subtoken_histogram ${SOURCE_SUBTOKEN_HISTOGRAM} \
-  --node_histogram ${NODE_HISTOGRAM_FILE} --target_histogram ${TARGET_HISTOGRAM_FILE} --output_name approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}
+#${PYTHON} approaches/code2seq/preprocess.py --train_data ${TRAIN_DATA_FILE} --test_data ${TEST_DATA_FILE} --val_data ${VAL_DATA_FILE} \
+#  --max_contexts ${MAX_CONTEXTS} --max_data_contexts ${MAX_DATA_CONTEXTS} --subtoken_vocab_size ${SUBTOKEN_VOCAB_SIZE} \
+#  --target_vocab_size ${TARGET_VOCAB_SIZE} --subtoken_histogram ${SOURCE_SUBTOKEN_HISTOGRAM} \
+#  --node_histogram ${NODE_HISTOGRAM_FILE} --target_histogram ${TARGET_HISTOGRAM_FILE} --output_name approaches/code2seq/data/${DATASET_NAME}/${DATASET_NAME}
     
 # If all went well, the raw data files can be deleted, because preprocess.py creates new files 
 # with truncated and padded number of paths for each example.
-rm ./*${TRAIN_DATA_FILE} ./*${VAL_DATA_FILE} ./*${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
-  ${NODE_HISTOGRAM_FILE}
+#rm ./*${TRAIN_DATA_FILE} ./*${VAL_DATA_FILE} ./*${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
+  #${NODE_HISTOGRAM_FILE}
 
