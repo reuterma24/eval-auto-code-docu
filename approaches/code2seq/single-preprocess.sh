@@ -1,5 +1,8 @@
 TRAIN_DIR=preprocessing/code2seq/preprocessed_data/split/training
 TRAIN_DATA_FILE=funcom.train.raw.txt
+EXTRACTOR_JAR=approaches/code2seq/JavaExtractor/JPredict/target/JavaExtractor-0.0.1-SNAPSHOT.jar
+NUM_THREADS=64
+PYTHON=python
 
 echo "Extracting paths from specific training files "
 for number in 5
