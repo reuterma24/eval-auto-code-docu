@@ -5,9 +5,9 @@
 # test_data: by default, points to the validation set, since this is the set that
 #   will be evaluated after each training iteration. If you wish to test
 #   on the final (held-out) test set, change 'val' to 'test'.
-type=funcom_reduced-model
-dataset_name=funcom_reduced
-data_dir=data/funcom_reduced
+type=funcom-model
+dataset_name=funcom
+data_dir=data/funcom
 data=${data_dir}/${dataset_name}
 test_data=${data_dir}/${dataset_name}.val.c2s #change this in order to select the dataset for the training validation after each epoch
 model_dir=models/${type}
