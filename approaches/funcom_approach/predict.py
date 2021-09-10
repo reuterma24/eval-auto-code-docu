@@ -166,7 +166,7 @@ if __name__ == '__main__':
 
     datlen = len(seqdata['dttest'][list(seqdata['dttest'].keys())[0]])
     comlen = len(seqdata['ctest'][list(seqdata['ctest'].keys())[0]])
-    smllen = len(seqdata['stest'][list(seqdata['stest'].keys())[0]])
+    smllen = len(seqdata['dstest'][list(seqdata['dstest'].keys())[0]])
 
     prep('loading config... ')
     (modeltype, mid, timestart) = modelfile.split('_')
@@ -195,7 +195,7 @@ if __name__ == '__main__':
         st = timer()
         for fid in fid_set:
             dat = seqdata['dttest'][fid]
-            sml = seqdata['stest'][fid]
+            sml = seqdata['dstest'][fid]
             
             # adjust to model's expected data size
             dat = dat[:config['tdatlen']]
