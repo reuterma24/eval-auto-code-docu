@@ -80,25 +80,25 @@ if __name__ == '__main__':
         invalid_fids = f.read().split(",")
         for i in invalid_fids:
             if int(i) in cval.keys():
-                del cval[i]
+                del cval[int(i)]
             if int(i) in dsval.keys():
-                del dsval[i]
+                del dsval[int(i)]
             if int(i) in dtval.keys():
-                del dtval[i]
+                del dtval[int(i)]
 
             if int(i) in ctest.keys():
-                del ctest[i]
+                del ctest[int(i)]
             if int(i) in dstest.keys():
-                del dstest[i]
+                del dstest[int(i)]
             if int(i) in dttest.keys():
-                del dttest[i]
+                del dttest[int(i)]
 
             if int(i) in ctrain.keys():
-                del ctrain[i]
+                del ctrain[int(i)]
             if int(i) in dstrain.keys():
-                del dstrain[i]
+                del dstrain[int(i)]
             if int(i) in dttrain.keys():
-                del dttrain[i]
+                del dttrain[int(i)]
 
         f.close()
 
