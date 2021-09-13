@@ -13,6 +13,13 @@ from utils.model import create_model
 from utils.myutils import batch_gen, init_tf
 
 
+def print_keys():
+    path = '/vol/tmp/reuterma/extra_data'
+    print('Loading .pkl')
+    seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
+    print(seqdata.keys())
+
+
 def preprocess():
     print("Removing invalid fids from dataset.pkl")
 
@@ -66,3 +73,7 @@ def preprocess():
     with open(path + "/dataset_filtered.pkl", "wb") as outfile:
         pickle.dump(new_dict, outfile)
     print("done")
+
+
+if __name__ == '__main__':
+    print_keys()
