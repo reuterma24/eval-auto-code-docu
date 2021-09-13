@@ -62,59 +62,6 @@ if __name__ == '__main__':
     # Load data
     seqdata = pickle.load(open('{}/dataset.pkl'.format(dataprep), 'rb'))
 
-
-    #removing filtered FIDS
-    cval = seqdata['cval']
-    dsval = seqdata['dsval']
-    dtval = seqdata['dtval']
-
-    ctest = seqdata['ctest']
-    dstest = seqdata['dstest']
-    dttest = seqdata['dttest']
-
-    ctrain = seqdata['ctrain']
-    dstrain = seqdata['dstrain']
-    dttrain = seqdata['dttrain']
-
-    with open("invalid_fids.txt", "r") as f:
-        invalid_fids = f.read().split(",")
-        for i in invalid_fids:
-            if int(i) in cval.keys():
-                del cval[int(i)]
-            if int(i) in dsval.keys():
-                del dsval[int(i)]
-            if int(i) in dtval.keys():
-                del dtval[int(i)]
-
-            if int(i) in ctest.keys():
-                del ctest[int(i)]
-            if int(i) in dstest.keys():
-                del dstest[int(i)]
-            if int(i) in dttest.keys():
-                del dttest[int(i)]
-
-            if int(i) in ctrain.keys():
-                del ctrain[int(i)]
-            if int(i) in dstrain.keys():
-                del dstrain[int(i)]
-            if int(i) in dttrain.keys():
-                del dttrain[int(i)]
-
-        f.close()
-
-
-    seqdata['cval'] = cval
-    seqdata['ctest'] = ctest
-    seqdata['ctrain'] = ctrain
-
-    seqdata['dsval'] = dsval
-    seqdata['dstest'] = dstest
-    seqdata['dstrain'] = dstrain
-
-    seqdata['dtval'] = dtval
-    seqdata['dttest'] = dttest
-    seqdata['dttrain'] = dttrain
-
     node_data = seqdata['strain_nodes']
     edges = seqdata['strain_edges']
     config['edge_type'] = 'sml'
