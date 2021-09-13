@@ -42,41 +42,22 @@ ctrain = new_dict['ctrain']
 dstrain = new_dict['dstrain']
 dttrain = new_dict['dttrain']
 
-#print(*list(cval.keys()))
-
-if 4899938 in cval:
-    print("use int")
-
-if '4899938' in cval:
-    print("use string")
-
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
+    idx = int(i)
     print("ID: " + i)
-    del cval[i]
-    del dsval[i]
-    del dtval[i]
 
-    del ctest[i]
-    del dstest[i]
-    del dttest[i]
+    cval.pop(int(i), None)
+    dsval.pop(int(i), None)
+    dtval.pop(int(i), None)
 
-    del ctrain[i]
-    del dstrain[i]
-    del dttrain[i]
+    ctest.pop(int(i), None)
+    dstest.pop(int(i), None)
+    dttest.pop(int(i), None)
 
-
-#seqdata['cval'] = cval
-#seqdata['ctest'] = ctest
-#seqdata['ctrain'] = ctrain
-
-#seqdata['dsval'] = dsval
-#seqdata['dstest'] = dstest
-#seqdata['dstrain'] = dstrain
-
-#seqdata['dtval'] = dtval
-#seqdata['dttest'] = dttest
-#seqdata['dttrain'] = dttrain
+    ctrain.pop(int(i), None)
+    dstrain.pop(int(i), None)
+    dttrain.pop(int(i), None)
 
 print("final length: " + str(len(new_dict['ctrain']) + len(new_dict['ctest']) + len(new_dict['cval'])))
 
