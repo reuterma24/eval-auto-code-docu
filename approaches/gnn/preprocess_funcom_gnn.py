@@ -16,12 +16,12 @@ print("Removing invalid fids from dataset.pkl")
 
 path = '/vol/tmp/reuterma/extra_data'
 
-print('Loading .pkl')
-seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
 print("Loading invalid fids")
 f = open("/invalid_fids.txt", "r")
 invalid_fids = f.read().split(",")
 f.close()
+print('Loading .pkl')
+seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
 print("done loading ...")
 print("start removing")
 
