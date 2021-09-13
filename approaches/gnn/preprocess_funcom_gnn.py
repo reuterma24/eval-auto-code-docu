@@ -44,6 +44,12 @@ dttrain = new_dict['dttrain']
 
 print(*list(cval.keys()))
 
+if 4899938 in cval:
+    print("use int")
+
+if '4899938' in cval:
+    print("use string")
+
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
     print("ID: " + i)
