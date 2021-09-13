@@ -20,7 +20,7 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', dest='epochs', type=int, default=50)
     parser.add_argument('--modeltype', dest='modeltype', type=str, default='codegnngru')
     parser.add_argument('--data', dest='dataprep', type=str, default='/vol/tmp/reuterma/extra_data')
-    parser.add_argument('--outdir', dest='outdir', type=str, default='./modelout')
+    parser.add_argument('--outdir', dest='outdir', type=str, default='approaches/gnn/modelout')
     parser.add_argument('--asthops', dest='hops', type=int, default=2)
     args = parser.parse_args()
 
