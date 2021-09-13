@@ -1,5 +1,4 @@
 import pickle
-import approaches.gnn.tokenizer
 
 print("Removing invalid fids from dataset.pkl")
 
