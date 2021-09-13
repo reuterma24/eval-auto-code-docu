@@ -26,6 +26,9 @@ seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
 print("done loading ...")
 print("start removing")
 
+
+new_dict = dict(seqdata)
+
 # removing filtered FIDS
 cval = seqdata['cval']
 dsval = seqdata['dsval']
@@ -43,33 +46,33 @@ dttrain = seqdata['dttrain']
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
     print("ID: " + i)
-    del cval[i]
-    del dsval[i]
-    del dtval[i]
+    del new_dict['cval'][i]
+    del new_dict['dsval'][i]
+    del new_dict['dtval'][i]
 
-    del ctest[i]
-    del dstest[i]
-    del dttest[i]
+    del new_dict['ctest'][i]
+    del new_dict['dstest'][i]
+    del new_dict['dttest'][i]
 
-    del ctrain[i]
-    del dstrain[i]
-    del dttrain[i]
+    del new_dict['ctrain'][i]
+    del new_dict['dstrain'][i]
+    del new_dict['dttrain'][i]
 
-seqdata['cval'] = cval
-seqdata['ctest'] = ctest
-seqdata['ctrain'] = ctrain
 
-seqdata['dsval'] = dsval
-seqdata['dstest'] = dstest
-seqdata['dstrain'] = dstrain
+#seqdata['cval'] = cval
+#seqdata['ctest'] = ctest
+#seqdata['ctrain'] = ctrain
 
-seqdata['dtval'] = dtval
-seqdata['dttest'] = dttest
-seqdata['dttrain'] = dttrain
+#seqdata['dsval'] = dsval
+#seqdata['dstest'] = dstest
+#seqdata['dstrain'] = dstrain
 
-print("final length: " + str(len(ctrain) + len(ctest) + len(cval)))
+#seqdata['dtval'] = dtval
+#seqdata['dttest'] = dttest
+#seqdata['dttrain'] = dttrain
 
-outfile = open(path + "/dataset_filtered.pkl", "wb")
-pickle.dump(seqdata, outfile)
-outfile.close()
+print("final length: " + str(len(new_dict['ctrain']) + len(new_dict['ctest']) + len(new_dict['cval'])))
+
+with open(path + "/dataset_filtered.pkl", "wb") as outfile:
+    pickle.dump(new_dict, outfile)
 print("done")
