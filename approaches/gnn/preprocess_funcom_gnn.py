@@ -20,7 +20,7 @@ def print_keys():
 
     config = seqdata['config']
     print(seqdata.keys())
-    print("config keys:" + config.keys())
+    print(config.keys())
 
 
 def preprocess():
