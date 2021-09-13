@@ -17,7 +17,10 @@ def print_keys():
     path = '/vol/tmp/reuterma/extra_data'
     print('Loading .pkl')
     seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
+
+    config = seqdata['config']
     print(seqdata.keys())
+    print("config keys:" + config.keys())
 
 
 def preprocess():
