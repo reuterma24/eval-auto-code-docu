@@ -46,7 +46,7 @@ dttrain = seqdata['dttrain']
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
     print("ID: " + i)
-    del new_dict['cval'][i]
+    del new_dict['cval'][int(i)]
     del new_dict['dsval'][i]
     del new_dict['dtval'][i]
 
