@@ -42,7 +42,7 @@ ctrain = new_dict['ctrain']
 dstrain = new_dict['dstrain']
 dttrain = new_dict['dttrain']
 
-print(*list(cval.keys()))
+#print(*list(cval.keys()))
 
 if 4899938 in cval:
     print("use int")
