@@ -20,7 +20,7 @@ print("Loading invalid fids")
 f = open("../../invalid_fids.txt", "r")
 invalid_fids = f.read().split(",")
 f.close()
-print("invalid id's:" + str(len(invalid_fids)))
+print("invalid id's: " + str(len(invalid_fids)))
 print('Loading .pkl')
 seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
 print("done loading ...")
@@ -42,6 +42,7 @@ ctrain = new_dict['ctrain']
 dstrain = new_dict['dstrain']
 dttrain = new_dict['dttrain']
 
+print(*list(cval.keys()))
 
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
