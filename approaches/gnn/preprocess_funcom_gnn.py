@@ -39,7 +39,7 @@ dstrain = seqdata['dstrain']
 dttrain = seqdata['dttrain']
 
 
-print("initial length:" + str(len(cval) + len(ctrain) + len(ctest)))
+print("initial length:" + str(len(seqdata)))
 for i in invalid_fids:
     cval.pop(i, None)
     dsval.pop(i, None)
@@ -65,8 +65,8 @@ seqdata['dtval'] = dtval
 seqdata['dttest'] = dttest
 seqdata['dttrain'] = dttrain
 
-print("final length:" + str(len(cval) + len(ctrain) + len(ctest)))
+print("final length:" + str(len(seqdata)))
 
-outfile = open(path + "dataset_filtered", "wb")
+outfile = open(path + "/dataset_filtered", "wb")
 pickle.dump(seqdata, outfile)
 print("done")
