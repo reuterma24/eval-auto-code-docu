@@ -163,7 +163,7 @@ if __name__ == '__main__':
         config['comlen'] = len(list(seqdata['ctrain'].values())[0])
         config['tdatlen'] = len(list(seqdata['dttrain'].values())[0])
         config['sdatlen'] = seqdata['config']['sdatlen']
-        config['smllen'] = len(list(seqdata['strain'].values())[0])
+        config['smllen'] = len(list(seqdata['dstrain'].values())[0])
     except KeyError:
         pass # some configurations do not have all data, which is fine
     

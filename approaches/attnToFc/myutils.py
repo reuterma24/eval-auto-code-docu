@@ -161,7 +161,7 @@ class batch_gen(keras.utils.Sequence):
 
             wdatseq = seqdata['dt%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
-            wsmlseq = seqdata['s%s' % (tt)][fid]
+            wsmlseq = seqdata['ds%s' % (tt)][fid]
 
             wdatseq = wdatseq[:self.config['tdatlen']]
 
@@ -214,7 +214,7 @@ class batch_gen(keras.utils.Sequence):
             wtdatseq = seqdata['dt%s' % (tt)][fid]
             wsdatseq = seqdata['ds%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
-            wsmlseq = seqdata['s%s' % (tt)][fid]
+            wsmlseq = seqdata['ds%s' % (tt)][fid]
 
             wtdatseq = wtdatseq[:self.config['tdatlen']]
 
