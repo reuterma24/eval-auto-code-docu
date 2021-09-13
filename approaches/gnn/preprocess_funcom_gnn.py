@@ -48,17 +48,17 @@ for i in invalid_fids:
     idx = int(i)
     print("ID: " + i)
 
-    cval.pop(int(i), None)
-    dsval.pop(int(i), None)
-    dtval.pop(int(i), None)
+    cval.pop(idx, None)
+    dsval.pop(idx, None)
+    dtval.pop(idx, None)
 
-    ctest.pop(int(i), None)
-    dstest.pop(int(i), None)
-    dttest.pop(int(i), None)
+    ctest.pop(idx, None)
+    dstest.pop(idx, None)
+    dttest.pop(idx, None)
 
-    ctrain.pop(int(i), None)
-    dstrain.pop(int(i), None)
-    dttrain.pop(int(i), None)
+    ctrain.pop(idx, None)
+    dstrain.pop(idx, None)
+    dttrain.pop(idx, None)
 
 print("final length: " + str(len(new_dict['ctrain']) + len(new_dict['ctest']) + len(new_dict['cval'])))
 
