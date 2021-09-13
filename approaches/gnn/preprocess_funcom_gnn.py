@@ -20,6 +20,7 @@ print("Loading invalid fids")
 f = open("../../invalid_fids.txt", "r")
 invalid_fids = f.read().split(",")
 f.close()
+del invalid_fids[-1] #remove last empty entry
 print("invalid id's: " + str(len(invalid_fids)))
 print('Loading .pkl')
 seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
