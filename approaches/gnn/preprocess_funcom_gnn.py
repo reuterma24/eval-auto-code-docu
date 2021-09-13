@@ -30,33 +30,33 @@ print("start removing")
 new_dict = dict(seqdata)
 
 # removing filtered FIDS
-cval = seqdata['cval']
-dsval = seqdata['dsval']
-dtval = seqdata['dtval']
+cval = new_dict['cval']
+dsval = new_dict['dsval']
+dtval = new_dict['dtval']
 
-ctest = seqdata['ctest']
-dstest = seqdata['dstest']
-dttest = seqdata['dttest']
+ctest = new_dict['ctest']
+dstest = new_dict['dstest']
+dttest = new_dict['dttest']
 
-ctrain = seqdata['ctrain']
-dstrain = seqdata['dstrain']
-dttrain = seqdata['dttrain']
+ctrain = new_dict['ctrain']
+dstrain = new_dict['dstrain']
+dttrain = new_dict['dttrain']
 
 
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
     print("ID: " + i)
-    del new_dict['cval'][int(i)]
-    del new_dict['dsval'][i]
-    del new_dict['dtval'][i]
+    del cval[i]
+    del dsval[i]
+    del dtval[i]
 
-    del new_dict['ctest'][i]
-    del new_dict['dstest'][i]
-    del new_dict['dttest'][i]
+    del ctest[i]
+    del dstest[i]
+    del dttest[i]
 
-    del new_dict['ctrain'][i]
-    del new_dict['dstrain'][i]
-    del new_dict['dttrain'][i]
+    del ctrain[i]
+    del dstrain[i]
+    del dttrain[i]
 
 
 #seqdata['cval'] = cval
