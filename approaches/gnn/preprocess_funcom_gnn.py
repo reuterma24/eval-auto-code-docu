@@ -42,17 +42,18 @@ dttrain = seqdata['dttrain']
 
 print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
 for i in invalid_fids:
-    cval.pop(i, None)
-    dsval.pop(i, None)
-    dtval.pop(i, None)
+    print("ID: " + i)
+    del cval[i]
+    del dsval[i]
+    del dtval[i]
 
-    ctest.pop(i, None)
-    dstest.pop(i, None)
-    dttest.pop(i, None)
+    del ctest[i]
+    del dstest[i]
+    del dttest[i]
 
-    ctrain.pop(i, None)
-    dstrain.pop(i, None)
-    dttrain.pop(i, None)
+    del ctrain[i]
+    del dstrain[i]
+    del dttrain[i]
 
 seqdata['cval'] = cval
 seqdata['ctest'] = ctest
