@@ -75,7 +75,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--gpu', type=str, help='0 or 1', default='0')
     parser.add_argument('--batch-size', dest='batch_size', type=int, default=200)
-    parser.add_argument('--epochs', dest='epochs', type=int, default=10)
+    parser.add_argument('--epochs', dest='epochs', type=int, default=50)
     parser.add_argument('--model-type', dest='modeltype', type=str, default='vanilla')
     parser.add_argument('--with-multigpu', dest='multigpu', action='store_true', default=False)
     parser.add_argument('--zero-dats', dest='zerodats', type=str, default='no')
