@@ -74,6 +74,7 @@ if __name__ == '__main__':
     comstok = pickle.load(open('%s/coms.tok' % (dataprep), 'rb'), encoding='UTF-8')
     smltok = pickle.load(open('%s/smls.tok' % (dataprep), 'rb'), encoding='UTF-8')
 
+    print(GCNLayer)
     print("loading data")
     seqdata = pickle.load(open('%s/dataset_filtered.pkl' % (dataprep), 'rb'))
     print("data loading done")
