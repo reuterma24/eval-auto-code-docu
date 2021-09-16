@@ -56,17 +56,18 @@ def __print_functions():
 def preprocess():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    data = funcom.load()
-    code_dict = data[0]
-    comment_dict = data[1]
-    global invalid_fids
-    invalid_fids = list()
-
     global comment_dict
     comment_dict = dict()
 
     global code_dict
     code_dict = dict()
+
+    global invalid_fids
+    invalid_fids = list()
+
+    data = funcom.load()
+    code_dict = data[0]
+    comment_dict = data[1]
 
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
