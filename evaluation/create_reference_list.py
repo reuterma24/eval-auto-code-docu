@@ -10,12 +10,13 @@ if __name__ == '__main__':
 
     f = open(prediction_file, 'rb')
     preds = str(f.read().splitlines())
+    print("examples: " + str(len(preds)))
     f.close()
     fid = list()
     prediciton = list()
 
     for pred in preds:
-        a, b, c = pred.split("<s>")
+        a, b, c, d = pred.split("<s>")
         fid.append(a)
         prediciton.append(b)
 
