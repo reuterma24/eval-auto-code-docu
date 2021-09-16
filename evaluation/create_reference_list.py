@@ -16,7 +16,7 @@ if __name__ == '__main__':
     prediciton = list()
 
     for pred in preds:
-        a, b, c, d = pred.split("<s>")
+        a, b = pred.split("<s>")
         fid.append(a)
         prediciton.append(b)
 
