@@ -1,13 +1,9 @@
-import os.path
 import re
-import shutil
-
 import javalang
 import regex
-import sklearn.model_selection as ms
 
-#import datasets.funcom_filtered_reduced.load as funcom
-#SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
+# import datasets.funcom_filtered_reduced.load as funcom
+# SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
 import datasets.funcom_filtered.load as funcom
 
 global invalid_fids
@@ -31,22 +27,24 @@ def __replace_umlauts(text: str):
         result = result.replace(k, umlaute_dict[k])
     return result.decode()
 
+
 def __print_invalid_ids():
     with open("invalid_fids.txt", "w", encoding="utf-8") as errs:
         for i in invalid_fids:
             errs.write(i + ",")
 
+
 def __print_comments():
     with open("comments.txt", "w", encoding="utf-8") as com:
         for k in comment_dict.keys():
-            print(str(k) + ": " + str(comment_dict[k]))
-            com.write(str(k) + ": " + str(comment_dict[k]))
+            com.write(str(k) + ": " + str(comment_dict[k]) + '\n')
+
 
 def __print_functions():
     with open("code.txt", "w", encoding="utf-8") as func:
         for k in code_dict.keys():
-            print(str(k) + ": " + str(code_dict[k]))
-            func.write(str(k) + ": " + str(code_dict[k]))
+            func.write(str(k) + ": " + str(code_dict[k]) + '\n')
+
 
 def preprocess():
     data = funcom.load()
@@ -62,18 +60,17 @@ def preprocess():
 
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
-    #process pairs
+    # process pairs
     for k in list(code_dict.keys()):
         code = __replace_umlauts(code_dict[k])
         comment = __replace_umlauts(comment_dict[k])
         if '.' in comment:
             comment = comment.split('.')[0]
         comment = pattern.sub(' ', comment)
-        #comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
+        # comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
-        #comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
+        # comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
         comment = comment.lower()
-
 
         lineCommentPattern = "//(.*?)\r?\n"
         code = regex.sub(lineCommentPattern, "\n", code)  # remove inline comments
