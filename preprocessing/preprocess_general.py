@@ -10,7 +10,6 @@ import sklearn.model_selection as ms
 #SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
 import datasets.funcom_filtered.load as funcom
 
-root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
 global invalid_fids
 global comment_dict
 global code_dict
@@ -37,25 +36,17 @@ def __print_invalid_ids():
         for i in invalid_fids:
             errs.write(i + ",")
 
-        errs.close()
-
 def __print_comments():
     with open("comments.txt", "w", encoding="utf-8") as com:
-        for k, v in comment_dict:
+        for k, v in comment_dict.items():
             com.write(str(k) + ": " + str(v))
-
-        com.close()
 
 def __print_functions():
     with open("code.txt", "w", encoding="utf-8") as func:
-        for k, v in code_dict:
+        for k, v in code_dict.items():
             func.write(str(k) + ": " + str(v))
 
-        func.close()
-
 def preprocess():
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
     global comment_dict
     comment_dict = dict()
 
