@@ -1,0 +1,22 @@
+{
+    "321": "\tpublic int getPushesLowerbound() {\n\t\treturn pushesLowerbound;\n\t}\n",
+    "323": "\tpublic void setPushesLowerbound(int pushesLowerbound) {\n\t\tthis.pushesLowerbound = pushesLowerbound;\n\t}\n",
+    "324": "\t\tpublic void play() {\n\t\t\t\n\t\t\t// If no sound file is there nothing can be played.\n\t\t\tif(currentSoundFilename.equals(\"\"))\n\t\t\t\treturn;\n\t\t\t\n\t\t\t// Check if the this sound must be read from another file (the user has\n\t\t\t// chosen another sound to be played).\n\t\t\tString settingsFileName = Settings.get(soundSettingsKey);\n\t\t\tif(!currentSoundFilename.equals(settingsFileName)) {\n\t\t\t\tloadClip(settingsFileName);\t\t\t\n\t\t\t}\n\t\t\t\n\t\t\t// Stop the currently playing sound to play the new sound if necessary.\n\t\t\tif (clip.isRunning()) {\n\t\t\t\tclip.stop();\n\t\t\t}\n\t\t\t\n\t\t\t// Rewind to the beginning.\n\t\t\tclip.setFramePosition(0); \n\t\t\t\n\t\t\t// Start playing.\n\t\t\tclip.start();    \n\t\t}\n",
+    "343": "\tpublic int getInfluenceValue(int boxNo1, int boxNo2) {\n\t\treturn influence.getInfluenceDistance( board.boxData.getBoxPosition(boxNo1),\n\t\t\t\t                               board.boxData.getBoxPosition(boxNo2) );\n\t}\n",
+    "351": "\tpublic void setPositions(int[] positions){\n\t\tthis.positions = positions;\n\t}\n",
+    "352": "\tpublic int getPlayerPosition() {\n\t\treturn positions[positions.length-1];\n\t}\n",
+    "355": "\tpublic int getPulledBoxNumber() {\n\t\treturn pulledBoxNo;\n\t}\n",
+    "357": "\tpublic int getStartBoxPosition() {\n\t\treturn startPosition;\n\t}\n",
+    "359": "\tpublic int getTargetBoxPosition() {\n\t\treturn targetPosition;\n\t}\n",
+    "361": "    public BoardPositionPackingSequence getPrecedingBoardPosition() {\n    \treturn precedingBoardPosition;\n    }\n",
+    "364": "\tpublic int compareTo(BoardPositionPackingSequence boardPosition) {\n\t\treturn boardPosition.getRelevance() - getRelevance();\n\t}\n",
+    "373": "\tpublic boolean isForcedPush() {\n\t\treturn isPushForced;\n\t}\n",
+    "376": "\tfinal public void setInfoText(String text) {\n\t\tinfoText.setText(text);\n\t}\n",
+    "412": "\tpublic boolean isSolverStoppedDueToOutOfMemory() {\n\t\treturn isSolverStoppedDueToOutOfMemory;\n\t}\n",
+    "428": "    final protected IBoardPositionMoves getBestBoardPosition(){\n\n\t\t// Nimmt die Liste aller Stellungen mit einer bestimmten L\u00f6sungspfadl\u00e4nge auf\n\t\tLinkedList<IBoardPositionMoves> boardPositionList;\n\t\t\n\t\tfor(int solutionLength = shortestSolutionPathLength; solutionLength <= longestSolutionPathLength; solutionLength++) {\n\t\t\n\t\t\t// Liste der Stellungen mit der aktuellen Pfadl\u00e4nge holen. \n\t\t\tboardPositionList = boardPositionQueue.get(solutionLength);\n\t\t\t\n\t\t\tif(boardPositionList.size() > 0){\t \n\t\t\t    shortestSolutionPathLength = solutionLength;\n\t\t\t    \n\t\t\t\t// Die zuletzt eingef\u00fcgte Stellung zur\u00fcckgeben\n\t    \t\treturn boardPositionList.removeLast();\n\t\t\t}\n\t\t}\n\t\t\n\t\treturn null;\n\t}\n",
+    "437": "\tfinal public IBoardPosition getPrecedingBoardPosition() {\n\t\treturn precedingBoardPosition;\n\t}\n",
+    "440": "\tfinal public int getDirection() {\n\t\treturn positionData >>> 13;\n\t}\n",
+    "442": "\tpublic int getBoxNo() {\n\t\treturn positionData & ((1 << 10) - 1);\n\t}\n",
+    "445": "\tprotected String creatorName() {\n\t\treturn Texts.getText(\"solver\");\n\t}\n",
+    "446": "\tfinal public int getPlayerPosition() {\n\t\treturn playerPosition;\n\t}\n"
+}

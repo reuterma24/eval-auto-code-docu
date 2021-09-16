@@ -1,0 +1,22 @@
+{
+    "321": "\t/**\n\t * Returns the pushes lowerbound of this board position.\n\t * \n\t * @return the pushes lowerbound\n\t */\n",
+    "323": "\t/**\n\t * Sets the pushes lowerbound of this board position.\n\t * \n\t * @param pushesLowerbound\n\t */\n",
+    "324": "\t\t/**\n\t\t * Play a sound.\n\t\t */\n",
+    "343": "\t/**\n\t * Returns the influence value between the positions of the passed boxes.\n\t * <p>\n\t * The LOWER the influence value the more influence has the box on the other box.\n\t * \n\t * @param boxNo1  the position of the first  box whose position is considered\n\t * @param boxNo2  the position of the second box whose position is considered\n\t * @return the influence value \n\t */\n",
+    "351": "\t/**\n\t * Sets the box positions and the player position.\n\t *     \n\t * @param positions positions of the boxes and the player\n\t */\n",
+    "352": "\t/**\n\t * Returns the player position of this board position.\n\t * \n\t * @return the player position\n\t */\n",
+    "355": "\t/**\n\t * Returns the number of the moved box.\n\t * \n\t * @return the number of the moved box\n\t */\n",
+    "357": "\t/**\n\t * Returns the start position of the pulled box.\n\t * \n\t * @return the position of the box before it was pulled.\n\t */\n",
+    "359": "\t/**\n\t * Returns the target position of the pulled box.\n\t * \n\t * @return the position of the box after it was pulled.\n\t */\n",
+    "361": "    /**\n     * Returns the preceding board position of this board position.\n     *\n     * @return the preceding board position of this board position\n     */\n",
+    "364": "\t/**\n\t * Compares both board positions. Note: lower values means high priority\n\t * in the <code>PriorityQueue</code>.\n\t */\n",
+    "373": "\t/**\n\t * Returns whether the push is a forced push, that means a box \n\t * must be pushed from the start position to the target position.\n\t */\n",
+    "376": "\t/**\n\t * Sets the status bar text.\n\t * \n\t * @param text\n\t *            the text to be shown in the status bar\n\t */\n",
+    "412": "\t/**\n\t * Returns whether the solver has been stopped due to insufficient memory.\n\t * \n\t * @return <code>true</code> if the solver stopped due to insufficient memory, and\n\t *        <code>false</code> otherwise\n\t */\n",
+    "428": "\t/**\n\t * Returns the board position with the shortest determined solution path length.\n\t *\n     * @return board position with the shortest determined solution path length.\n     */\n",
+    "437": "\t/**\n\t * Returns the preceding board position of this board position.\n\t * \n\t * @return preceding board position\n\t */\n",
+    "440": "\t/**\n\t * Returns the direction the box has been pushed.\n\t * \n\t * @return Direction of the push\n\t */\n",
+    "442": "\t/**\n\t * Returns the number of the pushed box.\n\t * \n\t * @return Number of the pushed box\n\t */\n",
+    "445": "\t/**\n\t * Gives the name of this solver as used to tag new solutions.\n\t * @return the name of this solver\n\t */\n",
+    "446": "\t/**\n\t * Return the player position of this board position.\n\t * \n\t * @return the player position\n\t */\n"
+}
