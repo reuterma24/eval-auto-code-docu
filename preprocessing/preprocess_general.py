@@ -40,18 +40,18 @@ def __print_invalid_ids():
         errs.close()
 
 def __print_comments():
-    with open("comments.txt", "w", encoding="utf-8") as errs:
+    with open("comments.txt", "w", encoding="utf-8") as com:
         for k, v in comment_dict:
-            errs.write(str(k) + ": " + str(v))
+            com.write(str(k) + ": " + str(v))
 
-        errs.close()
+        com.close()
 
 def __print_functions():
-    with open("code.txt", "w", encoding="utf-8") as errs:
+    with open("code.txt", "w", encoding="utf-8") as func:
         for k, v in code_dict:
-            errs.write(str(k) + ": " + str(v))
+            func.write(str(k) + ": " + str(v))
 
-        errs.close()
+        func.close()
 
 def preprocess():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -64,26 +64,6 @@ def preprocess():
 
     global comment_dict
     comment_dict = dict()
-
-    global code_dict
-    code_dict = dict()
-
-
-
-    # identifying split
-    test_fids = open(root + "/split_fids/test_fids.txt", 'r').read().splitlines()
-    val_fids = open(root + "/split_fids/val_fids.txt", 'r').read().splitlines()
-    train_fids = open(root + "/split_fids/train_fids.txt", 'r').read().splitlines()
-
-    #create dic structure
-    root = root + '/preprocessed_data/split/'
-
-    os.makedirs(root, exist_ok=True)
-    shutil.rmtree(root, ignore_errors=True)
-
-    os.makedirs(root + 'training/', exist_ok=True)
-    os.makedirs(root + 'testing/', exist_ok=True)
-    os.makedirs(root + 'evaluating/', exist_ok=True)
 
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
@@ -138,3 +118,5 @@ def preprocess():
         comment_dict[k] = comment
 
     __print_invalid_ids()
+    __print_comments()
+    __print_functions()
