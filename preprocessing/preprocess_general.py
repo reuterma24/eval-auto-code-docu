@@ -65,6 +65,9 @@ def preprocess():
     global comment_dict
     comment_dict = dict()
 
+    global code_dict
+    code_dict = dict()
+
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
     #process pairs
