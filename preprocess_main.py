@@ -1,9 +1,8 @@
 import os.path
 import preprocessing.code2seq.preprocess_code2seq as code2seq
-import datasets.funcom_filtered_reduced.preprocess_funcom as preproc_funcom
+import preprocessing.preprocess_general as general
 from subprocess import Popen
 
-from datasets.funcom_filtered_reduced import javaparse_funcom
 
 root = os.path.dirname(os.path.abspath(__file__))
 
@@ -11,11 +10,11 @@ root = os.path.dirname(os.path.abspath(__file__))
 #process = Popen(reduce_script, shell=True)
 #process.wait()
 
-# REMOVE INVALID SYNTAX AND ONLY TAKE FIRST SENTENCE OF COMMENT
-#print("Startin to preprocess funcom - finding invalid function/comment ids")
-#preproc_funcom.main()
-#print("done...")
+
+# GENERAL PREPROCESSING
+print("Applying general preprocessing")
+general.preprocess()
 
 # RUN CODE2SEQ PREPROCESSING
 print("Preprocessing data for code2seq")
-code2seq.preprocess()
+#code2seq.preprocess()
