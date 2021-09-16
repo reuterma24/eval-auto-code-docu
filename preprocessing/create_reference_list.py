@@ -43,11 +43,9 @@ if __name__ == '__main__':
 
                 if '.' in comment:
                     comment = comment.split('.')[0]
-                elif '\n' in comment:
-                    comment = comment.split('\n')[0]
-                #comment = pattern.sub(' ', comment)
-                #comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
-                #comment = comment.lower()
+                comment = pattern.sub(' ', comment)
+                comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
+                comment = comment.lower()
 
                 f.write(str(fid) + ": " + comment + '\n')
 
