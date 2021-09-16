@@ -110,7 +110,7 @@ if __name__ == '__main__':
     comstart = np.zeros(comlen)
     stk = comstok.w2i['<s>']
     comstart[0] = stk
-    outfn = outdir+"/predictions/predict-{}.txt".format(modeltype)
+    outfn = outdir+"predictions/predict-{}.txt".format(modeltype)
     outf = open(outfn, 'w')
     print("writing to file: " + outfn)
     batch_sets = [allfids[i:i+batchsize] for i in range(0, len(allfids), batchsize)]
