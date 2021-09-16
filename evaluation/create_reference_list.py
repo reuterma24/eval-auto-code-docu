@@ -9,17 +9,16 @@ if __name__ == '__main__':
     prediction_file = args.path
 
     f = open(prediction_file, 'rb')
-    preds = f.read().splitlines()
+    preds = f.readlines()
     print("examples: " + str(len(preds)))
     f.close()
     fid = list()
     prediciton = list()
 
     for pred in preds:
-        a, b = str(pred).split("<s>")
+        a, b = str(pred.strip()).split("<s>")
         c = b.split("</s>")
-        functionId = int(str(a).replace("\\t",''))
-        fid.append(functionId)
+        fid.append(int(a))
         prediciton.append(c)
 
     with open("test.txt", 'w') as f:
