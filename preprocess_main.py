@@ -1,6 +1,6 @@
 import os.path
 import preprocessing.code2seq.preprocess_code2seq as code2seq
-#import preprocessing.preprocess_general as general
+import preprocessing.preprocess_general as general
 from subprocess import Popen
 
 
@@ -13,7 +13,7 @@ process.wait()
 
 # GENERAL PREPROCESSING
 print("Applying general preprocessing")
-#general.preprocess()
+general.preprocess()
 
 # RUN CODE2SEQ PREPROCESSING
 print("Preprocessing data for code2seq")
