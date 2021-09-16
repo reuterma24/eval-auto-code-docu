@@ -39,8 +39,7 @@ if __name__ == '__main__':
     with open("test_refs.txt", 'w') as f:
         for fid in train_fids:
             if fid in comments:
-                comment = str(comments[fid])
-                comment = __replace_umlauts(comment)
+                comment = __replace_umlauts(comments[fid])
 
                 if '.' in comment:
                     comment = comment.split('.')[0]
