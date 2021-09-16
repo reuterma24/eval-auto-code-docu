@@ -38,21 +38,22 @@ if __name__ == '__main__':
     f.close()
     with open("test_refs.txt", 'w') as f:
         for fid in train_fids:
-            comment = str(comments[fid])
-            comment = __replace_umlauts(comment)
+            if fid in comments:
+                comment = str(comments[fid])
+                comment = __replace_umlauts(comment)
 
-            if '.' in comment:
-                comment = comment.split('.')[0]
-            elif '\n' in comment:
-                comment = comment.split('\n')[0]
-            comment = comment + " */\n"
-            comment = pattern.sub(' ', comment)
-            # comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
-            comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
-            # comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
-            comment = comment.lower()
+                if '.' in comment:
+                    comment = comment.split('.')[0]
+                elif '\n' in comment:
+                    comment = comment.split('\n')[0]
+                comment = comment + " */\n"
+                comment = pattern.sub(' ', comment)
+                # comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
+                comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
+                # comment = regex.sub(' +\* +', ' ', comment) #replaces * inside java doc comments
+                comment = comment.lower()
 
-            f.write(str(fid) + ": " + comment + '\n')
+                f.write(str(fid) + ": " + comment + '\n')
 
     f = open(prediction_file, 'r')
     preds = dict()
