@@ -73,8 +73,10 @@ if __name__ == '__main__':
     tdatstok = pickle.load(open('%s/tdats.tok' % (dataprep), 'rb'), encoding='UTF-8')
     comstok = pickle.load(open('%s/coms.tok' % (dataprep), 'rb'), encoding='UTF-8')
     smltok = pickle.load(open('%s/smls.tok' % (dataprep), 'rb'), encoding='UTF-8')
-   
+
+    print("loading data")
     seqdata = pickle.load(open('%s/dataset_filtered.pkl' % (dataprep), 'rb'))
+    print("data loading done")
 
     allfids = list(seqdata['ctest'].keys())
     datvocabsize = tdatstok.vocab_size
