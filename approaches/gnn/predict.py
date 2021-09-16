@@ -74,7 +74,6 @@ if __name__ == '__main__':
     comstok = pickle.load(open('%s/coms.tok' % (dataprep), 'rb'), encoding='UTF-8')
     smltok = pickle.load(open('%s/smls.tok' % (dataprep), 'rb'), encoding='UTF-8')
 
-    print(GCNLayer)
     print("loading data")
     seqdata = pickle.load(open('%s/dataset_filtered.pkl' % (dataprep), 'rb'))
     print("data loading done")
@@ -99,7 +98,7 @@ if __name__ == '__main__':
 
     config, _ = create_model(modeltype, config)
     print("MODEL LOADED")
-    model = keras.models.load_model(modelfile, custom_objects={"tf":tf, "keras":keras,'AlexGraphLayer':GCNLayer})
+    model = keras.models.load_model(modelfile, custom_objects={"tf":tf, "keras":keras,'GCNLayer':GCNLayer})
 
     node_data = seqdata['stest_nodes']
     edgedata = seqdata['stest_edges']
