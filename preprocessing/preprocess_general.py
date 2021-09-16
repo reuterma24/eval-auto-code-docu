@@ -12,6 +12,8 @@ import datasets.funcom_filtered.load as funcom
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
 global invalid_fids
+global comment_dict
+global code_dict
 
 umlaute_dict = {
     b'\xc3\xa4': b'ae',  # U+00E4	   \xc3\xa4
@@ -37,6 +39,20 @@ def __print_invalid_ids():
 
         errs.close()
 
+def __print_comments():
+    with open("comments.txt", "w", encoding="utf-8") as errs:
+        for k, v in comment_dict:
+            errs.write(str(k) + ": " + str(v))
+
+        errs.close()
+
+def __print_functions():
+    with open("code.txt", "w", encoding="utf-8") as errs:
+        for k, v in code_dict:
+            errs.write(str(k) + ": " + str(v))
+
+        errs.close()
+
 def preprocess():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,6 +61,12 @@ def preprocess():
     comment_dict = data[1]
     global invalid_fids
     invalid_fids = list()
+
+    global comment_dict
+    comment_dict = dict()
+
+    global code_dict
+    code_dict = dict()
 
 
 
@@ -118,35 +140,3 @@ def preprocess():
         comment_dict[k] = comment
 
     __print_invalid_ids()
-
-
-
-    print("train len:" + str(len(train_fids)))
-    print("test len:" + str(len(test_fids)))
-    print("val len:" + str(len(val_fids)))
-
-    idx = 0
-    splitConst = 10000
-    for i in train_fids:
-        separator = idx // splitConst
-        with open(root + "training/train{0}.java".format(separator), "a", encoding="utf-8") as train:
-            if i in comment_dict and i in code_dict:
-                train.writelines(str(comment_dict[i] + '\n' + code_dict[i] + '\n\n'))
-                idx += 1
-
-    idx = 0
-    for i in test_fids:
-        separator = idx // splitConst
-        with open(root + "testing/test{0}.java".format(separator), "a", encoding="utf-8") as test:
-            if i in comment_dict.keys() and i in code_dict.keys():
-                test.writelines(str(comment_dict[i] + '\n' + code_dict[i] + '\n\n'))
-                idx += 1
-    idx = 0
-    for i in val_fids:
-        separator = idx // splitConst
-        with open(root + "evaluating/evaluate{0}.java".format(separator), "a", encoding="utf-8") as validation:
-            if i in comment_dict.keys() and i in code_dict.keys():
-                validation.writelines(str(comment_dict[i] + '\n' + code_dict[i] + '\n\n'))
-                idx += 1
-
-    os.system("sh approaches/code2seq/preprocess.sh")
