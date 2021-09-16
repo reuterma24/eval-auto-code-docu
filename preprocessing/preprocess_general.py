@@ -38,15 +38,15 @@ def __print_invalid_ids():
 
 def __print_comments():
     with open("comments.txt", "w", encoding="utf-8") as com:
-        for k, v in comment_dict.items():
-            print(str(k) + ": " + str(v))
-            com.write(str(k) + ": " + str(v))
+        for k in comment_dict.keys():
+            print(str(k) + ": " + str(comment_dict[k]))
+            com.write(str(k) + ": " + str(comment_dict[k]))
 
 def __print_functions():
     with open("code.txt", "w", encoding="utf-8") as func:
-        for k, v in code_dict.items():
-            print(str(k) + ": " + str(v))
-            func.write(str(k) + ": " + str(v))
+        for k in code_dict.keys():
+            print(str(k) + ": " + str(code_dict[k]))
+            func.write(str(k) + ": " + str(code_dict[k]))
 
 def preprocess():
     global comment_dict
