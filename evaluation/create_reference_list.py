@@ -21,6 +21,6 @@ if __name__ == '__main__':
         fid.append(a)
         prediciton.append(b)
 
-    with open("test.txt") as f:
+    with open("test.txt", 'wa') as f:
         for i in enumerate(fid):
             f.writelines(fid[i] + ": " + prediciton[i])
