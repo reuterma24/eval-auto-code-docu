@@ -49,18 +49,16 @@ def __print_functions():
             func.write(str(k) + ": " + str(code_dict[k]))
 
 def preprocess():
+    data = funcom.load()
+
     global comment_dict
-    comment_dict = dict()
+    comment_dict = data[1]
 
     global code_dict
-    code_dict = dict()
+    code_dict = data[0]
 
     global invalid_fids
     invalid_fids = list()
-
-    data = funcom.load()
-    code_dict = data[0]
-    comment_dict = data[1]
 
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
