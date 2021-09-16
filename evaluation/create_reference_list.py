@@ -9,7 +9,7 @@ if __name__ == '__main__':
     prediction_file = args.path
 
     f = open(prediction_file, 'rb')
-    preds = str(f.read().splitlines())
+    preds = f.read().splitlines()
     print("examples: " + str(len(preds)))
     f.close()
     fid = list()
@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     for pred in preds:
         print(pred)
-        a, b = pred.split("<s>")
+        a, b = str(pred).split("<s>")
         fid.append(a)
         prediciton.append(b)
 
