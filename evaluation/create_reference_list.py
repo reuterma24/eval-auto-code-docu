@@ -18,7 +18,7 @@ if __name__ == '__main__':
     for pred in preds:
         a, b = str(pred).split("<s>")
         c = b.split("</s>")
-        functionId = int(str(a).split())
+        functionId = int(str(a).strip())
         fid.append(functionId)
         prediciton.append(c)
 
