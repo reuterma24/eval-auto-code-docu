@@ -32,7 +32,7 @@ if __name__ == '__main__':
     comments = data[1]
     pattern = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
-    root = os.path.dirname(os.path.abspath(__file__)) + '/'
+    root = os.path.dirname(os.path.abspath(__file__))
     f = open(root + "/split_fids/train_fids.txt", 'r')
     train_fids = f.read().splitlines()
     f.close()

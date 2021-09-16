@@ -10,7 +10,7 @@ import sklearn.model_selection as ms
 #SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
 import datasets.funcom_filtered.load as funcom
 
-root = os.path.dirname(os.path.abspath(__file__)) + '/'
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
 global invalid_fids
 
 umlaute_dict = {
@@ -38,7 +38,7 @@ def __print_invalid_ids():
         errs.close()
 
 def preprocess():
-    root = os.path.dirname(os.path.abspath(__file__))
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     data = funcom.load()
     code_dict = data[0]
