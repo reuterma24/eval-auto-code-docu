@@ -13,7 +13,7 @@ process.wait()
 
 # GENERAL PREPROCESSING
 print("Applying general preprocessing")
-general.preprocess()
+#general.preprocess()
 
 # RUN CODE2SEQ PREPROCESSING
 print("Preprocessing data for code2seq")
