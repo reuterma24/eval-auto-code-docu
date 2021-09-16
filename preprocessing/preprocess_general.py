@@ -6,9 +6,9 @@ import javalang
 import regex
 import sklearn.model_selection as ms
 
-#import datasets.funcom_filtered_reduced.load as funcom
+import datasets.funcom_filtered_reduced.load as funcom
 #SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
-import datasets.funcom_filtered.load as funcom
+#import datasets.funcom_filtered.load as funcom
 
 global invalid_fids
 global comment_dict
@@ -39,11 +39,13 @@ def __print_invalid_ids():
 def __print_comments():
     with open("comments.txt", "w", encoding="utf-8") as com:
         for k, v in comment_dict.items():
+            print(str(k) + ": " + str(v))
             com.write(str(k) + ": " + str(v))
 
 def __print_functions():
     with open("code.txt", "w", encoding="utf-8") as func:
         for k, v in code_dict.items():
+            print(str(k) + ": " + str(v))
             func.write(str(k) + ": " + str(v))
 
 def preprocess():
