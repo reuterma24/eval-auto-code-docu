@@ -71,8 +71,6 @@ def preprocess():
         comment = __replace_umlauts(comment_dict[k])
         if '.' in comment:
             comment = comment.split('.')[0]
-        elif '\n' in comment:
-            comment = comment.split('\n')[0]
         comment = comment + " */\n"
         comment = pattern.sub(' ', comment)
         #comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
