@@ -36,5 +36,5 @@ if __name__ == '__main__':
 
 
     with open("test.txt", 'w') as f:
-        for k, v in predicts.items():
+        for k, v in preds.items():
             f.writelines(k + ": " + v)
