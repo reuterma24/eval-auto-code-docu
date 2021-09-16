@@ -6,9 +6,9 @@ import javalang
 import regex
 import sklearn.model_selection as ms
 
-import datasets.funcom_filtered_reduced.load as funcom
+#import datasets.funcom_filtered_reduced.load as funcom
 #SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
-#import datasets.funcom_filtered.load as funcom
+import datasets.funcom_filtered.load as funcom
 
 global invalid_fids
 global comment_dict
@@ -68,7 +68,6 @@ def preprocess():
         comment = __replace_umlauts(comment_dict[k])
         if '.' in comment:
             comment = comment.split('.')[0]
-        comment = comment + " */\n"
         comment = pattern.sub(' ', comment)
         #comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
@@ -97,7 +96,7 @@ def preprocess():
             del code_dict[k]
             continue
 
-        pair = comment + '\n' + code
+        pair = "/*" + comment + "*/" + '\n' + code
         toParse = "class Parse {" + pair + '}'
 
         try:

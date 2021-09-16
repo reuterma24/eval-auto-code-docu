@@ -71,7 +71,6 @@ def preprocess():
         comment = __replace_umlauts(comment_dict[k])
         if '.' in comment:
             comment = comment.split('.')[0]
-        comment = comment + " */\n"
         comment = pattern.sub(' ', comment)
         #comment = comment.translate({ord(c): " " for c in "\"!@#$%^&()[]{};:,<>?\|`~-=_+"})
         comment = regex.sub(' +', ' ', comment.replace('\n', "").replace('\t', ""))
@@ -100,7 +99,7 @@ def preprocess():
             del code_dict[k]
             continue
 
-        pair = comment + '\n' + code
+        pair = "/*" + comment + "*/" + '\n' + code
         toParse = "class Parse {" + pair + '}'
 
         try:
@@ -116,8 +115,6 @@ def preprocess():
         comment_dict[k] = comment
 
     __print_invalid_ids()
-
-
 
     print("train len:" + str(len(train_fids)))
     print("test len:" + str(len(test_fids)))
