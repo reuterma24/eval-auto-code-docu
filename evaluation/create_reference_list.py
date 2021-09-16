@@ -15,11 +15,11 @@ if __name__ == '__main__':
     prediciton = list()
 
     print(preds)
-   # for pred in preds:
-    #    res = pred.split("<s>")
-    #    fid.append(res[0])
-    #    prediciton.append(res[1])
+    for pred in preds:
+        a, b, c = pred.split("<s>")
+        fid.append(a)
+        prediciton.append(b)
 
-    #with open("test.txt") as f:
-    #    for i in enumerate(fid):
-     #       f.writelines(fid[i] + ": " + prediciton[i])
+    with open("test.txt") as f:
+        for i in enumerate(fid):
+            f.writelines(fid[i] + ": " + prediciton[i])
