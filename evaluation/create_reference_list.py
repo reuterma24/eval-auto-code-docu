@@ -9,12 +9,12 @@ if __name__ == '__main__':
     prediction_file = args.path
 
     f = open(prediction_file, 'rb')
-    preds = f.read().splitlines()
+    preds = str(f.read().splitlines())
     f.close()
     fid = list()
     prediciton = list()
     for pred in preds:
-        res = pred.split('<s>')
+        res = pred.split("<s>")
         fid.append(res[0])
         prediciton.append(res[1])
 
