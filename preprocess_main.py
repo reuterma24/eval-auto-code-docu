@@ -6,9 +6,9 @@ from subprocess import Popen
 
 #root = os.path.dirname(os.path.abspath(__file__))
 
-#reduce_script = root + ("/datasets/reduce_funcom_filtered.sh %s" % (str(20)))
-#process = Popen(reduce_script, shell=True)
-#process.wait()
+reduce_script = root + ("/datasets/reduce_funcom_filtered.sh %s" % (str(500)))
+process = Popen(reduce_script, shell=True)
+process.wait()
 
 
 # GENERAL PREPROCESSING

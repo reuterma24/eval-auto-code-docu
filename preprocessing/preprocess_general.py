@@ -6,9 +6,9 @@ import javalang
 import regex
 import sklearn.model_selection as ms
 
-#import datasets.funcom_filtered_reduced.load as funcom
+import datasets.funcom_filtered_reduced.load as funcom
 #SWITCH BETWEEN THOSE FOR TESTING AND REAL RUN
-import datasets.funcom_filtered.load as funcom
+#import datasets.funcom_filtered.load as funcom
 
 global invalid_fids
 global comment_dict
