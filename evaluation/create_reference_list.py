@@ -18,8 +18,10 @@ if __name__ == '__main__':
     for pred in preds:
         a, b = str(pred).split("<s>")
         c = b.split("</s>")
+        print(c)
+        print(str(c))
         fid.append(int(a))
-        prediciton.append(c)
+        prediciton.append(str(c))
 
     with open("test.txt", 'w') as f:
         for i in enumerate(fid):
