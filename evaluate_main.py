@@ -8,15 +8,15 @@ import evaluation.format_prediction_output as predFormatter
 def evaluate(pred, ref):
     # ROUGE
     corpus_rouge = evaluator.rouge(pred, ref)
-    print("ROUGE SCORE: " + str(corpus_rouge))
+    print("ROUGE SCORE:\n" + str(corpus_rouge))
 
     # METOR
     corpus_meteor = evaluator.meteor(pred, ref)
-    print("METEOR SCORE: " + str(corpus_meteor))
+    print("METEOR SCORE:\n" + str(corpus_meteor))
 
     # BLEU
     b1, b2, b3, b4, corpus = evaluator.bleu(pred, ref)
-    print("BLEU SCOREs:\n")
+    print("BLEU SCOREs:")
     print("BLEU-1: " + str(b1))
     print("BLEU-2: " + str(b2))
     print("BLEU-3: " + str(b3))
@@ -54,5 +54,18 @@ for key in sorted(refs_dict.keys()):
 print("refs :" + str((len(refs))))
 print("preds :" + str((len(preds))))
 print("done")
+
+#evaluate(preds, refs)
+
+# GNN EVAL
+print("--- EVALUATING GNN ---")
+preds_dict = predFormatter.format_prediction("approaches/attnToFc/modelout/predictions/predict-codegnnbilstm.txt")
+for k in list(unique_keys):
+    if k in preds_dict:
+        del preds_dict[k]
+
+preds.clear()
+for key in sorted(refs_dict.keys()):
+    preds.append(preds_dict[key])
 
 evaluate(preds, refs)
