@@ -51,10 +51,6 @@ for key in sorted(refs_dict.keys()):
     refs.append(refs_dict[key])
     preds.append(preds_dict[key])
 
-
-for s in preds:
-    if not s:
-        print("FUCK")
 print("refs :" + str((len(refs))))
 print("preds :" + str((len(preds))))
 print("done")
