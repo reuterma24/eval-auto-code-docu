@@ -59,7 +59,20 @@ print("done")
 
 # GNN EVAL
 print("--- EVALUATING GNN ---")
-preds_dict = predFormatter.format_prediction("approaches/gnn/modelout/predictions/predict-codegnnbilstm.txt")
+#preds_dict = predFormatter.format_prediction("approaches/gnn/modelout/predictions/predict-codegnnbilstm.txt")
+for k in list(unique_keys):
+    if k in preds_dict:
+        del preds_dict[k]
+
+preds.clear()
+for key in sorted(refs_dict.keys()):
+    preds.append(preds_dict[key])
+
+#evaluate(preds, refs)
+
+# NEURALLSPS EVAL
+print("--- EVALUATING NEURALLSPS ---")
+preds_dict = predFormatter.format_prediction("approaches/funcom_model/outdir/predictions/predict-attendgru_E07_1631539477.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
