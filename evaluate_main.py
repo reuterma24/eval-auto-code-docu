@@ -35,7 +35,7 @@ print("--- EVALUATING CODE2SEQ ---")
 # AttnFC EVAL
 print("--- EVALUATING ATTNFC ---")
 ref = reflist.get_all_references()
-pred = predFormatter.format_prediction("approaches/attnToFc/outdir/models/attendgru-fc_E07_1631652083.h5")
+pred = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
 
 print("selecting relevant references ...")
 keys = ref.keys()
