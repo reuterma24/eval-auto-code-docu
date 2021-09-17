@@ -14,6 +14,7 @@ def last_model_iteration():
 
 
 def load():
+    print("loading results...")
     path = last_model_iteration()
     ref_path = path + "ref.txt"
     pred_path = path + "pred.txt"
@@ -28,5 +29,7 @@ def load():
 
     del ref[-1]
     del pred[-1]
+
+    print("done")
 
     return ref, pred

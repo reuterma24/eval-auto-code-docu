@@ -39,8 +39,9 @@ def bleu(result, reference):
     bleu2 = round(corpus_bleu(list_of_references, list_of_results, weights=(0, 1.0, 0, 0)), 8)
     bleu3 = round(corpus_bleu(list_of_references, list_of_results, weights=(0, 0, 1.0, 0)), 8)
     bleu4 = round(corpus_bleu(list_of_references, list_of_results, weights=(0, 0, 0, 1.0)), 8)
+    corpus = round(corpus_bleu(list_of_references, list_of_results, weights=(0.25, 0.25, 0.25, 0.25)), 8)
 
-    return bleu1, bleu2, bleu3, bleu4
+    return bleu1, bleu2, bleu3, bleu4, corpus
 
 
 def main():
