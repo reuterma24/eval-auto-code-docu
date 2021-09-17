@@ -47,7 +47,7 @@ for k in list(unique_keys):
 
 refs = list()
 preds = list()
-for key in sorted(refs_dict.keys()):
+for key in sorted(refs_dict):
     refs.append(refs_dict[k])
     preds.append(preds_dict[k])
 
