@@ -72,7 +72,7 @@ for key in sorted(refs_dict.keys()):
 
 # NEURALLSPS EVAL
 print("--- EVALUATING NEURALLSPS ---")
-preds_dict = predFormatter.format_prediction("approaches/funcom_model/outdir/predictions/predict-attendgru_E07_1631539477.txt")
+preds_dict = predFormatter.format_prediction("approaches/funcom_approach/outdir/predictions/predict-attendgru_E07_1631539477.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
