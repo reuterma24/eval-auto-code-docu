@@ -21,7 +21,7 @@ def evaluate(pred, ref):
     print("BLEU-2: " + str(b2))
     print("BLEU-3: " + str(b3))
     print("BLEU-4: " + str(b4))
-    print("Corpus BLEU: " + str(b4))
+    print("Corpus BLEU: " + str(corpus))
 
 # Setup
 evaluator.main()
