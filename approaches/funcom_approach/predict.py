@@ -169,7 +169,7 @@ if __name__ == '__main__':
     smllen = len(seqdata['dstest'][list(seqdata['dstest'].keys())[0]])
 
     prep('loading config... ')
-    (modeltype, mid, timestart) = modelfile.split('_')
+    (modeltype, mid, timestart) = modelfile.split('/')[-1].split('_')
     (timestart, ext) = timestart.split('.')
     modeltype = modeltype.split('/')[-1]
     config = pickle.load(open(outdir+'/histories/'+modeltype+'_conf_'+timestart+'.pkl', 'rb'))
