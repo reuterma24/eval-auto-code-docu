@@ -9,7 +9,10 @@ def format_prediction(prediction_file):
             for word in b:
                 if '<' not in word:
                     c += (' ' + word)
+            if not c:
+                c = "<empty>"
             preds[int(a)] = c
+
         f.close()
 
         print("done")
