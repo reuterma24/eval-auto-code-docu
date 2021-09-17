@@ -25,6 +25,7 @@ def evaluate(pred, ref):
 
 # Setup
 evaluator.main()
+refs_dict = reflist.get_all_references()
 
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
@@ -34,10 +35,9 @@ print("--- EVALUATING CODE2SEQ ---")
 
 # AttnFC EVAL
 print("--- EVALUATING ATTNFC ---")
-refs_dict = reflist.get_all_references()
 preds_dict = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
 
-print("selecting relevant references and sorting ...")
+print("selecting relevant references and sorting for next approaches...")
 unique_keys = set(refs_dict.keys()).symmetric_difference(set(preds_dict.keys()))
 for k in list(unique_keys):
     if k in preds_dict:
