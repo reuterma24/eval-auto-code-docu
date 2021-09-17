@@ -10,7 +10,7 @@ def get_all_references():
             for word in b:
                 if '<' not in word:
                     c.join(word)
-            refs[int(a)] = c
+            refs[str(a)] = c
 
         print("done")
 
