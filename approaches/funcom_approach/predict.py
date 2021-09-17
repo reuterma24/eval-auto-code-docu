@@ -106,7 +106,7 @@ if __name__ == '__main__':
     parser.add_argument('--num-procs', dest='numprocs', type=int, default='4')
     parser.add_argument('--gpu', dest='gpu', type=str, default='')
     parser.add_argument('--data', dest='dataprep', type=str, default='/vol/tmp/reuterma/extra_data')
-    parser.add_argument('--outdir', dest='outdir', type=str, default='/approaches/funcom_approach/outdir')
+    parser.add_argument('--outdir', dest='outdir', type=str, default='approaches/funcom_approach/outdir')
     parser.add_argument('--batch-size', dest='batchsize', type=int, default=200)
     parser.add_argument('--num-inputs', dest='numinputs', type=int, default=3)
     parser.add_argument('--model-type', dest='modeltype', type=str, default=None)
