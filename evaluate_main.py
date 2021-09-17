@@ -36,7 +36,7 @@ print("--- EVALUATING CODE2SEQ ---")
 print("--- EVALUATING ATTNFC ---")
 ref = reflist.get_all_references()
 pred = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
-
+print("refs: " + str(len(ref)))
 print("selecting relevant references ...")
 keys = ref.keys()
 for k in keys:
