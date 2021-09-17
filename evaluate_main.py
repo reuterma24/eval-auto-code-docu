@@ -28,23 +28,22 @@ evaluator.main()
 
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
-#ref, pred = c2s.load()
-#evaluate(pred, ref)
+#refs, preds = c2s.load()
+#evaluate(preds, refs)
 
 
 # AttnFC EVAL
 print("--- EVALUATING ATTNFC ---")
-ref = reflist.get_all_references()
-pred = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
-print("refs: " + str(len(ref)))
+refs = reflist.get_all_references()
+preds = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
 print("selecting relevant references ...")
-keys = ref.keys()
-for k in keys:
-    if k not in pred:
-        del ref[k]
 
-print("refs: " + str(len(ref)))
-print("preds: " + str(len(pred)))
+for k in list(refs.keys()):
+    if k not in preds:
+        del refs[k]
+
+print("refs: " + str(len(refs)))
+print("preds: " + str(len(preds)))
 print("done")
 
-evaluate(pred, ref)
+evaluate(preds, refs)
