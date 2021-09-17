@@ -42,6 +42,9 @@ keys = ref.keys()
 for k in keys:
     if k not in pred:
         del ref[k]
+
+print("refs: " + str(len(ref)))
+print("preds: " + str(len(pred)))
 print("done")
 
 evaluate(pred, ref)
