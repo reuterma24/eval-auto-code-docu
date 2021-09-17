@@ -9,7 +9,7 @@ def get_all_references():
             c = ''
             for word in b:
                 if '<' not in word:
-                    c.join(word)
+                    c += (' ' + word)
             refs[int(a)] = c
 
         print("done")
