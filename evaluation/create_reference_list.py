@@ -2,7 +2,7 @@ def get_all_references():
     print("loading all references...")
     refs = dict()
 
-    with open("comments.txt", 'w') as f:
+    with open("comments.txt", 'r') as f:
         for _, line in enumerate(f):
             a, b = line.split(":")
             b = b.split()
