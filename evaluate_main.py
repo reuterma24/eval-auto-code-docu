@@ -59,7 +59,7 @@ print("done")
 
 # GNN EVAL
 print("--- EVALUATING GNN ---")
-preds_dict = predFormatter.format_prediction("approaches/attnToFc/modelout/predictions/predict-codegnnbilstm.txt")
+preds_dict = predFormatter.format_prediction("approaches/gnn/modelout/predictions/predict-codegnnbilstm.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
