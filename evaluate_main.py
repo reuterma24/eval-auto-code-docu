@@ -38,8 +38,11 @@ refs = reflist.get_all_references()
 preds = predFormatter.format_prediction("approaches/attnToFc/outdir/predictions/predict-attendgru-fc_E07_1631652083.txt")
 print("selecting relevant references ...")
 
-for k in list(refs.keys()):
-    if k not in preds:
+unique_keys = set(refs.keys()).symmetric_difference(set(preds.keys()))
+for k in list(unique_keys):
+    if k in preds:
+        del preds[k]
+    else:
         del refs[k]
 
 print("refs: " + str(len(refs)))
