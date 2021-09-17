@@ -9,7 +9,7 @@ def format_prediction(prediction_file):
             for word in b:
                 if '<' not in word:
                     c.join(word)
-            preds[str(a)] = c
+            preds[int(a)] = c
         f.close()
 
         print("done")
