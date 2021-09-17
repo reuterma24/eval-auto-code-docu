@@ -8,7 +8,7 @@ def format_prediction(prediction_file):
             c = ''
             for word in b:
                 if '<' not in word:
-                    c.join(word)
+                    c += (' ' + word)
             preds[int(a)] = c
         f.close()
 
