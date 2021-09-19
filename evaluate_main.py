@@ -30,8 +30,6 @@ refs_dict = reflist.get_all_references()
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
 refs, preds = c2s.load()
-print(len(refs))
-print(len(preds))
 evaluate(preds, refs)
 
 
@@ -57,7 +55,7 @@ print("refs :" + str((len(refs))))
 print("preds :" + str((len(preds))))
 print("done")
 
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
 # GNN EVAL
 print("--- EVALUATING GNN ---")
@@ -70,7 +68,7 @@ preds.clear()
 for key in sorted(refs_dict.keys()):
     preds.append(preds_dict[key])
 
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
 # NEURALLSPS EVAL
 print("--- EVALUATING NEURALLSPS ---")
@@ -83,5 +81,5 @@ preds.clear()
 for key in sorted(refs_dict.keys()):
     preds.append(preds_dict[key])
 
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
