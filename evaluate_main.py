@@ -29,8 +29,8 @@ refs_dict = reflist.get_all_references()
 
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
-#refs, preds = c2s.load()
-#evaluate(preds, refs)
+refs, preds = c2s.load()
+evaluate(preds, refs)
 
 
 # AttnFC EVAL
@@ -81,4 +81,5 @@ preds.clear()
 for key in sorted(refs_dict.keys()):
     preds.append(preds_dict[key])
 
-evaluate(preds, refs)
+#evaluate(preds, refs)
+
