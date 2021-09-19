@@ -1,7 +1,7 @@
 import os
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
-source = root + "/approaches/code2seq/models/funcom-model"
+source = root + "/approaches/code2seq/models/funcom-model/"
 
 
 def last_model_iteration():
