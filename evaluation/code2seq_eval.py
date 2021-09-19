@@ -28,6 +28,10 @@ def load():
     pred = p_ref.read().split('\n')
     p_ref.close()
 
+    for i, p in enumerate(pred):
+        if not p:
+            pred[i] = "<!empty!>"
+
     del ref[-1]
     del pred[-1]
 
