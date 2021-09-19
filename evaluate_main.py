@@ -30,6 +30,8 @@ refs_dict = reflist.get_all_references()
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
 refs, preds = c2s.load()
+print(len(refs))
+print(len(preds))
 evaluate(preds, refs)
 
 
