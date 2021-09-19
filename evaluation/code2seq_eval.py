@@ -1,7 +1,7 @@
 import os
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
-source = root + "/approaches/code2seq/models/funcom_reduced-model/"
+source = root + "/approaches/code2seq/models/funcom-model"
 
 
 def last_model_iteration():
@@ -15,7 +15,8 @@ def last_model_iteration():
 
 def load():
     print("loading results...")
-    path = last_model_iteration()
+    #path = last_model_iteration()
+    path = source
     ref_path = path + "ref.txt"
     pred_path = path + "pred.txt"
 
