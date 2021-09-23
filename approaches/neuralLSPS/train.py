@@ -79,7 +79,7 @@ if __name__ == '__main__':
     parser.add_argument('--model-type', dest='modeltype', type=str, default='vanilla')
     parser.add_argument('--with-multigpu', dest='multigpu', action='store_true', default=False)
     parser.add_argument('--data', dest='dataprep', type=str, default='/vol/tmp/reuterma/extra_data/neuralLSPS')
-    parser.add_argument('--outdir', dest='outdir', type=str, default='/scratch/funcom/data/outdir')
+    parser.add_argument('--outdir', dest='outdir', type=str, default='/approaches/neuralLSPS/outdir')
     parser.add_argument('--dtype', dest='dtype', type=str, default='float32')
     parser.add_argument('--tf-loglevel', dest='tf_loglevel', type=str, default='3')
     args = parser.parse_args()
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     drop()
 
     prep('loading sequences... ')
-    seqdata = pickle.load(open('%s/dataset.pkl' % (dataprep), 'rb'))
+    seqdata = pickle.load(open('%s/dataset_filtered.pkl' % (dataprep), 'rb'))
     drop()
 
     steps = int(len(seqdata['ctrain'])/batch_size)+1
