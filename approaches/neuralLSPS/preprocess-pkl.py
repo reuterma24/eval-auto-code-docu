@@ -26,53 +26,104 @@ def print_keys():
 def preprocess():
     print("Removing invalid fids from dataset.pkl")
 
-    path = '/vol/tmp/reuterma/extra_data'
+    path = '/vol/tmp/reuterma/extra_data/neuralLSPS'
 
-    print("Loading invalid fids")
-    f = open("../../invalid_fids.txt", "r")
-    invalid_fids = f.read().split(",")
-    f.close()
-    del invalid_fids[-1]  # remove last empty entry
-    print("invalid id's: " + str(len(invalid_fids)))
+    print("loading valid fids")
+    valid_fids = list()
+    with open("comments.txt", 'r') as f:
+        for _, line in enumerate(f):
+            fid, b = line.split(":")
+            valid_fids.append(int(fid))
+        print("done")
+
+    print("valid id's: " + str(len(valid_fids)))
+
     print('Loading .pkl')
     seqdata = pickle.load(open('{}/dataset.pkl'.format(path), 'rb'))
     print("done loading ...")
     print("start removing")
 
-    new_dict = dict(seqdata)
+    old_dict = dict(seqdata)
 
     # removing filtered FIDS
-    cval = new_dict['cval']
-    dsval = new_dict['dsval']
-    dtval = new_dict['dtval']
+    cval = old_dict['cval']
+    dsval = old_dict['dsval']
+    dval = old_dict['dval']
 
-    ctest = new_dict['ctest']
-    dstest = new_dict['dstest']
-    dttest = new_dict['dttest']
+    ctest = old_dict['ctest']
+    dstest = old_dict['dstest']
+    dtest = old_dict['dtest']
 
-    ctrain = new_dict['ctrain']
-    dstrain = new_dict['dstrain']
-    dttrain = new_dict['dttrain']
+    ctrain = old_dict['ctrain']
+    dstrain = old_dict['dstrain']
+    dtrain = old_dict['dtrain']
+
+    cval_2 = dict()
+    dsval_2 = dict()
+    dval_2 = dict()
+
+    ctest_2 = dict()
+    dstest_2 = dict()
+    dtest_2 = dict()
+
+    ctrain_2 = dict()
+    dstrain_2 = dict()
+    dtrain_2 = dict()
 
     print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
-    for i in invalid_fids:
-        idx = int(i)
-        print("ID: " + i)
+    for i in valid_fids:
+        
+        val = cval.pop(i, None)
+        if val is not None:
+            cval_2[i] = val
 
-        cval.pop(idx, None)
-        dsval.pop(idx, None)
-        dtval.pop(idx, None)
+        val = dsval.pop(i, None)
+        if val is not None:
+            dsval_2[i] = val
 
-        ctest.pop(idx, None)
-        dstest.pop(idx, None)
-        dttest.pop(idx, None)
+        val = dval.pop(i, None)
+        if val is not None:
+            dval_2[i] = val
 
-        ctrain.pop(idx, None)
-        dstrain.pop(idx, None)
-        dttrain.pop(idx, None)
+        val = ctest.pop(i, None)
+        if val is not None:
+            ctest_2[i] = val
 
-    print("final length: " + str(len(new_dict['ctrain']) + len(new_dict['ctest']) + len(new_dict['cval'])))
+        val = dstest.pop(i, None)
+        if val is not None:
+            dstest_2[i] = val
 
+        val = dtest.pop(i, None)
+        if val is not None:
+            dtest_2[i] = val
+
+        val = ctrain.pop(i, None)
+        if val is not None:
+            ctrain_2[i] = val
+
+        val = dstrain.pop(i, None)
+        if val is not None:
+            dstrain_2[i] = val
+
+        val = dtrain.pop(i, None)
+        if val is not None:
+            dtrain_2[i] = val
+
+    print("final length: " + str(len(ctrain_2) + len(ctest_2) + len(cval_2)))
+
+    new_dict = dict()
+    new_dict['cval'] = cval_2
+    new_dict['dsval'] = dsval_2
+    new_dict['dval'] = dval_2
+
+    new_dict['ctrain'] = ctrain_2
+    new_dict['dstrain'] = dstrain_2
+    new_dict['dtrain'] = dtrain_2
+
+    new_dict['ctest'] = ctest_2
+    new_dict['dstest'] = dstest_2
+    new_dict['dtest'] = dtest_2
+    
     with open(path + "/dataset_filtered.pkl", "wb") as outfile:
         pickle.dump(new_dict, outfile)
     print("done")
