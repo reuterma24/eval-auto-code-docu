@@ -40,7 +40,7 @@ class AstAttentionGRUModel:
         
         dat_input = Input(shape=(self.tdatlen,))
         com_input = Input(shape=(self.comlen,))
-        sml_input = Input(shape=(self.smllen,), dtype=object)
+        sml_input = Input(shape=(self.smllen,))
         
         ee = Embedding(output_dim=self.embdims, input_dim=self.tdatvocabsize, mask_zero=False)(dat_input)
         se = Embedding(output_dim=self.smldims, input_dim=self.smlvocabsize, mask_zero=False)(sml_input)
