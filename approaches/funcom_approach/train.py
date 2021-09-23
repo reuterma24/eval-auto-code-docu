@@ -135,7 +135,7 @@ if __name__ == '__main__':
 
     config['tdatlen'] = len(list(seqdata['dtrain'].values())[0])
     config['comlen'] = len(list(seqdata['ctrain'].values())[0])
-    config['smllen'] = len(list(seqdata['dstrain'].values())[0])
+    config['smllen'] = len(list(seqdata['strain'].values())[0])
     
     config['multigpu'] = multigpu
     config['batch_size'] = batch_size
