@@ -17,8 +17,8 @@ class AstAttentionGRUModel:
     def __init__(self, config):
         
         # override default data sizes to what was used in the ICSE paper
-        config['tdatlen'] = 50
-        config['smllen'] = 1
+        config['tdatlen'] = 100
+        config['smllen'] = 100
         config['comlen'] = 13
         
         self.config = config
