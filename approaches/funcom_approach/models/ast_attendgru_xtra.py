@@ -30,7 +30,7 @@ class AstAttentionGRUModel:
         self.smllen = config['smllen']
         
         self.embdims = 100
-        self.smldims = 10
+        self.smldims = 256
         self.recdims = 256
 
         self.config['num_input'] = 3
