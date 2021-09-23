@@ -45,27 +45,27 @@ def preprocess():
 
     # removing filtered FIDS
     cval = old_dict['cval']
-    dsval = old_dict['dsval']
+    sval = old_dict['sval']
     dval = old_dict['dval']
 
     ctest = old_dict['ctest']
-    dstest = old_dict['dstest']
+    stest = old_dict['stest']
     dtest = old_dict['dtest']
 
     ctrain = old_dict['ctrain']
-    dstrain = old_dict['dstrain']
+    strain = old_dict['strain']
     dtrain = old_dict['dtrain']
 
     cval_2 = dict()
-    dsval_2 = dict()
+    sval_2 = dict()
     dval_2 = dict()
 
     ctest_2 = dict()
-    dstest_2 = dict()
+    stest_2 = dict()
     dtest_2 = dict()
 
     ctrain_2 = dict()
-    dstrain_2 = dict()
+    strain_2 = dict()
     dtrain_2 = dict()
 
     print("initial length: " + str(len(ctrain) + len(ctest) + len(cval)))
@@ -75,9 +75,9 @@ def preprocess():
         if val is not None:
             cval_2[i] = val
 
-        val = dsval.pop(i, None)
+        val = sval.pop(i, None)
         if val is not None:
-            dsval_2[i] = val
+            sval_2[i] = val
 
         val = dval.pop(i, None)
         if val is not None:
@@ -87,9 +87,9 @@ def preprocess():
         if val is not None:
             ctest_2[i] = val
 
-        val = dstest.pop(i, None)
+        val = stest.pop(i, None)
         if val is not None:
-            dstest_2[i] = val
+            stest_2[i] = val
 
         val = dtest.pop(i, None)
         if val is not None:
@@ -99,9 +99,9 @@ def preprocess():
         if val is not None:
             ctrain_2[i] = val
 
-        val = dstrain.pop(i, None)
+        val = strain.pop(i, None)
         if val is not None:
-            dstrain_2[i] = val
+            strain_2[i] = val
 
         val = dtrain.pop(i, None)
         if val is not None:
@@ -111,15 +111,15 @@ def preprocess():
 
     new_dict = dict()
     new_dict['cval'] = cval_2
-    new_dict['dsval'] = dsval_2
+    new_dict['sval'] = sval_2
     new_dict['dval'] = dval_2
 
     new_dict['ctrain'] = ctrain_2
-    new_dict['dstrain'] = dstrain_2
+    new_dict['strain'] = strain_2
     new_dict['dtrain'] = dtrain_2
 
     new_dict['ctest'] = ctest_2
-    new_dict['dstest'] = dstest_2
+    new_dict['stest'] = stest_2
     new_dict['dtest'] = dtest_2
     
     with open(path + "/dataset_filtered.pkl", "wb") as outfile:
