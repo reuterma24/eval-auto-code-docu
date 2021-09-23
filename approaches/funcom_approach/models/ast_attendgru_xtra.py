@@ -18,7 +18,7 @@ class AstAttentionGRUModel:
         
         # override default data sizes to what was used in the ICSE paper
         config['tdatlen'] = 100
-        config['smllen'] = 1
+        config['smllen'] = 100
         config['comlen'] = 13
         
         self.config = config
@@ -43,7 +43,7 @@ class AstAttentionGRUModel:
         sml_input = Input(shape=(self.smllen,))
         
         ee = Embedding(output_dim=self.embdims, input_dim=self.tdatvocabsize, mask_zero=False)(dat_input)
-        se = Embedding(output_dim=self.smldims, input_dim=self.smlvocabsize, mask_zero=False)(sml_input)
+        se = Embedding(output_dim=self.smldims, input_dim=self.smlvocabsize, mask_zero=False, dtype=object)(sml_input)
 
         se_enc = CuDNNGRU(self.recdims, return_state=True, return_sequences=True)
         seout, state_sml = se_enc(se)
