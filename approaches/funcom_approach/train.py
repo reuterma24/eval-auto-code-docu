@@ -108,6 +108,7 @@ if __name__ == '__main__':
 
     prep('loading sequences... ')
     seqdata = pickle.load(open('%s/dataset_filtered.pkl' % (dataprep), 'rb'))
+    print(seqdata.keys())
     drop()
 
     steps = int(len(seqdata['ctrain'])/batch_size)+1
