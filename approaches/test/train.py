@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', dest='epochs', type=int, default=100)
     parser.add_argument('--model-type', dest='modeltype', type=str, default='vanilla')
     parser.add_argument('--with-multigpu', dest='multigpu', action='store_true', default=False)
-    parser.add_argument('--data', dest='dataprep', type=str, default='/scratch/funcom/data/standard')
+    parser.add_argument('--data', dest='dataprep', type=str, default='/vol/tmp/reuterma/extra_data')
     parser.add_argument('--outdir', dest='outdir', type=str, default='/scratch/funcom/data/outdir')
     parser.add_argument('--dtype', dest='dtype', type=str, default='float32')
     parser.add_argument('--tf-loglevel', dest='tf_loglevel', type=str, default='3')
