@@ -46,14 +46,15 @@ class AstAttentionGRUModel:
         se = Embedding(output_dim=self.smldims, input_dim=self.smlvocabsize, mask_zero=False, dtype=object)(sml_input)
 
         se_enc = CuDNNGRU(self.recdims, return_state=True, return_sequences=True)
-        seout, state_sml = se_enc(se)
+        seout, state_sml = se_enc(se, dtype=object)
 
         enc = CuDNNGRU(self.recdims, return_state=True, return_sequences=True)
-        encout, state_h = enc(ee, initial_state=state_sml)
+        encout, state_h = enc(ee, initial_state=state_sml, dtype=object)
         
         de = Embedding(output_dim=self.embdims, input_dim=self.comvocabsize, mask_zero=False)(com_input)
         dec = CuDNNGRU(self.recdims, return_sequences=True)
-        decout = dec(de, initial_state=state_h)
+        decout = dec(de, initial_state=state_h, dtype=object
+                     )
 
         attn = dot([decout, encout], axes=[2, 2])
         attn = Activation('softmax')(attn)
