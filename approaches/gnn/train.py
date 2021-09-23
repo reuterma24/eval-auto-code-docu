@@ -60,7 +60,7 @@ if __name__ == '__main__':
     config['epochs'] = epochs
 
     # Load data
-    seqdata = pickle.load(open('{}/dataset_filtered.pkl'.format(dataprep), 'rb'))
+    seqdata = pickle.load(open('{}/dataset.pkl'.format(dataprep), 'rb'))
 
     node_data = seqdata['strain_nodes']
     edges = seqdata['strain_edges']
