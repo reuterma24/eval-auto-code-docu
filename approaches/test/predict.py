@@ -150,8 +150,8 @@ if __name__ == '__main__':
 
     if zerodats:
         v = np.zeros(100)
-        for key, val in seqdata['dttrain'].items():
-            seqdata['dttrain'][key] = v
+        for key, val in seqdata['dtrain'].items():
+            seqdata['dtrain'][key] = v
 
         for key, val in seqdata['dtval'].items():
             seqdata['dtval'][key] = v
