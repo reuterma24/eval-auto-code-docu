@@ -96,13 +96,13 @@ class batch_gen(keras.utils.Sequence):
         comouts = list()
 
         for fid in batchfids:
-            input_datseq = seqdata['dt%s' % (tt)][fid]
+            input_datseq = seqdata['d%s' % (tt)][fid]
             input_comseq = seqdata['c%s' % (tt)][fid]
 
         limit = -1
         c = 0
         for fid in batchfids:
-            wdatseq = seqdata['dt%s' % (tt)][fid]
+            wdatseq = seqdata['d%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
             
             wdatseq = wdatseq[:self.config['tdatlen']]
@@ -144,9 +144,9 @@ class batch_gen(keras.utils.Sequence):
         c = 0
         for fid in batchfids:
 
-            wdatseq = seqdata['dt%s' % (tt)][fid]
+            wdatseq = seqdata['d%s' % (tt)][fid]
             wcomseq = seqdata['c%s' % (tt)][fid]
-            wsmlseq = seqdata['ds%s' % (tt)][fid]
+            wsmlseq = seqdata['s%s' % (tt)][fid]
 
             wdatseq = wdatseq[:self.config['tdatlen']]
 
