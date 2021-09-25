@@ -30,7 +30,7 @@ refs_dict = reflist.get_all_references()
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
 refs, preds = c2s.load()
-evaluate(preds, refs)
+#evaluate(preds, refs)
 
 
 # AttnFC EVAL
@@ -72,7 +72,7 @@ for key in sorted(refs_dict.keys()):
 
 # NEURALLSPS EVAL
 print("--- EVALUATING NEURALLSPS ---")
-preds_dict = predFormatter.format_prediction("approaches/funcom_approach/outdir/predictions/predict-ast-attendgru_E05_1632487938.txt")
+preds_dict = predFormatter.format_prediction("approaches/neuralLSPS/outdir/predictions/predict-ast-attendgru_E05_1632487938.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
