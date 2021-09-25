@@ -55,7 +55,7 @@ print("refs :" + str((len(refs))))
 print("preds :" + str((len(preds))))
 print("done")
 
-evaluate(preds, refs)
+#evaluate(preds, refs)
 
 # GNN EVAL
 print("--- EVALUATING GNN ---")
@@ -68,11 +68,11 @@ preds.clear()
 for key in sorted(refs_dict.keys()):
     preds.append(preds_dict[key])
 
-evaluate(preds, refs)
+#evaluate(preds, refs)
 
 # NEURALLSPS EVAL
 print("--- EVALUATING NEURALLSPS ---")
-preds_dict = predFormatter.format_prediction("approaches/funcom_approach/outdir/predictions/predict-attendgru_E07_1631539477.txt")
+preds_dict = predFormatter.format_prediction("approaches/funcom_approach/outdir/predictions/predict-ast-attendgru_E05_1632487938.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
