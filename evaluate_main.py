@@ -30,7 +30,7 @@ refs_dict = reflist.get_all_references()
 # CODE2SEQ EVAL
 print("--- EVALUATING CODE2SEQ ---")
 refs, preds = c2s.load()
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
 
 # AttnFC EVAL
@@ -55,11 +55,11 @@ print("refs :" + str((len(refs))))
 print("preds :" + str((len(preds))))
 print("done")
 
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
 # GNN EVAL
 print("--- EVALUATING GNN ---")
-#preds_dict = predFormatter.format_prediction("approaches/gnn/modelout/predictions/predict-codegnnbilstm.txt")
+preds_dict = predFormatter.format_prediction("approaches/gnn/modelout/predictions/predict-codegnnbilstm.txt")
 for k in list(unique_keys):
     if k in preds_dict:
         del preds_dict[k]
@@ -68,7 +68,7 @@ preds.clear()
 for key in sorted(refs_dict.keys()):
     preds.append(preds_dict[key])
 
-#evaluate(preds, refs)
+evaluate(preds, refs)
 
 # NEURALLSPS EVAL
 print("--- EVALUATING NEURALLSPS ---")
