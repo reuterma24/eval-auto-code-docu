@@ -17,4 +17,4 @@ general.preprocess()
 
 # RUN CODE2SEQ PREPROCESSING
 print("Preprocessing data for code2seq")
-#code2seq.preprocess()
+code2seq.preprocess()
