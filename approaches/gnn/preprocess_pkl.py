@@ -10,7 +10,7 @@ import tensorflow as tf
 from keras.callbacks import ModelCheckpoint, Callback
 import keras.backend as K
 from utils.model import create_model
-from utils.myutils import batch_gen, init_tf
+#from utils.myutils import batch_gen, init_tf
 
 
 def print_keys():
