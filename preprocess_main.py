@@ -1,7 +1,8 @@
 import os.path
 import preprocessing.code2seq.preprocess_code2seq as code2seq
 import preprocessing.preprocess_general as general
-import preprocessing.preprocess_pkl_alias as caller
+import preprocessing.preprocess_pkl_caller as caller
+import preprocessing.preprocess_pkl_caller2 as caller2
 from subprocess import Popen
 
 
@@ -20,5 +21,11 @@ print("Applying general preprocessing")
 print("Preprocessing data for code2seq")
 #code2seq.preprocess()
 
+
+### THE FOLLOWING 'CALLERS' ARE NEEDED BECAUSE OF OCCURING PICKLE ERRORS
 # RUN .PKL PREPROCESSING FOR GNN, ATTNFC
-caller.preprocess()
+#caller.preprocess()
+
+# RUN .PKL PREPROCESSING FOR NEURALLSPS
+caller2.preprocess()
+
