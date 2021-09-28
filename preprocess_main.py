@@ -1,6 +1,7 @@
 import os.path
 import preprocessing.code2seq.preprocess_code2seq as code2seq
 import preprocessing.preprocess_general as general
+import preprocessing.preprocess_pkl_alias as caller
 from subprocess import Popen
 
 
@@ -17,4 +18,7 @@ print("Applying general preprocessing")
 
 # RUN CODE2SEQ PREPROCESSING
 print("Preprocessing data for code2seq")
-code2seq.preprocess()
+#code2seq.preprocess()
+
+# RUN .PKL PREPROCESSING FOR GNN, ATTNFC
+caller.preprocess()

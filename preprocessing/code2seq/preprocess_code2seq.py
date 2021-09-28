@@ -69,4 +69,4 @@ def preprocess():
                 validation.writelines(str(comment_dict[i] + '\n' + code_dict[i] + '\n\n'))
                 idx += 1
 
-   # os.system("sh approaches/code2seq/preprocess.sh")
+    os.system("sh approaches/code2seq/preprocess.sh")
