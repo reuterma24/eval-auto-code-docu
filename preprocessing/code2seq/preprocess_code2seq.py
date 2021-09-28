@@ -18,7 +18,7 @@ def preprocess():
     print("val len:" + str(len(val_fids)))
 
     #create dic structure
-    root = root + '/preprocessed_data/code2seq/split/'
+    root = root + '/code2seq/preprocessed_data/split/'
 
     os.makedirs(root, exist_ok=True)
     shutil.rmtree(root, ignore_errors=True)
