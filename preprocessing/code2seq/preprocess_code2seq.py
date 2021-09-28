@@ -30,13 +30,13 @@ def preprocess():
     comment_dict = dict()
     code_dict = dict()
 
-    f = open('../../comments.txt', 'r')
+    f = open('comments.txt', 'r')
     for _, line in enumerate(f):
         a, b = line.split(":")
         comment_dict[int(a)] = ''.join(b.strip())
     f.close()
 
-    f = open('../../codes.txt', 'r')
+    f = open('codes.txt', 'r')
     for _, line in enumerate(f):
         a, b = line.split(":", 1)
         code_dict[int(a)] = ''.join(b.strip())
