@@ -36,7 +36,7 @@ def preprocess():
         comment_dict[int(a)] = ''.join(b.strip())
     f.close()
 
-    f = open('codes.txt', 'r')
+    f = open('code.txt', 'r')
     for _, line in enumerate(f):
         a, b = line.split(":", 1)
         code_dict[int(a)] = ''.join(b.strip())
