@@ -29,7 +29,7 @@ def preprocess():
     path = '/vol/tmp/reuterma/extra_data'
 
     print("Loading invalid fids")
-    f = open("../../invalid_fids.txt", "r")
+    f = open("invalid_fids.txt", "r")
     invalid_fids = f.read().split(",")
     f.close()
     del invalid_fids[-1]  # remove last empty entry
