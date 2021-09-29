@@ -22,4 +22,4 @@ __Evaluation Of Automated Code Documentation Approaches__
   
 Link to download final model files for each approach: [HERE](https://drive.google.com/file/d/1WEvbBdL-52UlHX89TXMZjP5UGle3rxyy/view?usp=sharing) 
 
-Note: Some hardcoded paths have to adjusted to fit a different directory structure
+Note: Some hardcoded paths require adjustment to fit a different directory structure
