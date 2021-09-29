@@ -5,7 +5,7 @@ __Evaluation Of Automated Code Documentation Approaches__
   
   ---
   ### Preprocessing
-  The preprocessing procedure can be invoked by using preprocess_main.py. This file triggers preprocessing procedures sequentially. 
+  The preprocessing procedure can be invoked by using preprocess_main.py. This file triggers all preprocessing procedures sequentially. 
   
   ---
   ### Training 
@@ -16,7 +16,7 @@ __Evaluation Of Automated Code Documentation Approaches__
   
   ---
   ### Evaluation
-  All approaches can be evaluated sequentially with evaluate_main.py. This requires the preprocessed data and the prediction files from models.
+  All approaches can be evaluated sequentially with evaluate_main.py. This requires the preprocessed data and the prediction files from the models.
   
   ---
   
